@@ -1,0 +1,10 @@
+%p#notice= notice
+%p
+  %strong Name:
+  = @artist.name
+%p
+  %strong Rating:
+  = @artist.rating
+= link_to 'Edit', edit_artist_path(@artist)
+|
+\#{link_to 'Back', artists_path}

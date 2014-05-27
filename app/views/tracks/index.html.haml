@@ -1,0 +1,35 @@
+%h1 Listing tracks
+%table
+  %thead
+    %tr
+      %th Title
+      %th Rating
+      %th Artist
+      %th Album
+      %th Date
+      %th Location
+      %th Bitrate
+      %th Lyrics
+      %th Track
+      %th Disc
+      %th Format
+      %th{:colspan => "3"}
+  %tbody
+    - @tracks.each do |track|
+      %tr
+        %td= track.title
+        %td= track.rating
+        %td= track.artist_id
+        %td= track.album_id
+        %td= track.date
+        %td= track.location
+        %td= track.bitrate
+        %td= track.lyrics
+        %td= track.track_id
+        %td= track.disc_id
+        %td= track.format
+        %td= link_to 'Show', track
+        %td= link_to 'Edit', edit_track_path(track)
+        %td= link_to 'Destroy', track, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+= link_to 'New track', new_track_path

@@ -1,0 +1,19 @@
+%p#notice= notice
+%p
+  %strong Title:
+  = @album.title
+%p
+  %strong Rating:
+  = @album.rating
+%p
+  %strong Artist:
+  = @album.artist_id
+%p
+  %strong Art:
+  = @album.art
+%p
+  %strong Release date:
+  = @album.release_date
+= link_to 'Edit', edit_album_path(@album)
+|
+\#{link_to 'Back', albums_path}

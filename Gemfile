@@ -1,10 +1,26 @@
 source 'https://rubygems.org'
-
+ruby '2.1.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.1'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+
+group :development do
+  # Use sqlite3 as the database for Active Record
+  gem 'sqlite3'
+  # Better error handling
+  gem 'better_errors'
+  gem 'binding_of_caller'
+end
+
+# In production
+group :production do
+  # Use puma as the app server
+  gem 'puma'
+  # Use postgres as the
+  gem 'pg'
+  gem 'rails_12factor'
+end
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -23,26 +39,24 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
+# purecss for styling
+gem 'purecss'
+
+# HAML for markup
+gem 'haml'
+
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-# Use puma as the app server in production
-group :production do
-  gem 'puma'
-end
-
 # Use oj instead of default json
 gem 'oj'
 gem 'oj_mimic_json'
 
-# Better error handling
-group :development do
-  gem 'better_errors'
-  gem 'binding_of_caller'
-end
+# taglib for reading ID3
+gem 'taglib-ruby'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
