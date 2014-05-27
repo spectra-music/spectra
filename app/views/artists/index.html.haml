@@ -1,17 +1,19 @@
-%h1 Listing artists
-%table
-  %thead
-    %tr
-      %th Name
-      %th Rating
-      %th{:colspan => "3"}
-  %tbody
-    - @artists.each do |artist|
+.header
+  %h1 all artists
+.content
+  %table.pure-table.pure-table-bordered
+    %thead
       %tr
-        %td= artist.name
-        %td= artist.rating
-        %td= link_to 'Show', artist
-        %td= link_to 'Edit', edit_artist_path(artist)
-        %td= link_to 'Destroy', artist, method: :delete, data: { confirm: 'Are you sure?' }
-%br/
-= link_to 'New Artist', new_artist_path
+        %th Name
+        %th Rating
+        %th{:colspan => "3"}
+    %tbody
+      - @artists.each do |artist|
+        %tr
+          %td= artist.name
+          %td= artist.rating
+          %td= link_to 'Show', artist
+          %td= link_to 'Edit', edit_artist_path(artist)
+          %td= link_to 'Destroy', artist, method: :delete, data: { confirm: 'Are you sure?' }
+  %br/
+  = link_to 'New Artist', new_artist_path

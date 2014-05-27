@@ -1,23 +1,23 @@
-%h1 Listing albums
-%table
-  %thead
-    %tr
-      %th Title
-      %th Rating
-      %th Artist
-      %th Art
-      %th Release date
-      %th{:colspan => "3"}
-  %tbody
-    - @albums.each do |album|
+.header
+  %h1 all albums
+.content
+  %table.pure-table.pure-table-bordered
+    %thead
       %tr
-        %td= album.title
-        %td= album.rating
-        %td= album.artist_id
-        %td= album.art
-        %td= album.release_date
-        %td= link_to 'Show', album
-        %td= link_to 'Edit', edit_album_path(album)
-        %td= link_to 'Destroy', album, method: :delete, data: { confirm: 'Are you sure?' }
-%br/
-= link_to 'New Album', new_album_path
+        %th Title
+        %th Rating
+        %th Artist
+        %th Release date
+        %th{:colspan => "3"}
+    %tbody
+      - @albums.each do |album|
+        %tr
+          %td= album.title
+          %td= album.rating
+          %td= album.artist_id
+          %td= album.release_date
+          %td= link_to 'Show', album
+          %td= link_to 'Edit', edit_album_path(album)
+          %td= link_to 'Destroy', album, method: :delete, data: { confirm: 'Are you sure?' }
+  %br/
+  = link_to 'New Album', new_album_path
