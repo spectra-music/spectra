@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  rating: 1
+  artist_id: 1
+  album_id: 1
+  date: 2014-05-27
+  location: MyString
+  bitrate: 1.5
+  lyrics: MyText
+  track_id: 1
+  disc_id: 1
+  format: MyString
+
+two:
+  title: MyString
+  rating: 1
+  artist_id: 1
+  album_id: 1
+  date: 2014-05-27
+  location: MyString
+  bitrate: 1.5
+  lyrics: MyText
+  track_id: 1
+  disc_id: 1
+  format: MyString

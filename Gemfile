@@ -29,8 +29,20 @@ gem 'spring',        group: :development
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-# Use unicorn as the app server
-# gem 'unicorn'
+# Use puma as the app server in production
+group :production do
+  gem 'puma'
+end
+
+# Use oj instead of default json
+gem 'oj'
+gem 'oj_mimic_json'
+
+# Better error handling
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+end
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

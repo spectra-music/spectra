@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @track.title %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @track.rating %>
+</p>
+
+<p>
+  <strong>Artist:</strong>
+  <%= @track.artist_id %>
+</p>
+
+<p>
+  <strong>Album:</strong>
+  <%= @track.album_id %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @track.date %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @track.location %>
+</p>
+
+<p>
+  <strong>Bitrate:</strong>
+  <%= @track.bitrate %>
+</p>
+
+<p>
+  <strong>Lyrics:</strong>
+  <%= @track.lyrics %>
+</p>
+
+<p>
+  <strong>Track:</strong>
+  <%= @track.track_id %>
+</p>
+
+<p>
+  <strong>Disc:</strong>
+  <%= @track.disc_id %>
+</p>
+
+<p>
+  <strong>Format:</strong>
+  <%= @track.format %>
+</p>
+
+<%= link_to 'Edit', edit_song_path(@track) %> |
+<%= link_to 'Back', songs_path %>
