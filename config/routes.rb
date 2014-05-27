@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
+  get 'welcome/index'
+
   post 'import/:path' => 'import#post', :constraints => {:url => /.*/}
 
   get 'import' => 'import#index'
 
-  root 'albums#index'
+  root 'welcome#index'
 
   resources :tracks
 
