@@ -64,6 +64,8 @@ GEM
     multi_json (1.10.1)
     oj (2.9.3)
     oj_mimic_json (1.0.0)
+    paloma (4.0.0)
+      jquery-rails
     pg (0.17.1)
     polyglot (0.3.4)
     puma (2.8.2)
@@ -143,6 +145,7 @@ DEPENDENCIES
   jquery-rails
   oj
   oj_mimic_json
+  paloma
   pg
   puma
   purecss
