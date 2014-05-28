@@ -45,6 +45,8 @@ GEM
     debug_inspector (0.0.2)
     erubis (2.7.0)
     execjs (2.0.2)
+    flash_render (1.2.0)
+      rails (>= 2.3.8)
     haml (4.0.5)
       tilt
     hike (1.2.3)
@@ -141,6 +143,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   coffee-rails (~> 4.0.0)
+  flash_render
   haml
   jbuilder (~> 2.0)
   jquery-rails

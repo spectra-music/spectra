@@ -24,15 +24,24 @@ class ArtistsController < ApplicationController
   # POST /artists
   # POST /artists.json
   def create
-    @artist = Artist.new(artist_params)
+    @artist = Artist.find_by_name(artist_params[:name])
 
-    respond_to do |format|
-      if @artist.save
-        format.html { redirect_to @artist, notice: 'Artist was successfully created.' }
+    if @artist.nil?
+      @artist = Artist.new(artist_params)
+
+      respond_to do |format|
+        if @artist.save
+          format.html { flash[notice] = 'Artist was successfully created.'; redirect_to action: :index }
+          format.json { render :show, status: :created, location: @artist }
+        else
+          format.html { render :new }
+          format.json { render json: @artist.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
+        format.html { flash[:alert] = 'Artist already exists'; redirect_to(action: :index) }
         format.json { render :show, status: :created, location: @artist }
-      else
-        format.html { render :new }
-        format.json { render json: @artist.errors, status: :unprocessable_entity }
       end
     end
   end

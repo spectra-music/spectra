@@ -10,9 +10,9 @@
             %li= message
     .pure-control-group
       = f.label :name
-      = f.text_field :name
+      = f.text_field :name, placeholder: "Artist Name"
     .pure-control-group
       = f.label :rating
-      = f.number_field :rating, min: 0, max:5
+      = f.number_field :rating, in:0..5, placeholder: "0 to 5"
     .pure-controls
       = f.submit class: "pure-button pure-button-primary"

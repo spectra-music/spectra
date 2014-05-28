@@ -6,10 +6,11 @@ setHighlight = ->
 
 
 AlbumsController::new = ->
-  $('#album_artist_id').selectize({
+  $('#album_artist').selectize({
     create: true,
     sortField: 'text'
   });
+  $('#album_release_date_1i').selectize();
 
 AlbumsController::index = ->
   setHighlight()

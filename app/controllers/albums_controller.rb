@@ -24,6 +24,10 @@ class AlbumsController < ApplicationController
   # POST /albums
   # POST /albums.json
   def create
+    raise error
+    Artist.find_or_create_by(name: album_params[:artist]) do |artist|
+      artist.rating = 0
+    end
     @album = Album.new(album_params)
 
     respond_to do |format|
@@ -69,6 +73,6 @@ class AlbumsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def album_params
-      params.require(:album).permit(:title, :rating, :artist_id, :art, :release_date)
+      params.require(:album).permit(:title, :rating, :artist, :art, :release_date)
     end
 end

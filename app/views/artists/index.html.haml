@@ -1,6 +1,11 @@
 .header
   %h1 All Artists
 .content
+  - if not notice.nil?
+    .pure-alert.pure-alert-success#notice= notice
+  - if not alert.nil?
+    .pure-alert.pure-alert-error#alert= alert
+  //= throw error
   %table.pure-table.pure-table-bordered
     %thead
       %tr
@@ -12,7 +17,6 @@
         %tr
           %td= artist.name
           %td= artist.rating
-          %td= link_to 'Show', artist
           %td= link_to 'Edit', edit_artist_path(artist)
           %td= link_to 'Destroy', artist, method: :delete, data: { confirm: 'Are you sure?' }
   %br/
