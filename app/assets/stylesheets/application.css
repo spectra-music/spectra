@@ -13,6 +13,8 @@
  *= require_tree .
  *= require_self
  *= require purecss
+ *= require selectize
+ *= require selectize.default
  */
 
 
@@ -253,4 +255,15 @@ Hides the menu at `48em`, but modify this based on your app's needs.
     #layout.active .menu-link {
         left: 75px;
     }
+}
+
+.content form.pure-form.pure-form-aligned {
+    padding-left: 160px;
+}
+
+.selectize-control {
+    display: inline-block;
+    vertical-align: middle;
+    min-width: 230px;
+    margin: 0;
 }

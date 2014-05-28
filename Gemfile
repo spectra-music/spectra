@@ -42,6 +42,9 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # purecss for styling
 gem 'purecss'
 
+# selectize for intelligent select boxes
+gem 'selectize-rails'
+
 # paloma for page-specific javascript
 gem 'paloma'
 

@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require paloma
+//= require selectize
 //= require_tree .
 
 (function (window, document) {

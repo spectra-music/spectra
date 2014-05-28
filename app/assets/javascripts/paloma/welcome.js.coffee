@@ -1,0 +1,1 @@
+WelcomeController = Paloma.controller('Welcome');

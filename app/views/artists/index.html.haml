@@ -1,5 +1,5 @@
 .header
-  %h1 all artists
+  %h1 All Artists
 .content
   %table.pure-table.pure-table-bordered
     %thead
@@ -16,4 +16,4 @@
           %td= link_to 'Edit', edit_artist_path(artist)
           %td= link_to 'Destroy', artist, method: :delete, data: { confirm: 'Are you sure?' }
   %br/
-  = link_to 'New Artist', new_artist_path
+  = link_to 'New Artist', new_artist_path, class: "pure-button pure-button-primary"

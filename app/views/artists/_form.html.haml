@@ -1,19 +1,18 @@
-= form_for(@artist) do |f|
-  - if @artist.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@artist.errors.count, "error")
-        prohibited this artist from being saved:
-      %ul
-        - @artist.errors.full_messages.each do |message|
-          %li= message
-  .field
-    = f.label :name
-    %br/
-    = f.text_field :name
-  .field
-    = f.label :rating
-    %br/
-    = f.number_field :rating
-  .actions
-    = f.submit
+= form_for(@artist, html:{ class: "pure-form pure-form-aligned" }) do |f|
+  %fieldset
+    - if @artist.errors.any?
+      #error_explanation
+        %h2
+          = pluralize(@artist.errors.count, "error")
+          prohibited this artist from being saved:
+        %ul
+          - @artist.errors.full_messages.each do |message|
+            %li= message
+    .pure-control-group
+      = f.label :name
+      = f.text_field :name
+    .pure-control-group
+      = f.label :rating
+      = f.number_field :rating, min: 0, max:5
+    .pure-controls
+      = f.submit class: "pure-button pure-button-primary"
