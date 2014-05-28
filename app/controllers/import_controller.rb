@@ -11,8 +11,7 @@ class ImportController < ApplicationController
     js false
     response.headers['Content-Type'] = 'text/event-stream'
     sse = SSE.new(response.stream)
-    sse.write({ path: params[:q]}, event: 'message')
-    sse.close
+    sse.write({}, event: 'close') # close the client side
   rescue IOError
     # ignored
   ensure

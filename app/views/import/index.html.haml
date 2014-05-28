@@ -1,7 +1,7 @@
 .header
   %h1 Let's import some data!
 .content
-  = form_tag("/import/add", method: :get, class: "pure-form pure-form-aligned" ) do
+  %form.pure-form.pure-form-aligned
     .fieldset
       .pure-control-group
         = label_tag(:q, "Import path:")
@@ -11,31 +11,18 @@
 
 :javascript
   $("a[href='/import']").parent().addClass("menu-item-divided pure-menu-selected");
-  $("input[name='commit']").click(function () {
-    var source = new EventSource('/import/add');
+  $('form').submit(function(event) {
+    var valuesToSubmit = $(this).serialize();
+    var source = new EventSource('/import/add?'+ valuesToSubmit);
 
 
     source.addEventListener('message', function (e) {
       console.log('Received a message:', e.data);
     });
 
-    source.onmessage = function (event) {
-      if (!event)
-        ser.close();
-      else
-        console.log(event);
-      //if (event.id == "CLOSE") {
-      //  source.close();
-      //}
-    }
-  });
-  $('form').submit(function() {
-    var valuesToSubmit = $(this).serialize();
-    var xmlHttp = null;
+    source.addEventListener('close', function () {
+      source.close();
+    })
 
-    xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", theUrl, false );
-    xmlHttp.send( valuesToSubmit );
-    console.log(xmlHttp.responseText);
-    return false;
+    event.preventDefault();
   });
