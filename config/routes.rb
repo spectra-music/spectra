@@ -1,11 +1,7 @@
 Rails.application.routes.draw do
-  get 'welcome/index'
-
-  post 'import/:path' => 'import#post', :constraints => {:url => /.*/}
-
-  get 'import' => 'import#index'
-
   root 'welcome#index'
+  get 'import' => 'import#index'
+  get 'import/add' => 'import#add'
 
   resources :tracks
 
