@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Album do
+describe Album, type: :model do
   it { should have_many(:tracks) }
   it { should belong_to(:artist) }
 

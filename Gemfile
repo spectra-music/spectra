@@ -26,6 +26,8 @@ gem 'flash_render'
 gem 'taglib-ruby'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+gem 'turbolinks'
 
 # In production
 group :production do
@@ -39,8 +41,6 @@ group :production do
   gem 'oj_mimic_json'
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'therubyracer',  platforms: :ruby
-  # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-  gem 'turbolinks'
 end
 
 group :development do
