@@ -1,0 +1,7 @@
+language: ruby
+cache: bundler
+rvm:
+  - rbx-2
+  - ruby-2
+#install:
+#  - apt-get install taglib
