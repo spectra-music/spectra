@@ -23,6 +23,9 @@ class AlbumsController < ApplicationController
 
   # POST /albums
   # POST /albums.json
+  # Guarantee that no such album exists prior to creating it.
+  # If there is no artist matching the one given, create it as well
+  # Create a new album.
   def create
     @album = Album.new do |a|
       a.title = album_params[:title]
