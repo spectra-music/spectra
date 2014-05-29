@@ -24,11 +24,18 @@ class AlbumsController < ApplicationController
   # POST /albums
   # POST /albums.json
   def create
-    raise error
-    Artist.find_or_create_by(name: album_params[:artist]) do |artist|
-      artist.rating = 0
+    @album = Album.new do |a|
+      a.title = album_params[:title]
+      a.artist = Artist.find_or_create_by(name: album_params[:artist]) do |artist|
+        artist.rating = 0
+      end
+      a.rating = album_params[:rating]
+      a.art = album_params[:art]
+      a.release_date = album_params[:release_date]
+      a.is_compilation = false
+      a.num_discs = 1
+      a.num_tracks = 12
     end
-    @album = Album.new(album_params)
 
     respond_to do |format|
       if @album.save
