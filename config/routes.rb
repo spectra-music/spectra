@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :genres
+
   root 'welcome#index'
   get 'import' => 'import#index'
   get 'import/add' => 'import#add'
