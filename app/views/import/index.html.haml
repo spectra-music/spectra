@@ -4,8 +4,8 @@
   %form.pure-form.pure-form-aligned
     .fieldset
       .pure-control-group
-        = label_tag(:q, "Import path:")
-        = text_field_tag(:q)
+        = label_tag(:path, "Import path:")
+        = text_field_tag(:path)
       .pure-controls
         = submit_tag("Import", class: "pure-button pure-button-primary")
 
@@ -18,6 +18,9 @@
 
     source.addEventListener('message', function (e) {
       console.log('Received a message:', e.data);
+      console.log(e);
+      var data = JSON.parse(e.data);
+      $('.content').append("<p>" + data.path + "</p>")
     });
 
     source.addEventListener('close', function () {
