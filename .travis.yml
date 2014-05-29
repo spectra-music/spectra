@@ -3,8 +3,8 @@ cache: bundler
 rvm:
   - rbx-2
   - ruby-2
+addons:
+  code_climate:
+    repo_token: a653e3a741027378cdb00f4f99f598ed3de962de0ef5eaf4c88f262a1e664f91
 #install:
 #  - apt-get install taglib
- addons:
-   code_climate:
-     repo_token: a653e3a741027378cdb00f4f99f598ed3de962de0ef5eaf4c88f262a1e664f91
