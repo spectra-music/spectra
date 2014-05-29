@@ -10,8 +10,7 @@ class Track < ActiveRecord::Base
   # Ensure the title is unique within the album
   validates_uniqueness_of :title,
                           scope: :album,
-                          case_sensitive: false,
-                          message: 'should only be one in an album'
+                          case_sensitive: false
 
   # Ensure the artist and album are valid
   validates_associated :album, :artist

@@ -5,26 +5,26 @@ class Album < ActiveRecord::Base
   # An album is part of an artist's collection
   belongs_to :artist
 
-  # Ensure we have a title, artist, and compilation flag
-  validates :title, :artist, :is_compilation, presence: true
+  # Ensure we have a title and artist
+  validates_presence_of :title, :artist
 
   # Ensure our title is unique
-  validates :title, uniqueness: { case_sensitive: false }
+  validates_uniqueness_of :title, case_sensitive: false
 
   # Ensure our artist is valid
   validates_associated :artist
 
   # Ensure is_compilation is either true or false
-  validates :is_compilation, inclusion: {in: [true, false]}
+  validates_inclusion_of :is_compilation, in: [true, false]
 
   # Ensure rating is an integer from 0 to 5
-  validates :rating, numericality: { only_integer: true,
+  validates_numericality_of :rating, only_integer: true,
                                      greater_than_or_equal_to: 0,
-                                     less_than_or_equal_to: 5 }
+                                     less_than_or_equal_to: 5,
+                                     allow_nil: true
 
   # Ensure num_discs and num_tracks are integers greater than 0
-  validates :num_discs, :num_tracks,
-            numericality: { only_integer: true,
-                            greater_than_or_equal_to: 0 }
-
+  validates_numericality_of :num_discs, :num_tracks,
+                            only_integer: true,
+                            greater_than: 0
 end
