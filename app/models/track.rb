@@ -19,5 +19,4 @@ class Track < ActiveRecord::Base
   # Ensure the track_id is an integer and 1..
   validates :track_id, numericality: { only_integer: true,
                                        greater_than_or_equal_to: 1 }
-
 end
