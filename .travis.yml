@@ -12,4 +12,5 @@ before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -y libtag1-dev
 
-bundler_args: --without production --without development
+bundler_args: --without production development doc
+
