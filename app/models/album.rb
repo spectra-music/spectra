@@ -5,6 +5,8 @@ class Album < ActiveRecord::Base
   # An album is part of an artist's collection
   belongs_to :artist
 
+  has_and_belongs_to_many :genres
+
   # Ensure we have a title and artist
   validates_presence_of :title, :artist
 

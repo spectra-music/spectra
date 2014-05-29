@@ -1,6 +1,7 @@
 class Track < ActiveRecord::Base
   belongs_to :artist
   belongs_to :album
+  has_and_belongs_to_many :genres
 
   # Ensure a track has a title, artist, album,
   # track_id, and location exist
