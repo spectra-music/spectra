@@ -64,7 +64,7 @@ GEM
     debug_inspector (0.0.2)
     diff-lcs (1.2.5)
     erubis (2.7.0)
-    execjs (2.0.2)
+    execjs (2.1.0)
     factory_girl (4.4.0)
       activesupport (>= 3.0.0)
     factory_girl_rails (4.4.1)
@@ -96,7 +96,7 @@ GEM
     multi_test (0.1.1)
     nokogiri (1.6.2.1)
       mini_portile (= 0.6.0)
-    oj (2.9.3)
+    oj (2.9.4)
     oj_mimic_json (1.0.0)
     paloma (4.0.0)
       jquery-rails
@@ -177,7 +177,7 @@ GEM
       libv8 (~> 3.16.14.0)
       ref
     thor (0.19.1)
-    thread_safe (0.3.3)
+    thread_safe (0.3.4)
     tilt (1.4.1)
     treetop (1.4.15)
       polyglot
