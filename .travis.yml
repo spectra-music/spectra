@@ -1,7 +1,7 @@
 language: ruby
 cache: bundler
 rvm:
-  - rbx-2
+#  - rbx-2
   - ruby-2
 
 addons:
