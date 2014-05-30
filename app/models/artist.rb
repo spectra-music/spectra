@@ -1,6 +1,9 @@
 class Artist < ActiveRecord::Base
+  extend FriendlyId
   has_many :tracks
   has_many :albums
+
+  friendly_id :name, use: [:slugged, :finders], sequence_separator: '_'
 
   # Ensure the artist's name exists
   validates_presence_of :name

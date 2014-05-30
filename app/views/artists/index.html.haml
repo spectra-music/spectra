@@ -11,13 +11,8 @@
       %tr
         %th Name
         %th Rating
-        %th{:colspan => "3"}
     %tbody
       - @artists.each do |artist|
         %tr
-          %td= artist.name
+          %td= link_to artist.name, artist
           %td= artist.rating
-          %td= link_to 'Edit', edit_artist_path(artist)
-          %td= link_to 'Destroy', artist, method: :delete, data: { confirm: 'Are you sure?' }
-  %br/
-  = link_to 'New Artist', new_artist_path, class: "pure-button pure-button-primary"

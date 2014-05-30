@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140530031715) do
+ActiveRecord::Schema.define(version: 20140530042304) do
 
   create_table "albums", force: true do |t|
     t.string   "title"
@@ -23,8 +23,10 @@ ActiveRecord::Schema.define(version: 20140530031715) do
     t.datetime "updated_at"
     t.boolean  "is_compilation"
     t.integer  "num_discs"
+    t.string   "slug"
   end
 
+  add_index "albums", ["slug"], name: "index_albums_on_slug", unique: true
   add_index "albums", ["title"], name: "index_albums_on_title", unique: true
 
   create_table "albums_genres", id: false, force: true do |t|
@@ -37,15 +39,20 @@ ActiveRecord::Schema.define(version: 20140530031715) do
     t.integer  "rating"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
   end
 
   add_index "artists", ["name"], name: "index_artists_on_name", unique: true
+  add_index "artists", ["slug"], name: "index_artists_on_slug", unique: true
 
   create_table "genres", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
   end
+
+  add_index "genres", ["slug"], name: "index_genres_on_slug", unique: true
 
   create_table "genres_tracks", id: false, force: true do |t|
     t.integer "genre_id", null: false
@@ -66,6 +73,9 @@ ActiveRecord::Schema.define(version: 20140530031715) do
     t.string   "format"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
   end
+
+  add_index "tracks", ["slug"], name: "index_tracks_on_slug", unique: true
 
 end

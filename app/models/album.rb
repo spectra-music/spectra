@@ -1,4 +1,5 @@
 class Album < ActiveRecord::Base
+  extend FriendlyId
   # An album is composed of 1 or more tracks
   has_many :tracks
 
@@ -7,11 +8,13 @@ class Album < ActiveRecord::Base
 
   has_and_belongs_to_many :genres
 
+  friendly_id :title, use: [:slugged, :finders], sequence_separator: '_'
+
   # Ensure we have a title and artist
   validates_presence_of :title, :artist
 
-  # Ensure our title is unique
-  validates_uniqueness_of :title, case_sensitive: false
+  # Ensure each album title is unique to an artist
+  validates_uniqueness_of :title, case_sensitive: false, scope: :artist
 
   # Ensure our artist is valid
   validates_associated :artist

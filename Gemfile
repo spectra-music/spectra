@@ -29,6 +29,8 @@ gem 'taglib-ruby'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
+gem 'friendly_id', '~> 5.0.0'
+
 # In production
 group :production do
   # Use puma as the app server
@@ -49,6 +51,7 @@ group :development do
   gem 'binding_of_caller'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'pry-rails'
 end
 
 group :development, :test do
