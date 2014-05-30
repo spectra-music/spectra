@@ -17,7 +17,6 @@ FactoryGirl.define do
     genres {[create(:genre)]}
     title 'Spectra'
     rating 5
-    num_tracks 13
     num_discs 1
     is_compilation false
     initialize_with { Album.find_or_create_by(title: title)}

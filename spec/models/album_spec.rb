@@ -27,7 +27,5 @@ describe Album, type: :model do
               .only_integer
               .is_greater_than(0) }
 
-  it { should validate_numericality_of(:num_tracks)
-              .only_integer
-              .is_greater_than(0)}
+  it { should allow_value(nil).for(:num_discs) }
 end

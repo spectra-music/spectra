@@ -1,4 +1,4 @@
-= form_for(@album, html:{ class: "pure-form pure-form-aligned" },) do |f|
+= form_for(@album, html:{ class: 'pure-form pure-form-aligned' },) do |f|
   %fieldset
     - if @album.errors.any?
       #error_explanation
@@ -18,11 +18,13 @@
       = f.label :rating
       = f.number_field :rating, in:0..5, placeholder: "0 to 5"
     .pure-control-group
-      = f.label "Cover Art"
+      = f.label 'Cover Art'
       = f.file_field :art
     .pure-control-group
       = f.label :release_date
       = f.date_select :release_date, order: [:year], start_year: 1900, end_year: Time.now.year, prompt: {year: "Select year"}
-
+    .pure-control-group
+      = f.label 'Compilation?'
+      = f.check_box :is_compilation
     .pure-controls
-      = f.submit class: "pure-button pure-button-primary"
+      = f.submit class: 'pure-button pure-button-primary'

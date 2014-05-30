@@ -25,8 +25,17 @@ class Album < ActiveRecord::Base
                                      less_than_or_equal_to: 5,
                                      allow_nil: true
 
-  # Ensure num_discs and num_tracks are integers greater than 0
-  validates_numericality_of :num_discs, :num_tracks,
+  # Ensure num_discs is an integer greater than 0
+  validates_numericality_of :num_discs,
                             only_integer: true,
-                            greater_than: 0
+                            greater_than: 0,
+                            allow_nil: true
+
+  def num_tracks
+    tracks.count
+  end
+
+  def average_rating
+    tracks.average(:rating)
+  end
 end

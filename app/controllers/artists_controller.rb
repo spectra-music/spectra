@@ -1,5 +1,5 @@
 class ArtistsController < ApplicationController
-  before_action :set_artist, only: [:show, :edit, :update, :destroy]
+  before_action :set_artist, only: [:show, :edit]
 
   # GET /artists
   # GET /artists.json
@@ -10,64 +10,6 @@ class ArtistsController < ApplicationController
   # GET /artists/1
   # GET /artists/1.json
   def show
-  end
-
-  # GET /artists/new
-  def new
-    @artist = Artist.new
-  end
-
-  # GET /artists/1/edit
-  def edit
-  end
-
-  # POST /artists
-  # POST /artists.json
-  def create
-    @artist = Artist.find_by_name(artist_params[:name])
-
-    if @artist.nil?
-      @artist = Artist.new(artist_params)
-
-      respond_to do |format|
-        if @artist.save
-          format.html { flash[notice] = 'Artist was successfully created.'; redirect_to action: :index }
-          format.json { render :show, status: :created, location: @artist }
-        else
-          format.html { render :new }
-          format.json { render json: @artist.errors, status: :unprocessable_entity }
-        end
-      end
-    else
-      respond_to do |format|
-        format.html { flash[:alert] = 'Artist already exists'; redirect_to(action: :index) }
-        format.json { render :show, status: :created, location: @artist }
-      end
-    end
-  end
-
-  # PATCH/PUT /artists/1
-  # PATCH/PUT /artists/1.json
-  def update
-    respond_to do |format|
-      if @artist.update(artist_params)
-        format.html { redirect_to @artist, notice: 'Artist was successfully updated.' }
-        format.json { render :show, status: :ok, location: @artist }
-      else
-        format.html { render :edit }
-        format.json { render json: @artist.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /artists/1
-  # DELETE /artists/1.json
-  def destroy
-    @artist.destroy
-    respond_to do |format|
-      format.html { redirect_to artists_url, notice: 'Artist was successfully destroyed.' }
-      format.json { head :no_content }
-    end
   end
 
   private

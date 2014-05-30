@@ -35,9 +35,8 @@ class AlbumsController < ApplicationController
       a.rating = album_params[:rating]
       a.art = album_params[:art]
       a.release_date = album_params[:release_date]
-      a.is_compilation = false
-      a.num_discs = 1
-      a.num_tracks = 12
+      a.is_compilation = album_params[:is_compilation]
+      a.num_discs = 0
     end
 
     respond_to do |format|
@@ -83,6 +82,6 @@ class AlbumsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def album_params
-      params.require(:album).permit(:title, :rating, :artist, :art, :release_date)
+      params.require(:album).permit(:title, :rating, :artist, :art, :release_date, :is_compilation)
     end
 end
