@@ -1,4 +1,4 @@
-= form_for(album_path(@album), html:{ class: 'pure-form pure-form-aligned' },) do |f|
+= form_for(@album, html:{ multipart:true, class: 'pure-form pure-form-aligned' }) do |f|
   %fieldset
     - if @album.errors.any?
       #error_explanation
@@ -10,19 +10,19 @@
             %li= message
     .pure-control-group
       = f.label :title
-      = f.text_field(:title, required: true, placeholder: "Album Title" )
+      = f.text_field(:title, required: true, placeholder: 'Album Title' )
     .pure-control-group
-      = f.label :artist
-      = f.collection_select(:artist, Artist.order(:name), :name, :name, prompt: "Select artist")
+      = f.label 'Album Artist'
+      = f.collection_select('artist', Artist.order(:name), :name, :name, prompt: 'Select artist')
     .pure-control-group
       = f.label :rating
       = f.number_field :rating, in:0..5, placeholder: "0 to 5"
     .pure-control-group
       = f.label 'Cover Art'
-      = f.file_field :art
+      = f.file_field :cover
     .pure-control-group
       = f.label :release_date
-      = f.date_select :release_date, order: [:year], start_year: 1900, end_year: Time.now.year, prompt: {year: "Select year"}
+      = f.date_select :release_date, order: [:year], start_year: 1900, end_year: Time.now.year, prompt: {year: 'Select year'}
     .pure-control-group
       = f.label 'Compilation?'
       = f.check_box :is_compilation

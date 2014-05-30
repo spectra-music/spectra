@@ -31,6 +31,8 @@ gem 'turbolinks'
 
 gem 'friendly_id', '~> 5.0.0'
 
+gem "paperclip", "~> 4.1"
+
 # In production
 group :production do
   # Use puma as the app server

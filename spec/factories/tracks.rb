@@ -9,5 +9,6 @@ FactoryGirl.define do
     disc_id 1
     location '/mnt/Data/Music/Chipzel/Spectra/Spectra.flac'
     #format "flac"
+    rating 5
   end
 end

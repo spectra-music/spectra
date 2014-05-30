@@ -11,19 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140530042304) do
+ActiveRecord::Schema.define(version: 20140530222730) do
 
   create_table "albums", force: true do |t|
     t.string   "title"
     t.integer  "rating"
     t.integer  "artist_id"
-    t.binary   "art"
     t.date     "release_date"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "is_compilation"
     t.integer  "num_discs"
     t.string   "slug"
+    t.string   "cover_file_name"
+    t.string   "cover_content_type"
+    t.integer  "cover_file_size"
+    t.datetime "cover_updated_at"
   end
 
   add_index "albums", ["slug"], name: "index_albums_on_slug", unique: true

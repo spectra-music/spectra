@@ -1,4 +1,4 @@
-= form_for(track_path(@track), html:{ class: 'pure-form pure-form-aligned' }) do |f|
+= form_for(@track, html:{ class: 'pure-form pure-form-aligned' }) do |f|
   %fieldset
     - if @track.errors.any?
       #error_explanation
@@ -13,7 +13,7 @@
       = f.text_field :title
     .pure-control-group
       = f.label :rating
-      = f.number_field :rating
+      = f.number_field :rating, in:0..5
     .pure-control-group
       = f.label :artist_id
       = f.collection_select(:artist, Artist.order(:name), :name, :name)

@@ -20,8 +20,8 @@ describe Album, type: :model do
   it { should validate_numericality_of(:rating)
               .only_integer
               .is_greater_than_or_equal_to(0)
-              .is_less_than_or_equal_to(5)
-              .allow_nil }
+              .is_less_than_or_equal_to(5) }
+  it { should_not allow_value(nil).for(:rating) }
 
   it { should validate_numericality_of(:num_discs)
               .only_integer

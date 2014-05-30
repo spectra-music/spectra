@@ -6,12 +6,22 @@ class Album < ActiveRecord::Base
   # An album is part of an artist's collection
   belongs_to :artist
 
+  # An album can be of many genres
   has_and_belongs_to_many :genres
+
+  has_attached_file :cover, styles: { large: '600x600>',
+                                      medium: '300x300>',
+                                      small: '175x175>',
+                                      thumb: '100x100>'}
+
 
   friendly_id :title, use: [:slugged, :finders], sequence_separator: '_'
 
   # Name is another way of getting title
   alias_attribute :name, :title
+
+  # Album cover -> art
+  alias_attribute :art, :cover
 
   # Ensure we have a title and artist
   validates_presence_of :title, :artist
@@ -28,14 +38,16 @@ class Album < ActiveRecord::Base
   # Ensure rating is an integer from 0 to 5
   validates_numericality_of :rating, only_integer: true,
                                      greater_than_or_equal_to: 0,
-                                     less_than_or_equal_to: 5,
-                                     allow_nil: true
+                                     less_than_or_equal_to: 5
 
   # Ensure num_discs is an integer greater than 0
   validates_numericality_of :num_discs,
                             only_integer: true,
                             greater_than: 0,
                             allow_nil: true
+
+  # Make sure our cover is an image
+  validates_attachment_content_type :cover, :content_type => /\Aimage\/.*\Z/
 
   def num_tracks
     tracks.count

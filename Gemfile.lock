@@ -40,6 +40,10 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.4)
+      climate_control (>= 0.0.3, < 1.0)
     codeclimate-test-reporter (0.3.0)
       simplecov (>= 0.7.1, < 1.0.0)
     coderay (1.1.0)
@@ -106,6 +110,11 @@ GEM
     oj_mimic_json (1.0.0)
     paloma (4.0.0)
       jquery-rails
+    paperclip (4.1.1)
+      activemodel (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.5.3)
+      mime-types
     pg (0.17.1)
     polyglot (0.3.4)
     pry (0.9.12.6)
@@ -229,6 +238,7 @@ DEPENDENCIES
   oj
   oj_mimic_json
   paloma
+  paperclip (~> 4.1)
   pg
   pry-rails
   puma

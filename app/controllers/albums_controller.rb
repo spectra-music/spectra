@@ -41,7 +41,8 @@ class AlbumsController < ApplicationController
 
     respond_to do |format|
       if @album.save
-        format.html { redirect_to @album, notice: 'Album was successfully created.' }
+        format.html { redirect_to artist_album_url(@album.artist, @album),
+                                  notice: 'Album was successfully created.' }
         format.json { render :show, status: :created, location: @album }
       else
         format.html { render :new }
@@ -53,9 +54,10 @@ class AlbumsController < ApplicationController
   # PATCH/PUT /albums/1
   # PATCH/PUT /albums/1.json
   def update
+    params[:album][:artist] = Artist.find_or_create_by(name: params[:album][:artist])
     respond_to do |format|
       if @album.update(album_params)
-        format.html { redirect_to @album, notice: 'Album was successfully updated.' }
+        format.html { redirect_to artist_album_url(@album.artist, @album), notice: 'Album was successfully updated.' }
         format.json { render :show, status: :ok, location: @album }
       else
         format.html { render :edit }
@@ -82,6 +84,6 @@ class AlbumsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def album_params
-      params.require(:album).permit(:title, :rating, :artist, :art, :release_date, :is_compilation)
+      params.require(:album).permit(:title, :rating, :artist, :cover, :release_date, :is_compilation)
     end
 end
