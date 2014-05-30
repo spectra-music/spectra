@@ -28,10 +28,10 @@ gem 'taglib-ruby'
 # gem 'capistrano-rails', group: :development
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
-
+# Friendly stubs for a verbose api
 gem 'friendly_id', '~> 5.0.0'
-
-gem "paperclip", "~> 4.1"
+# Paperclip manages our album covers
+gem 'paperclip', '~> 4.1'
 
 # In production
 group :production do
@@ -53,13 +53,16 @@ group :development do
   gem 'binding_of_caller'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  # Pry offers a better rails console
   gem 'pry-rails'
 end
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
+  # RSpec instead of MiniTest::Unit because BDD is best
   gem 'rspec-rails', '~> 3.0.0.beta'
+  # Factory girl populates our database
   gem 'factory_girl_rails'
 end
 
