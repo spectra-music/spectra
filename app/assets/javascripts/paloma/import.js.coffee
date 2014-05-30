@@ -5,9 +5,3 @@ setHighlight = ->
 
 ImportController::index = ->
   setHighlight()
-  #source = new EventSource('/import/add')
-  #source.addEventListener('message',
-  #  (e) -> console.log('Received a message:', e.data)
-  #)
-
-ImportController.prototype.add = () -> {};

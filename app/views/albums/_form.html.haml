@@ -28,3 +28,9 @@
       = f.check_box :is_compilation
     .pure-controls
       = f.submit class: 'pure-button pure-button-primary'
+:javascript
+    $('#album_artist').selectize({
+      create: true,
+      sortField: 'text'
+    });
+    $('#album_release_date_1i').selectize();

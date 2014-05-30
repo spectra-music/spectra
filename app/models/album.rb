@@ -10,6 +10,9 @@ class Album < ActiveRecord::Base
 
   friendly_id :title, use: [:slugged, :finders], sequence_separator: '_'
 
+  # Name is another way of getting title
+  alias_attribute :name, :title
+
   # Ensure we have a title and artist
   validates_presence_of :title, :artist
 

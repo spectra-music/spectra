@@ -21,8 +21,8 @@
         %tr
           %td= track.title
           %td= track.rating
-          %td= track.artist_id
-          %td= track.album_id
+          %td= link_to track.artist.name, track.artist
+          %td= link_to track.album.title, track.album
           %td= track.date
           %td= track.location
           %td= track.bitrate

@@ -14,7 +14,7 @@
         %tr
           %td= link_to album.title, album
           %td= album.rating
-          %td= album.artist_id
+          %td= link_to album.artist.name, album.artist
           %td= album.release_date
           %td= link_to 'Edit', edit_album_path(album)
           %td= link_to 'Delete', album, method: :delete, data: { confirm: 'Are you sure?' }

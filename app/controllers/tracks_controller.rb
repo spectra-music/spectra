@@ -24,7 +24,24 @@ class TracksController < ApplicationController
   # POST /tracks
   # POST /tracks.json
   def create
-    @track = Track.new(track_params)
+    @track = Track.new do |track|
+      track.title = track_params[:title]
+      track.artist = Artist.find_or_create_by(name: track_params[:artist])
+      track.album = Album.find_or_create_by(title: track_params[:album]) do |album|
+        album.artist = track.artist
+        album.num_discs = 1
+        album.release_date = track_params[:date]
+        album.is_compilation = false
+      end
+      track.date = track_params[:date]
+      track.location = track_params[:location]
+      track.rating = track_params[:rating]
+      track.bitrate = track_params[:bitrate]
+      track.lyrics = track_params[:lyrics]
+      track.track_id = track_params[:track_id]
+      track.disc_id = track_params[:disc_id]
+      track.format = track_params[:format]
+    end
 
     respond_to do |format|
       if @track.save
@@ -69,6 +86,6 @@ class TracksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def track_params
-      params.require(:track).permit(:title, :rating, :artist_id, :album_id, :date, :location, :bitrate, :lyrics, :track_id, :disc_id, :format)
+      params.require(:track).permit(:title, :rating, :artist, :album, :date, :location, :bitrate, :lyrics, :track_id, :disc_id, :format)
     end
 end

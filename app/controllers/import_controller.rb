@@ -4,9 +4,10 @@ class ImportController < ApplicationController
   # GET /import
   # GET /import.json
   def index
+    render 'index'
   end
 
-  # GET /import/add
+  # GET /import/add?path=
   def add
     js false
     response.headers['Content-Type'] = 'text/event-stream'

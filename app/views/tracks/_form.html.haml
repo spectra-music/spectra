@@ -16,10 +16,10 @@
       = f.number_field :rating
     .pure-control-group
       = f.label :artist_id
-      = f.collection_select(:artist_id, Artist.order(:name), :name, :name)
+      = f.collection_select(:artist, Artist.order(:name), :name, :name)
     .pure-control-group
       = f.label :album_id
-      = f.collection_select(:album_id, Album.order(:title), :title, :title)
+      = f.collection_select(:album, Album.order(:title), :title, :title)
     .pure-control-group
       = f.label :date
       = f.date_select :date
@@ -43,3 +43,13 @@
       = f.text_field :format
     .pure-controls
       = f.submit class: "pure-button pure-button-primary"
+
+:javascript
+    $('#track_artist').selectize({
+      create: true,
+      sortField: 'text'
+    });
+    $('#track_album').selectize({
+      create: true,
+      sortField: 'text'
+    });

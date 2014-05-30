@@ -7,10 +7,10 @@
   = @track.rating
 %p
   %strong Artist:
-  = @track.artist_id
+  = link_to @track.artist.name, @track.artist
 %p
   %strong Album:
-  = @track.album_id
+  = link_to @track.album.name, @track.album
 %p
   %strong Date:
   = @track.date
