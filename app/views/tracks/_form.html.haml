@@ -1,9 +1,9 @@
-= form_for(@track, html:{ class: "pure-form pure-form-aligned" }) do |f|
+= form_for(track_path(@track), html:{ class: 'pure-form pure-form-aligned' }) do |f|
   %fieldset
     - if @track.errors.any?
       #error_explanation
         %h2
-          = pluralize(@track.errors.count, "error")
+          = pluralize(@track.errors.count, 'error')
           prohibited this track from being saved:
         %ul
           - @track.errors.full_messages.each do |message|
@@ -21,8 +21,8 @@
       = f.label :album_id
       = f.collection_select(:album, Album.order(:title), :title, :title)
     .pure-control-group
-      = f.label :date
-      = f.date_select :date
+      = f.label 'Year'
+      = f.date_select :date, order: [:year], start_year: 1900, end_year: Time.now.year, prompt: {year: 'Select year'}
     .pure-control-group
       = f.label :location
       = f.text_field :location
@@ -42,14 +42,17 @@
       = f.label :format
       = f.text_field :format
     .pure-controls
-      = f.submit class: "pure-button pure-button-primary"
+      = f.submit 'Save Track', class: 'pure-button pure-button-primary'
 
 :javascript
-    $('#track_artist').selectize({
+    $('select').filter(function() {
+      return this.id.match(/.+_date_1i/)
+    }).selectize();
+
+    $('select').filter(function () {
+      return this.id.match(/.+[_album|_artist]/)
+    }).selectize({
       create: true,
       sortField: 'text'
     });
-    $('#track_album').selectize({
-      create: true,
-      sortField: 'text'
-    });
+

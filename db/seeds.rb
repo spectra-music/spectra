@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+include FactoryGirl::Syntax::Methods
+require 'factory_girl'
+require 'factory_girl_rails'
+
+create :track

@@ -1,5 +1,5 @@
 .header
-  %h1 All Artists
+  %h1 All Genres
 .content
   - if not notice.nil?
     .pure-alert.pure-alert-success#notice= notice
@@ -10,9 +10,7 @@
     %thead
       %tr
         %th Name
-        %th Rating
     %tbody
-      - @artists.each do |artist|
+      - @genres.each do |genre|
         %tr
-          %td= link_to_artist artist
-          %td= artist.rating
+          %td= link_to genre.name, genre

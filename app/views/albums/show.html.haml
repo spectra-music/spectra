@@ -14,6 +14,6 @@
 %p
   %strong Release date:
   = @album.release_date
-= link_to 'Edit', edit_album_path(@album)
+= link_to 'Edit', edit_artist_album_path(@album.artist, @album)
 |
 \#{link_to 'Back', albums_path}

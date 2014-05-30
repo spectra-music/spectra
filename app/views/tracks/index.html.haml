@@ -15,14 +15,14 @@
         %th Track
         %th Disc
         %th Format
-        %th{:colspan => "3"}
+        %th{:colspan => '2'}
     %tbody
       - @tracks.each do |track|
         %tr
-          %td= track.title
+          %td= link_to track.title, artist_album_track_path(track.artist, track.album, track)
           %td= track.rating
-          %td= link_to track.artist.name, track.artist
-          %td= link_to track.album.title, track.album
+          %td= link_to_artist(track.artist)
+          %td= link_to_album(track.album)
           %td= track.date
           %td= track.location
           %td= track.bitrate
@@ -30,8 +30,7 @@
           %td= track.track_id
           %td= track.disc_id
           %td= track.format
-          %td= link_to 'Show', track
-          %td= link_to 'Edit', edit_track_path(track)
-          %td= link_to 'Destroy', track, method: :delete, data: { confirm: 'Are you sure?' }
+          %td= link_to 'Edit', edit_artist_album_track_path(track.artist, track.album, track)
+          %td= link_to 'Destroy', artist_album_track_path(track.artist, track.album, track), method: :delete, data: { confirm: 'Are you sure?' }
   %br/
-  = link_to 'New track', new_track_path, class: "pure-button pure-button-primary"
+  = link_to 'New track', new_track_path, class: 'pure-button pure-button-primary'

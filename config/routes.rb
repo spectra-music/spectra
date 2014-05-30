@@ -5,11 +5,14 @@ Rails.application.routes.draw do
   get 'import' => 'import#index'
   get 'import/add' => 'import#add'
 
-  resources :tracks
+  resources :artists do
+    resources :albums do
+      resources :tracks
+    end
+  end
 
-  resources :albums
-
-  resources :artists
+  resources :albums, only:[:index, :new]
+  resources :tracks, only:[:index, :new]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
