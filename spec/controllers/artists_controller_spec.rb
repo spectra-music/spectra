@@ -46,55 +46,11 @@ describe ArtistsController, :type => :controller do
     end
   end
 
-  describe "GET new" do
-    it "assigns a new artist as @artist" do
-      get :new, {}, valid_session
-      expect(assigns(:artist)).to be_a_new(Artist)
-    end
-  end
-
   describe "GET edit" do
     it "assigns the requested artist as @artist" do
       artist = Artist.create! valid_attributes
       get :edit, {:id => artist.to_param}, valid_session
       expect(assigns(:artist)).to eq(artist)
-    end
-  end
-
-  describe "POST create" do
-    describe "with valid params" do
-      it "creates a new Artist" do
-        expect {
-          post :create, {:artist => valid_attributes}, valid_session
-        }.to change(Artist, :count).by(1)
-      end
-
-      it "assigns a newly created artist as @artist" do
-        post :create, {:artist => valid_attributes}, valid_session
-        expect(assigns(:artist)).to be_a(Artist)
-        expect(assigns(:artist)).to be_persisted
-      end
-
-      it "redirects to the created artist" do
-        post :create, {:artist => valid_attributes}, valid_session
-        expect(response).to redirect_to(Artist.last)
-      end
-    end
-
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved artist as @artist" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        allow_any_instance_of(Artist).to receive(:save).and_return(false)
-        post :create, {:artist => { "name" => "invalid value" }}, valid_session
-        expect(assigns(:artist)).to be_a_new(Artist)
-      end
-
-      it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        allow_any_instance_of(Artist).to receive(:save).and_return(false)
-        post :create, {:artist => { "name" => "invalid value" }}, valid_session
-        expect(response).to render_template("new")
-      end
     end
   end
 

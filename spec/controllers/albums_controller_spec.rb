@@ -46,55 +46,12 @@ describe AlbumsController, :type => :controller do
     end
   end
 
-  describe "GET new" do
-    it "assigns a new album as @album" do
-      get :new, {}, valid_session
-      expect(assigns(:album)).to be_a_new(Album)
-    end
-  end
 
   describe "GET edit" do
     it "assigns the requested album as @album" do
       album = Album.create! valid_attributes
       get :edit, {:id => album.to_param}, valid_session
       expect(assigns(:album)).to eq(album)
-    end
-  end
-
-  describe "POST create" do
-    describe "with valid params" do
-      it "creates a new Album" do
-        expect {
-          post :create, {:album => valid_attributes}, valid_session
-        }.to change(Album, :count).by(1)
-      end
-
-      it "assigns a newly created album as @album" do
-        post :create, {:album => valid_attributes}, valid_session
-        expect(assigns(:album)).to be_a(Album)
-        expect(assigns(:album)).to be_persisted
-      end
-
-      it "redirects to the created album" do
-        post :create, {:album => valid_attributes}, valid_session
-        expect(response).to redirect_to(Album.last)
-      end
-    end
-
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved album as @album" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        allow_any_instance_of(Album).to receive(:save).and_return(false)
-        post :create, {:album => { "title" => "invalid value" }}, valid_session
-        expect(assigns(:album)).to be_a_new(Album)
-      end
-
-      it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        allow_any_instance_of(Album).to receive(:save).and_return(false)
-        post :create, {:album => { "title" => "invalid value" }}, valid_session
-        expect(response).to render_template("new")
-      end
     end
   end
 
