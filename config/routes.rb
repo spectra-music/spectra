@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :genres do
+  resources :genres, only:[:index, :show] do
     resources :albums, only:[:index]
   end
 
