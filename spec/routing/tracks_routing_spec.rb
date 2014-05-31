@@ -1,35 +1,25 @@
 require "spec_helper"
 
-describe TracksController, :type => :routing do
+describe TracksController, type: :routing do
   describe "routing" do
+    it { should route(:get, '/tracks').to('tracks#index') }
+    it { should route(:get, '/artists/chipzel/albums/spectra/tracks/new')
+                .to('tracks#new', artist_id: 'chipzel', album_id: 'spectra') }
+    it { should route(:get, '/tracks/new').to('tracks#new') }
+    it { should route(:get, '/artists/chipzel/albums/spectra/tracks/spectra')
+                .to('tracks#show', id: 'spectra', artist_id: 'chipzel', album_id: 'spectra') }
 
-    it "routes to #index" do
-      expect(:get => "/tracks").to route_to("tracks#index")
-    end
+    it { should route(:get, '/artists/chipzel/albums/spectra/tracks/spectra/edit')
+                .to('tracks#edit', id: 'spectra', artist_id: 'chipzel', album_id: 'spectra') }
 
-    it "routes to #new" do
-      expect(:get => "/tracks/new").to route_to("tracks#new")
-    end
+    it { should route(:post, '/artists/chipzel/albums/spectra/tracks')
+                .to('tracks#create', artist_id: 'chipzel', album_id: 'spectra') }
+    it { should route(:post, '/tracks').to('tracks#create')}
 
-    it "routes to #show" do
-      expect(:get => "/tracks/1").to route_to("tracks#show", :id => "1")
-    end
+    it { should route(:put, '/artists/chipzel/albums/spectra/tracks/spectra')
+                .to('tracks#update', id: 'spectra', artist_id: 'chipzel', album_id: 'spectra') }
 
-    it "routes to #edit" do
-      expect(:get => "/tracks/1/edit").to route_to("tracks#edit", :id => "1")
-    end
-
-    it "routes to #create" do
-      expect(:post => "/tracks").to route_to("tracks#create")
-    end
-
-    it "routes to #update" do
-      expect(:put => "/tracks/1").to route_to("tracks#update", :id => "1")
-    end
-
-    it "routes to #destroy" do
-      expect(:delete => "/tracks/1").to route_to("tracks#destroy", :id => "1")
-    end
-
+    it { should route(:delete, '/artists/chipzel/albums/spectra/tracks/spectra')
+                .to('tracks#destroy', id: 'spectra', artist_id: 'chipzel', album_id: 'spectra') }
   end
 end
