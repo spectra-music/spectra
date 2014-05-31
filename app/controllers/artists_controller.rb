@@ -7,9 +7,27 @@ class ArtistsController < ApplicationController
     @artists = Artist.all
   end
 
-  # GET /artists/the_beatles
-  # GET /artists/the_beatles.json
+  # GET /artists/chipzel
+  # GET /artists/chipzel.json
   def show
+  end
+
+  # GET /albums/chipzel/edit
+  def edit
+  end
+
+  # PATCH/PUT /albums/chipzel
+  # PATCH/PUT /albums/chipzel.json
+  def update
+    respond_to do |format|
+      if @artist.update(artist_params)
+        format.html { redirect_to @artist, notice: 'Artist was successfully updated.' }
+        format.json { render :show, status: :ok, location: @artist }
+      else
+        format.html { render :edit }
+        format.json { render json: @artist.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   private
