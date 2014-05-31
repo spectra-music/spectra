@@ -1,34 +1,30 @@
-require "spec_helper"
+require 'spec_helper'
 
 describe AlbumsController, :type => :routing do
-  describe "routing" do
+  describe 'routing' do
 
-    it "routes to #index" do
-      expect(:get => "/albums").to route_to("albums#index")
+    it 'routes to #all' do
+      expect(get: '/albums').to route_to('albums#all')
     end
 
-    it "routes to #new" do
-      expect(:get => "/albums/new").to route_to("albums#new")
+    it 'routes to #index' do
+      expect(get: '/artists/chipzel/albums/').to route_to('albums#index', artist_id: 'chipzel')
     end
 
-    it "routes to #show" do
-      expect(:get => "/albums/1").to route_to("albums#show", :id => "1")
+    it 'routes to #show' do
+      expect(get: '/artists/chipzel/albums/spectra').to route_to('albums#show', id: 'spectra', artist_id: 'chipzel')
     end
 
-    it "routes to #edit" do
-      expect(:get => "/albums/1/edit").to route_to("albums#edit", :id => "1")
+    it 'routes to #edit' do
+      expect(get: '/artists/chipzel/albums/spectra/edit').to route_to('albums#edit', id: 'spectra', artist_id: 'chipzel')
     end
 
-    it "routes to #create" do
-      expect(:post => "/albums").to route_to("albums#create")
+    it 'routes to #update' do
+      expect(put: '/artists/chipzel/albums/spectra').to route_to('albums#update', id: 'spectra', artist_id: 'chipzel')
     end
 
-    it "routes to #update" do
-      expect(:put => "/albums/1").to route_to("albums#update", :id => "1")
-    end
-
-    it "routes to #destroy" do
-      expect(:delete => "/albums/1").to route_to("albums#destroy", :id => "1")
+    it 'routes to #destroy' do
+      expect(delete: '/artists/chipzel/albums/spectra').to route_to('albums#destroy', id: 'spectra', artist_id: 'chipzel')
     end
 
   end

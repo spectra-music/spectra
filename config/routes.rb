@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     resources :albums, only:[:index]
   end
 
-  resources :albums, only:[:index, :new]
+  get '/albums' => 'albums#all'
   resources :tracks, only:[:index, :new]
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -2,9 +2,13 @@ class AlbumsController < ApplicationController
   before_action :set_album, only: [:show, :edit, :update, :destroy]
 
   # GET /albums
-  # GET /albums.json
-  def index
+  def all
     @albums = Album.all
+  end
+
+  # GET /artists/name/albums
+  def index
+    @albums = Artist.find(album_params[:artist_id])
   end
 
   # GET /albums/1
