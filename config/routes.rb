@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :genres
 
   root 'welcome#index'
   get 'import' => 'import#index'
@@ -9,6 +8,10 @@ Rails.application.routes.draw do
     resources :albums do
       resources :tracks
     end
+  end
+
+  resources :genres do
+    resources :albums, only:[:index]
   end
 
   resources :albums, only:[:index, :new]
