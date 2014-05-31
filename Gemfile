@@ -18,7 +18,7 @@ gem 'selectize-rails'
 # paloma for page-specific javascript
 gem 'paloma'
 # HAML for markup
-gem 'haml'
+gem 'haml-rails'
 gem 'flash_render'
 # taglib for reading ID3
 gem 'taglib-ruby'
