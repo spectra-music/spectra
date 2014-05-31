@@ -11,8 +11,6 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.0'
 # purecss for styling
 gem 'purecss'
 # selectize for intelligent select boxes
@@ -32,6 +30,9 @@ gem 'turbolinks'
 gem 'friendly_id', '~> 5.0.0'
 # Paperclip manages our album covers
 gem 'paperclip', '~> 4.1'
+# RABL helps us build better APIs
+gem 'rabl'
+
 
 # In production
 group :production do
