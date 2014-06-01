@@ -25,36 +25,6 @@ class AlbumsController < ApplicationController
   def edit
   end
 
-  # POST /albums
-  # POST /albums.json
-  # Guarantee that no such album exists prior to creating it.
-  # If there is no artist matching the one given, create it as well
-  # Create a new album.
-  def create
-    @album = Album.new do |a|
-      a.title = album_params[:title]
-      a.artist = Artist.find_or_create_by(name: album_params[:artist]) do |artist|
-        artist.rating = 0
-      end
-      a.rating = album_params[:rating]
-      a.art = album_params[:art]
-      a.release_date = album_params[:release_date]
-      a.is_compilation = album_params[:is_compilation]
-      a.num_discs = 0
-    end
-
-    respond_to do |format|
-      if @album.save
-        format.html { redirect_to artist_album_url(@album.artist, @album),
-                                  notice: 'Album was successfully created.' }
-        format.json { render :show, status: :created, location: @album }
-      else
-        format.html { render :new }
-        format.json { render json: @album.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   # PATCH/PUT /albums/1
   # PATCH/PUT /albums/1.json
   def update
