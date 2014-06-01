@@ -26,10 +26,11 @@ gem 'haml-rails'
 gem 'flash_render'
 # taglib for reading ID3
 gem 'taglib-ruby'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+
+
 # Friendly stubs for a verbose api
 gem 'friendly_id', '~> 5.0.0'
 # Paperclip manages our album covers
