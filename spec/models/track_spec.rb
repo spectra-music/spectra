@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe Track, type: :model do
+  it { should belong_to(:artist) }
+  it { should belong_to(:album) }
+  it { should have_and_belong_to_many(:genres) }
+
   it { should validate_presence_of(:title) }
   it { should validate_presence_of(:artist) }
   it { should validate_presence_of(:album) }
