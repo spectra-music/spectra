@@ -22,7 +22,7 @@ FactoryGirl.define do
     initialize_with { Album.find_or_create_by(title: title)}
     factory :album_with_tracks do
       after :create do |album, evaluator|
-        album.tracks <<= create(:track, album: album)
+        create(:track, album: album)
       end
     end
   end
