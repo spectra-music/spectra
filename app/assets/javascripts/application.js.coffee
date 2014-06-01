@@ -12,6 +12,7 @@
 #
 #= require jquery
 #= require jquery_ujs
+#= require angular
 #= require paloma
 #= require selectize
 #= require_tree .
