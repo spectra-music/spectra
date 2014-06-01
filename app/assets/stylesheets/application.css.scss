@@ -17,8 +17,6 @@
  *= require selectize.default
  */
 
-
-
 body {
   color: #777;
 }
@@ -29,9 +27,7 @@ body {
 }
 
 // Add transition to containers so they can push in and out.
-#layout,
-#menu,
-.menu-link {
+#layout, #menu, .menu-link {
   -webkit-transition: all 0.2s ease-out;
   -moz-transition: all 0.2s ease-out;
   -ms-transition: all 0.2s ease-out;
@@ -43,18 +39,17 @@ body {
 #layout {
   position: relative;
   padding-left: 0;
-}
-#layout.active {
-  position: relative;
-  left: 75px;
-}
-#layout.active #menu {
-  left: 75px;
-  width: 75px;
-}
-
-#layout.active .menu-link {
-  left: 75px;
+  &.active {
+    position: relative;
+    left: 75px;
+    #menu {
+      left: 75px;
+      width: 75px;
+    }
+    .menu-link {
+      left: 75px;
+    }
+  }
 }
 
 // The content `<div>` is where all your content goes.
@@ -104,47 +99,46 @@ body {
   background: #191818;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-}
-// All anchors inside the menu should be styled like this.
-#menu a {
-  color: #999;
-  border: none;
-  padding: 0.6em 0 0.6em 0.6em;
+  // All anchors inside the menu should be styled like this.
+  a {
+    color: #999;
+    border: none;
+    padding: 0.6em 0 0.6em 0.6em;
+  }
+
+  // Remove all background/borders, since we are applying them to #menu.
+  .pure-menu, .pure-menu ul {
+    border: none;
+    background: transparent;
+  }
+  // Add that light border to separate items into groups.
+  .pure-menu ul, .pure-menu .menu-item-divided {
+    border-top: 1px solid #333;
+  }
+  // Change color of the anchor links on hover/focus.
+  .pure-menu li a {
+    &:hover, &:focus {
+      background: #333;
+    }
+  }
+
+  // This styles the selected menu item `<li>`.
+  .pure-menu-selected {
+    background: #1f8dd6;
+    // This styles a link within a selected menu item `<li>`.
+    a {
+      color: #fff;
+    }
+  }
+
+  // This styles the menu heading.
+  .pure-menu-heading {
+    font-size: 125%;
+    color: #fff;
+    margin: 0;
+  }
 }
 
-// Remove all background/borders, since we are applying them to #menu.
-#menu .pure-menu,
-#menu .pure-menu ul {
-  border: none;
-  background: transparent;
-}
-
-// Add that light border to separate items into groups.
-#menu .pure-menu ul,
-#menu .pure-menu .menu-item-divided {
-  border-top: 1px solid #333;
-}
-// Change color of the anchor links on hover/focus.
-#menu .pure-menu li a:hover,
-#menu .pure-menu li a:focus {
-  background: #333;
-}
-
-// This styles the selected menu item `<li>`.
-#menu .pure-menu-selected {
-  background: #1f8dd6;
-}
-// This styles a link within a selected menu item `<li>`.
-#menu .pure-menu-selected a {
-  color: #fff;
-}
-
-// This styles the menu heading.
-#menu .pure-menu-heading {
-  font-size: 125%;
-  color: #fff;
-  margin: 0;
-}
 
 // -- Dynamic Button For Responsive Menu -------------------------------------
 
@@ -165,44 +159,39 @@ body {
   width: 2em;
   height: auto;
   padding: 2.1em 1.6em;
-}
-
-.menu-link:hover,
-.menu-link:focus {
-  background: #000;
-}
-
-.menu-link span {
-  position: relative;
-  display: block;
-}
-
-.menu-link span,
-.menu-link span:before,
-.menu-link span:after {
-  background-color: #fff;
-  width: 100%;
-  height: 0.2em;
-}
-
-.menu-link span:before,
-.menu-link span:after {
-  position: absolute;
-  margin-top: -0.6em;
-  content: " ";
-}
-
-.menu-link span:after {
-  margin-top: 0.6em;
+  &:hover, &:focus {
+    background: #000;
+  }
+  span {
+    position: relative;
+    display: block;
+    background-color: #fff;
+    width: 100%;
+    height: 0.2em;
+    &:before, &:after {
+      background-color: #fff;
+      width: 100%;
+      height: 0.2em;
+    }
+    &:before {
+      position: absolute;
+      margin-top: -0.6em;
+      content: " ";
+    }
+    &:after {
+      position: absolute;
+      margin-top: -0.6em;
+      content: " ";
+      margin-top: 0.6em;
+    }
+  }
 }
 
 // -- Responsive Styles (Media Queries) -------------------------------------
 
 // Hides the menu at `48em`, but modify this based on your app's needs.
 @media (min-width: 48em) {
-
-  .header,
-  .content {
+  .header, .content {
     padding-left: 2em;
     padding-right: 2em;
   }
@@ -238,26 +227,24 @@ body {
 }
 
 // Alerts
+
 .pure-alert {
   position: relative;
   margin-bottom: 1em;
   padding: 1em;
   background: #ccc;
   border-radius: 3px;
-}
-
-.pure-alert label {
-  display: inline-block;
-  *display: inline;
-  // IE7 inline-block hack
-  *zoom: 1;
-  white-space: nowrap;
-}
-
-.pure-alert {
+  label {
+    display: inline-block;
+    *display: inline;
+    // IE7 inline-block hack
+    *zoom: 1;
+    white-space: nowrap;
+  }
   background-color: rgb(209, 235, 238);
   color: rgb(102, 131, 145);
 }
+
 .pure-alert-error {
   background-color: #D13C38;
   color: #fff;
