@@ -27,6 +27,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    angularjs-rails (1.2.16)
     arel (5.0.1.20140414130214)
     better_errors (1.1.0)
       coderay (>= 1.0.0)
@@ -201,6 +202,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  angularjs-rails
   better_errors
   binding_of_caller
   codeclimate-test-reporter
