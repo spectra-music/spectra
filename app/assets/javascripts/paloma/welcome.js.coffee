@@ -1,1 +1,1 @@
-WelcomeController = Paloma.controller('Welcome');
+WelcomeController = Paloma.controller('Welcome')
