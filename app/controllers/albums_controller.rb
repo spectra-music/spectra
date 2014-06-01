@@ -16,11 +16,6 @@ class AlbumsController < ApplicationController
   def show
   end
 
-  # GET /albums/new
-  def new
-    @album = Album.new
-  end
-
   # GET /albums/1/edit
   def edit
   end
