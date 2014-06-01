@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe AlbumsController, :type => :routing do
+describe AlbumsController, type: :routing do
   describe 'routing' do
     it { should route(:get, '/albums').to('albums#all') }
     it { should route(:get, '/artists/chipzel/albums').to('albums#index', artist_id: 'chipzel') }

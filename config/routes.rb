@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'import' => 'import#index'
   get 'import/add' => 'import#add'
 
-  resources :artists, only: [:index, :show, :edit] do
+  resources :artists, only: [:index, :show, :update] do
     resources :albums do
       resources :tracks
     end
