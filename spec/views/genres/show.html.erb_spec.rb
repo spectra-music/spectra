@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'genres/show', :type => :view do
+describe 'genres/show', type: :view do
   before(:each) do
     @genre = assign(:genre, create(:genre))
   end

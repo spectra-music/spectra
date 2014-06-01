@@ -12,8 +12,7 @@ class Album < ActiveRecord::Base
   has_attached_file :cover, styles: { large: '600x600>',
                                       medium: '300x300>',
                                       small: '175x175>',
-                                      thumb: '100x100>'}
-
+                                      thumb: '100x100>' }
 
   friendly_id :title, use: [:slugged, :finders], sequence_separator: '_'
 
@@ -47,7 +46,7 @@ class Album < ActiveRecord::Base
                             allow_nil: true
 
   # Make sure our cover is an image
-  validates_attachment_content_type :cover, :content_type => /\Aimage\/.*\Z/
+  validates_attachment_content_type :cover, content_type: /\Aimage\/.*\Z/
 
   def num_tracks
     tracks.count

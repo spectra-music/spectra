@@ -14,11 +14,11 @@
 FactoryGirl.define do
   factory :album do
     artist
-    genres {[create(:genre)]}
+    genres { [create(:genre)] }
     title 'Spectra'
     rating 5
     num_discs 1
     is_compilation false
-    initialize_with { Album.find_or_create_by(title: title)}
+    initialize_with { Album.find_or_create_by(title: title) }
   end
 end

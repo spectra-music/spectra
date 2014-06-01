@@ -13,7 +13,7 @@ class ImportController < ApplicationController
     response.headers['Content-Type'] = 'text/event-stream'
     sse = SSE.new(response.stream)
     4.times do
-      sse.write({path: params[:path] })
+      sse.write(path: params[:path])
       sleep 2
     end
     sse.write({}, event: 'close') # close the client side

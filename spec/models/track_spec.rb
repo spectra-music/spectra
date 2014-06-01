@@ -19,26 +19,25 @@ describe Track, type: :model do
   # it { should validate_associated(:album) }
   # it { should validate_associated(:artist) }
 
-  it { should validate_numericality_of(:track_id)
+  it do should validate_numericality_of(:track_id)
               .only_integer
-              .is_greater_than_or_equal_to(1) }
+              .is_greater_than_or_equal_to(1) end
 
   # it 'should require unique value for title scoped to album' do
   #   create(:track)
   #   should validate_uniqueness_of(:track_id)#.scoped_to(:album)
   # end
 
-  it { should validate_numericality_of(:disc_id)
+  it do should validate_numericality_of(:disc_id)
               .only_integer
               .is_greater_than_or_equal_to(1)
-              .allow_nil }
+              .allow_nil end
 
   it { should validate_uniqueness_of(:location) }
 
-  it { should validate_numericality_of(:rating)
+  it do should validate_numericality_of(:rating)
               .only_integer
               .is_greater_than_or_equal_to(0)
-              .is_less_than_or_equal_to(5) }
+              .is_less_than_or_equal_to(5) end
   it { should_not allow_value(nil).for(:rating) }
 end
-

@@ -8,27 +8,27 @@ describe Album, type: :model do
   it { should validate_presence_of(:title) }
   it { should validate_presence_of(:artist) }
 
-  it { should validate_uniqueness_of(:title).case_insensitive}
+  it { should validate_uniqueness_of(:title).case_insensitive }
 
   # This shoulda_matcher validation doesn't exist yet
-  #it { should validate_associated(:artist)}
+  # it { should validate_associated(:artist)}
 
   it { should allow_value(true).for(:is_compilation) }
   it { should allow_value(false).for(:is_compilation) }
-  it { should_not allow_value(nil).for(:is_compilation)}
+  it { should_not allow_value(nil).for(:is_compilation) }
 
-  it { should validate_numericality_of(:rating)
+  it do should validate_numericality_of(:rating)
               .only_integer
               .is_greater_than_or_equal_to(0)
-              .is_less_than_or_equal_to(5) }
+              .is_less_than_or_equal_to(5) end
   it { should_not allow_value(nil).for(:rating) }
 
-  it { should validate_numericality_of(:num_discs)
+  it do should validate_numericality_of(:num_discs)
               .only_integer
-              .is_greater_than(0) }
+              .is_greater_than(0) end
 
   it { should allow_value(nil).for(:num_discs) }
 
-  #it { should delegate_method(:count).to(:tracks).as(:num_tracks) }
-  #it { should delegate_method(:average).to(:tracks).with_arguments(:rating).as(:average_rating) }
+  # it { should delegate_method(:count).to(:tracks).as(:num_tracks) }
+  # it { should delegate_method(:average).to(:tracks).with_arguments(:rating).as(:average_rating) }
 end
