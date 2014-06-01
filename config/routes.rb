@@ -1,18 +1,21 @@
 Rails.application.routes.draw do
-  resources :genres
 
   root 'welcome#index'
   get 'import' => 'import#index'
   get 'import/add' => 'import#add'
 
-  resources :artists do
+  resources :artists, only: [:index, :show, :update] do
     resources :albums do
       resources :tracks
     end
   end
 
-  resources :albums, only:[:index, :new]
-  resources :tracks, only:[:index, :new]
+  resources :genres, only:[:index, :show] do
+    resources :albums, only:[:index]
+  end
+
+  get '/albums' => 'albums#all'
+  resources :tracks, only:[:index, :new, :create]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

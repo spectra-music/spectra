@@ -1,0 +1,2 @@
+object @genre
+attributes :name

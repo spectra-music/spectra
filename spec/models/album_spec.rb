@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Album, type: :model do
   it { should have_many(:tracks) }
   it { should belong_to(:artist) }
-
+  it { should have_and_belong_to_many(:genres) }
 
   it { should validate_presence_of(:title) }
   it { should validate_presence_of(:artist) }
@@ -28,4 +28,10 @@ describe Album, type: :model do
               .is_greater_than(0) }
 
   it { should allow_value(nil).for(:num_discs) }
+
+  describe 'with tracks' do
+    subject { create(:album_with_tracks) }
+    it { should delegate_method(:num_tracks).to(:tracks).as(:count) }
+    it { should delegate_method(:average_rating).to(:tracks).as(:average) }
+  end
 end
