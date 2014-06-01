@@ -1,0 +1,11 @@
+AllCops:
+  Excludes:
+  - db/schema.rb
+
+Documentation:
+  Exclude:
+  - db/migrate
+  - test
+
+Validation:
+  Enabled: true
