@@ -4,8 +4,8 @@ AllCops:
 
 Documentation:
   Exclude:
-  - db/migrate
-  - test
+  - db/migrate/**/*.rb
+  - test/**/*.rb
 
 Validation:
   Enabled: true
