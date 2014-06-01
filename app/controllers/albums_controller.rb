@@ -8,7 +8,7 @@ class AlbumsController < ApplicationController
 
   # GET /artists/name/albums
   def index
-    @albums = Artist.find(album_params[:artist_id])
+    @albums = Artist.find(params.permit(:artist_id)[:artist_id]).albums
   end
 
   # GET /albums/1
@@ -75,7 +75,7 @@ class AlbumsController < ApplicationController
   def destroy
     @album.destroy
     respond_to do |format|
-      format.html { redirect_to albums_url, notice: 'Album was successfully destroyed.' }
+      format.html { redirect_to artist_albums_url(@album.artist), notice: 'Album was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

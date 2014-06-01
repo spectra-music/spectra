@@ -22,7 +22,7 @@ describe ArtistsController, type: :controller do
     end
   end
 
-
+  # For artists#update, we only deal with :json
   describe 'PUT update' do
     describe 'with valid params' do
       it 'updates the requested artist' do
