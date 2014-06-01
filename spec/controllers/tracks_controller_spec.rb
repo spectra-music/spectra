@@ -25,19 +25,23 @@ describe TracksController, type: :controller do
   # TracksController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+  before :each do
+    @track = create(:track)
+  end
+
   describe 'GET index' do
     it 'assigns all tracks as @tracks' do
-      track = create(:track)
       get :index, {}, valid_session
-      expect(assigns(:tracks)).to eq([track])
+      expect(assigns(:tracks)).to eq([@track])
     end
   end
 
   describe 'GET show' do
     it 'assigns the requested track as @track' do
-      track = create(:track)
-      get :show, {:id => track.to_param}, valid_session
-      expect(assigns(:track)).to eq(track)
+      get :show, {id: @track.to_param,
+                  artist_id: @track.album.artist.to_param,
+                  album_id: @track.album.to_param }, valid_session
+      expect(assigns(:track)).to eq(@track)
     end
   end
 
@@ -50,9 +54,10 @@ describe TracksController, type: :controller do
 
   describe 'GET edit' do
     it 'assigns the requested track as @track' do
-      track = create(:track)
-      get :edit, {id: track.to_param}, valid_session
-      expect(assigns(:track)).to eq(track)
+      get :edit, {id: @track.to_param,
+                  artist_id: @track.album.artist.to_param,
+                  album_id: @track.album.to_param }, valid_session
+      expect(assigns(:track)).to eq(@track)
     end
   end
 
@@ -60,19 +65,37 @@ describe TracksController, type: :controller do
     describe 'with valid params' do
       it 'creates a new Track' do
         expect {
-          post :create, {:track => valid_attributes}, valid_session
+          post(:create, {track: attributes_for(:track,
+                                               title: 'Tokyo Skies',
+                                               track_id: 2,
+                                               location: '/mnt/Data/Music/Chipzel/Spectra/Tokyo Skies.flac')
+                                .merge(album: @track.album.title,
+                                       artist: @track.artist.name)},
+               valid_session)
         }.to change(Track, :count).by(1)
       end
 
       it 'assigns a newly created track as @track' do
-        post :create, {:track => valid_attributes}, valid_session
+        post(:create, {track: attributes_for(:track,
+                                             title: 'Forged in Stars',
+                                             track_id: 3,
+                                             location: '/mnt/Data/Music/Chipzel/Spectra/Forged in Stars.flac')
+                              .merge(album: @track.album.title,
+                                     artist: @track.artist.name)}, valid_session)
         expect(assigns(:track)).to be_a(Track)
         expect(assigns(:track)).to be_persisted
       end
 
       it 'redirects to the created track' do
-        post :create, {:track => valid_attributes}, valid_session
-        expect(response).to redirect_to(Track.last)
+        post(:create, {track: attributes_for(:track,
+                                             title: 'Formed in the Clouds',
+                                             track_id: 4,
+                                             location: '/mnt/Data/Music/Chipzel/Spectra/Formed in the Clouds.flac')
+                              .merge(album: @track.album.title,
+                                     artist: @track.artist.name)},
+             valid_session)
+        track = Track.last
+        expect(response).to redirect_to(artist_album_track_url(track.album.artist, track.album, track))
       end
     end
 
@@ -80,14 +103,14 @@ describe TracksController, type: :controller do
       it 'assigns a newly created but unsaved track as @track' do
         # Trigger the behavior that occurs when invalid params are submitted
         allow_any_instance_of(Track).to receive(:save).and_return(false)
-        post :create, { track: {'title' => 'invalid value'}}, valid_session
+        post :create, { track: {'title' => ''}}, valid_session
         expect(assigns(:track)).to be_a_new(Track)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         allow_any_instance_of(Track).to receive(:save).and_return(false)
-        post :create, {track: {'title' => 'invalid value'}}, valid_session
+        post :create, {track: {'title' => ''}}, valid_session
         expect(response).to render_template('new')
       end
     end
@@ -96,42 +119,52 @@ describe TracksController, type: :controller do
   describe 'PUT update' do
     describe 'with valid params' do
       it 'updates the requested track' do
-        track = create(:track)
         # Assuming there are no other tracks in the database, this
         # specifies that the Track created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        expect_any_instance_of(Track).to receive(:update).with({ 'title' => 'Tokyo Skies'})
-        put :update, {id: track.to_param, track: {'title' => 'Tokyo Skies'}}, valid_session
+        expect_any_instance_of(Track).to receive(:update).with({'title' => 'Only Human', 'track_id' => '5'})
+        put :update, {id: @track.to_param,
+                      artist_id: @track.album.artist.to_param,
+                      album_id: @track.album.to_param,
+                      track: {'title' => 'Only Human', 'track_id' => '5'}}, valid_session
       end
 
       it 'assigns the requested track as @track' do
-        track = create(:track)
-        put :update, {id: track.to_param, track: valid_attributes}, valid_session
-        expect(assigns(:track)).to eq(track)
+        put :update, {id: @track.to_param,
+                      artist_id: @track.album.artist.to_param,
+                      album_id: @track.album.to_param,
+                      track: attributes_for(:track)}, valid_session
+        expect(assigns(:track)).to eq(@track)
       end
 
       it 'redirects to the track' do
-        track = create(:track)
-        put :update, {id: track.to_param, track: valid_attributes}, valid_session
-        expect(response).to redirect_to(track)
+        put :update, {id: @track.to_param,
+                      artist_id: @track.album.artist.to_param,
+                      album_id: @track.album.to_param,
+                      track: attributes_for(:track)}, valid_session
+        expect(response).to redirect_to(artist_album_track_url(@track.album.artist, @track.album, @track))
       end
     end
 
     describe 'with invalid params' do
       it 'assigns the track as @track' do
-        track = create(:track)
         # Trigger the behavior that occurs when invalid params are submitted
         allow_any_instance_of(Track).to receive(:update).and_return(false)
-        put :update, {id: track.to_param, track: {'title' => 'invalid value'}}, valid_session
-        expect(assigns(:track)).to eq(track)
+        put :update, {id: @track.to_param,
+                      artist_id: @track.album.artist.to_param,
+                      album_id: @track.album.to_param,
+                      track: {'title' => 'invalid value'}}, valid_session
+        expect(assigns(:track)).to eq(@track)
       end
 
       it "re-renders the 'edit' template" do
-        track = Track.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         allow_any_instance_of(Track).to receive(:update).and_return(false)
-        put :update, {id: track.to_param, track: {'title' => 'invalid value'}}, valid_session
+        put :update, {id: @track.to_param,
+                      artist_id: @track.album.artist.to_param,
+                      album_id: @track.album.to_param,
+                      track: {'title' => 'invalid value'}}, valid_session
         expect(response).to render_template("edit")
       end
     end
@@ -139,15 +172,17 @@ describe TracksController, type: :controller do
 
   describe 'DELETE destroy' do
     it 'destroys the requested track' do
-      track = create(:track)
       expect {
-        delete :destroy, {id: track.to_param}, valid_session
+        delete :destroy, {id: @track.to_param,
+                          artist_id: @track.album.artist.to_param,
+                          album_id: @track.album.to_param}, valid_session
       }.to change(Track, :count).by(-1)
     end
 
     it 'redirects to the tracks list' do
-      track = create(:track)
-      delete :destroy, {id: track.to_param}, valid_session
+      delete :destroy, {id: @track.to_param,
+                        artist_id: @track.album.artist.to_param,
+                        album_id: @track.album.to_param}, valid_session
       expect(response).to redirect_to(tracks_url)
     end
   end
