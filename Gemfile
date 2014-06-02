@@ -17,8 +17,8 @@ gem 'purecss'
 gem 'selectize-rails'
 # paloma for page-specific javascript
 gem 'paloma'
-# HAML for markup
-gem 'haml-rails'
+# SLIM for markup
+gem 'slim-rails'
 gem 'flash_render'
 # taglib for reading ID3
 gem 'taglib-ruby'
@@ -62,7 +62,7 @@ group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
   # RSpec instead of MiniTest::Unit because BDD is best
-  gem 'rspec-rails', '~> 3.0.0.beta'
+  gem 'rspec-rails', '~> 3.0.0'
   # Factory girl populates our database
   gem 'factory_girl_rails'
 end

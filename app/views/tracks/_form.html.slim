@@ -1,13 +1,13 @@
 = form_for(@track, html:{ class: 'pure-form pure-form-aligned' }) do |f|
-  %fieldset
+  fieldset
     - if @track.errors.any?
       #error_explanation
-        %h2
+        h2
           = pluralize(@track.errors.count, 'error')
-          prohibited this track from being saved:
-        %ul
+          | prohibited this track from being saved:
+        ul
           - @track.errors.full_messages.each do |message|
-            %li= message
+            li = message
     .pure-control-group
       = f.label :title
       = f.text_field :title
@@ -44,7 +44,7 @@
     .pure-controls
       = f.submit 'Save Track', class: 'pure-button pure-button-primary'
 
-:javascript
+javascript:
     $('select').filter(function() {
       return this.id.match(/.+_date_1i/)
     }).selectize();
@@ -54,5 +54,5 @@
     }).selectize({
       create: true,
       sortField: 'text'
-    });
+     });
 

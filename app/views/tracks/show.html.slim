@@ -1,0 +1,36 @@
+p#notice= notice
+p
+  strong Title:
+  = @track.title
+p
+  strong Rating:
+  = @track.rating
+p
+  strong Artist:
+  = link_to_artist @track.artist
+p
+  strong Album:
+  = link_to_album @track.album
+p
+  strong Date:
+  = @track.date
+p
+  strong Location:
+  = @track.location
+p
+  strong Bitrate:
+  = @track.bitrate
+p
+  strong Lyrics:
+  = @track.lyrics
+p
+  strong Track:
+  = @track.track_id
+p
+  strong Disc:
+  = @track.disc_id
+p
+  strong Format:
+  = @track.format
+=> link_to 'Edit', edit_artist_album_track_path(@track.artist, @track.album, @track)
+=  link_to 'Back', tracks_path
