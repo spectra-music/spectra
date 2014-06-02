@@ -22,7 +22,7 @@ easy transparent access to data and metadata.
 3. `rake db:setup`
 4. `rails server`
 
-## Production
+### Production
 [coming soon]
 
 ## Technologies
