@@ -1,0 +1,23 @@
+.header
+  h1 All Albums
+.content
+  table.pure-table.pure-table-bordered
+    thead
+      tr
+        th Cover
+        th Title
+        th Rating
+        th Artist
+        th Release date
+        th colspan='2' 
+    tbody
+      - @albums.each do |album|
+        tr
+          td= image_tag album.cover.url(:thumb)
+          td= link_to_album album
+          td= album.rating
+          td= link_to_artist album.artist
+          td= album.release_date.nil? ? "" : album.release_date.year
+          td= link_to 'Edit', edit_artist_album_path(album.artist, album)
+          td= link_to 'Delete', artist_album_path(album.artist, album), method: :delete, data: { confirm: 'Are you sure?' }
+  br

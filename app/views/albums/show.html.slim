@@ -1,0 +1,17 @@
+p#notice= notice
+p
+  strong Title:
+  = @album.title
+p
+  strong Artist:
+  = @album.artist.name
+p
+  strong Rating:
+  = @album.rating
+p
+  strong Art:
+  = image_tag @album.cover.url(:large)
+p
+  strong Release date:
+  = @album.release_date.nil? ? "" : @album.release_date.year
+= link_to 'Edit', edit_artist_album_path(@album.artist, @album)

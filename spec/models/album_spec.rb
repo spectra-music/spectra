@@ -29,6 +29,9 @@ describe Album, type: :model do
 
   it { should allow_value(nil).for(:num_discs) }
 
-  # it { should delegate_method(:count).to(:tracks).as(:num_tracks) }
-  # it { should delegate_method(:average).to(:tracks).with_arguments(:rating).as(:average_rating) }
+  describe 'with tracks' do
+    subject { create(:album_with_tracks) }
+    it { should delegate_method(:num_tracks).to(:tracks).as(:count) }
+    it { should delegate_method(:average_rating).to(:tracks).as(:average) }
+  end
 end

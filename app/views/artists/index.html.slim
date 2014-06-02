@@ -1,0 +1,17 @@
+.header
+  h1 All Artists
+.content
+  - if not notice.nil?
+    .pure-alert.pure-alert-success#notice = notice
+  - if not alert.nil?
+    .pure-alert.pure-alert-error#alert = alert
+  table.pure-table.pure-table-bordered
+    thead
+      tr
+        th Name
+        th Rating
+    tbody
+      - @artists.each do |artist|
+        tr
+          td= link_to_artist artist
+          td= artist.rating

@@ -19,6 +19,11 @@ FactoryGirl.define do
     rating 5
     num_discs 1
     is_compilation false
-    initialize_with { Album.find_or_create_by(title: title) }
+    initialize_with { Album.find_or_create_by(title: title)}
+    factory :album_with_tracks do
+      after :create do |album, evaluator|
+        create(:track, album: album)
+      end
+    end
   end
 end

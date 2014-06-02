@@ -10,5 +10,6 @@ FactoryGirl.define do
     location '/mnt/Data/Music/Chipzel/Spectra/Spectra.flac'
     # format "flac"
     rating 5
+    initialize_with { Track.find_or_create_by(title: title, artist: artist, album: album)}
   end
 end

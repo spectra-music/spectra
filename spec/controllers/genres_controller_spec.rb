@@ -19,12 +19,6 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe GenresController, type: :controller do
-
-  # This should return the minimal set of attributes required to create a valid
-  # Genre. As you add validations to Genre, be sure to
-  # adjust the attributes here as well.
-  let(:valid_attributes) { { 'name' => 'MyString' } }
-
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # GenresController. Be sure to keep this updated too.
@@ -32,7 +26,7 @@ describe GenresController, type: :controller do
 
   describe 'GET index' do
     it 'assigns all genres as @genres' do
-      genre = Genre.create! valid_attributes
+      genre = create(:genre)
       get :index, {}, valid_session
       expect(assigns(:genres)).to eq([genre])
     end
@@ -40,8 +34,8 @@ describe GenresController, type: :controller do
 
   describe 'GET show' do
     it 'assigns the requested genre as @genre' do
-      genre = Genre.create! valid_attributes
-      get :show, { id: genre.to_param }, valid_session
+      genre = create(:genre)
+      get :show, {id: genre.to_param}, valid_session
       expect(assigns(:genre)).to eq(genre)
     end
   end
