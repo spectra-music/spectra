@@ -8,8 +8,29 @@
 Spectra is a deployed music hosting system. It sits on your server or NAS, with access to your music files, and allows
 easy transparent access to data and metadata. 
 
-Spectra is built around a set of core ideas:
-  - APIs should be clean, and RESTful.
-  - Music formats shouldn't matter, because it's just data.
-  - Decoding should be done at the most powerful location: the client
-  - Deployable anywhere, from a laptop to a large-scale NAS
+## Core ideals
+- APIs should be clean, and RESTful.
+- Music formats shouldn't matter, because it's just data.
+- Decoding should be done at the most powerful location: the client
+- Deployable anywhere, from a laptop to a large-scale NAS
+
+## Installation
+
+### Development
+1. Install Ruby 2.1 and bundler.
+2. `git clone https://github.com/spectra-music/spectra`
+3. `cd spectra`
+2. `bundle`
+3. `rake db:setup`
+4. `rails server`
+
+### Production
+[coming soon]
+
+## Technologies
+- Ruby 2.1
+- Rails 4
+- Slim
+- SCSS
+- CoffeeScript
+- AngularJS
