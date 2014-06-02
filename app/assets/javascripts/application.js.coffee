@@ -14,7 +14,6 @@
 #= require angular-resource
 #= require spectra
 #= require selectize
-#= require ./angular
 #= require_tree .
 
 #  For templates
