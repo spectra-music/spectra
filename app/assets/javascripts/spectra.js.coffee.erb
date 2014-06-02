@@ -16,11 +16,11 @@ spectra.config(['$routeProvider', '$locationProvider', ($routeProvider, $locatio
   $routeProvider
   .when('/', {
     templateUrl: '<%= asset_path("welcome/index.html") %>',
-    controller: 'WelcomeCtrl'
+    controller: 'WelcomeController'
   })
   .when('/import', {
     templateUrl: '<%= asset_path("import/index.html") %>',
-    controller: 'ImportCtrl'
+    controller: 'ImportController'
   })
   $locationProvider.html5Mode(true)
 ])

@@ -11,9 +11,9 @@
 # about supported directives.
 #
 # Other stuff
-#= require selectize
 #= require jquery
 #= require jquery_ujs
+#= require selectize
 
 # Angular Stuff
 #= require angular

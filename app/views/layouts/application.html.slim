@@ -11,19 +11,19 @@ html ngapp= 'spectra'
         a#menuLink.menu-link href= "#menu"
           /! Hamburger icon
           span
-        #menu
+        #menu ng-controller="NavController"
           .pure-menu.pure-menu-open
             a.pure-menu-heading href="/"
               img src= image_path('SpectraIcon.png')
             ul
-              li
+              li ng-class="{ 'menu-item-divided pure-menu-selected' : isActive('/albums') }"
                 a href='/albums'  Albums
-              li
+              li ng-class="{ 'menu-item-divided pure-menu-selected' : isActive('/artists') }"
                 a href='/artists'  Artists
-              li
+              li ng-class="{ 'menu-item-divided pure-menu-selected' : isActive('/genres') }"
                 a href='/genres'   Genres
-              li
+              li ng-class="{ 'menu-item-divided pure-menu-selected' : isActive('/tracks') }"
                 a href='/tracks'  Tracks
-              li
+              li ng-class="{ 'menu-item-divided pure-menu-selected' : isActive('/import') }"
                 a href='/import'  Import
     div ng-view=''
