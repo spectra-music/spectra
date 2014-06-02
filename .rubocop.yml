@@ -6,7 +6,6 @@ AllCops:
 Documentation:
   Exclude:
   - db/migrate/**/*.rb
-  - test/**/*.rb
 
 Validation:
   Enabled: true
