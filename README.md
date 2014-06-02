@@ -27,4 +27,3 @@ easy transparent access to data and metadata.
 - SCSS
 - CoffeeScript
 - AngularJS
-- Heroku (for production)
