@@ -1,13 +1,13 @@
 = form_for(@album, html:{ multipart:true, class: 'pure-form pure-form-aligned' }) do |f|
-  %fieldset
+  fieldset
     - if @album.errors.any?
       #error_explanation
-        %h2
-          = pluralize(@album.errors.count, "error")
-          prohibited this album from being saved:
-        %ul
+        h2
+          = pluralize(@album.errors.count, 'error')
+          | prohibited this album from being saved:
+        ul
           - @album.errors.full_messages.each do |message|
-            %li= message
+            li= message
     .pure-control-group
       = f.label :title
       = f.text_field(:title, required: true, placeholder: 'Album Title' )
@@ -16,7 +16,7 @@
       = f.collection_select('artist', Artist.order(:name), :name, :name, prompt: 'Select artist')
     .pure-control-group
       = f.label :rating
-      = f.number_field :rating, in:0..5, placeholder: "0 to 5"
+      = f.number_field :rating, in:0..5, placeholder: '0 to 5'
     .pure-control-group
       = f.label 'Cover Art'
       = f.file_field :cover
@@ -28,14 +28,14 @@
       = f.check_box :is_compilation
     .pure-controls
       = f.submit 'Save Album', class: 'pure-button pure-button-primary'
-:javascript
-    $('select').filter(function() {
-      return this.id.match(/.+_date_1i/)
-    }).selectize();
+javascript:
+  $('select').filter(function() {
+    return this.id.match(/.+_date_1i/)
+  }).selectize();
 
-    $('select').filter(function () {
-      return this.id.match(/.+_artist/)
-    }).selectize({
-      create: true,
-      sortField: 'text'
-    });
+  $('select').filter(function () {
+    return this.id.match(/.+_artist/)
+  }).selectize({
+    create: true,
+    sortField: 'text'
+  });
