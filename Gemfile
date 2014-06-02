@@ -17,8 +17,7 @@ gem 'purecss'
 gem 'selectize-rails'
 # paloma for page-specific javascript
 gem 'paloma'
-# HAML for markup
-gem 'haml-rails'
+# SLIM for markup
 gem 'slim-rails'
 gem 'flash_render'
 # taglib for reading ID3
