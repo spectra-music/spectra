@@ -18,6 +18,8 @@ easy transparent access to data and metadata.
 
 ### Development
 1. Install Ruby 2.1 and bundler.
+2. `git clone https://github.com/spectra-music/spectra`
+3. `cd spectra`
 2. `bundle`
 3. `rake db:setup`
 4. `rails server`
