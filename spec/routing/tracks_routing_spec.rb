@@ -10,12 +10,18 @@ describe TracksController, type: :routing do
     it { should route(:get, '/tracks/new').to('tracks#new') }
     it do
       should route(:get, '/artists/chipzel/albums/spectra/tracks/spectra')
-             .to('tracks#show', id: 'spectra', artist_id: 'chipzel', album_id: 'spectra')
+             .to('tracks#show',
+                 id: 'spectra',
+                 artist_id: 'chipzel',
+                 album_id: 'spectra')
     end
 
     it do
       should route(:get, '/artists/chipzel/albums/spectra/tracks/spectra/edit')
-             .to('tracks#edit', id: 'spectra', artist_id: 'chipzel', album_id: 'spectra')
+             .to('tracks#edit',
+                 id: 'spectra',
+                 artist_id: 'chipzel',
+                 album_id: 'spectra')
     end
 
     it do
@@ -26,12 +32,18 @@ describe TracksController, type: :routing do
 
     it do
       should route(:put, '/artists/chipzel/albums/spectra/tracks/spectra')
-             .to('tracks#update', id: 'spectra', artist_id: 'chipzel', album_id: 'spectra')
+             .to('tracks#update',
+                 id: 'spectra',
+                 artist_id: 'chipzel',
+                 album_id: 'spectra')
     end
 
     it do
       should route(:delete, '/artists/chipzel/albums/spectra/tracks/spectra')
-             .to('tracks#destroy', id: 'spectra', artist_id: 'chipzel', album_id: 'spectra')
+             .to('tracks#destroy',
+                 id: 'spectra',
+                 artist_id: 'chipzel',
+                 album_id: 'spectra')
     end
   end
 end

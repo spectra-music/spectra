@@ -11,7 +11,8 @@ describe Track, type: :model do
   it { should validate_presence_of(:track_id) }
   it { should validate_presence_of(:location) }
 
-  # it 'should require case sensitive unique value for track_id scoped to album' do
+  # it 'should require case sensitive unique value for track_id scoped to ' \
+  #    'album' do
   #   create(:track)
   #   validate_uniqueness_of(:title).case_insensitive.scoped_to(:album)
   # end

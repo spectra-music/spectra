@@ -27,14 +27,24 @@ describe AlbumsController, type: :controller do
 
   describe 'GET show' do
     it 'assigns the requested album as @album' do
-      get :show, { id: @album.to_param, artist_id: @album.artist.to_param }, valid_session
+      get :show,
+          {
+            id: @album.to_param,
+            artist_id: @album.artist.to_param
+          },
+          valid_session
       expect(assigns(:album)).to eq(@album)
     end
   end
 
   describe 'GET edit' do
     it 'assigns the requested album as @album' do
-      get :edit, { id: @album.to_param, artist_id: @album.artist.to_param }, valid_session
+      get :edit,
+          {
+            id: @album.to_param,
+            artist_id: @album.artist.to_param
+          },
+          valid_session
       expect(assigns(:album)).to eq(@album)
     end
   end
@@ -46,19 +56,33 @@ describe AlbumsController, type: :controller do
         # specifies that the Album created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        expect_any_instance_of(Album).to receive(:update).with('title' => 'Super Hexagon')
+        expect_any_instance_of(Album).to receive(:update)
+                                         .with('title' => 'Super Hexagon')
         put :update, { id: @album.to_param,
                        artist_id: @album.artist.to_param,
                        album: { 'title' => 'Super Hexagon' } }, valid_session
       end
 
       it 'assigns the requested album as @album' do
-        put :update, { id: @album.to_param, artist_id: @album.artist.to_param, album: attributes_for(:album) }, valid_session
+        put :update,
+            {
+              id: @album.to_param,
+              artist_id:
+              @album.artist.to_param,
+              album: attributes_for(:album)
+            },
+            valid_session
         expect(assigns(:album)).to eq(@album)
       end
 
       it 'redirects to the album' do
-        put :update, { id: @album.to_param, artist_id: @album.artist.to_param, album: attributes_for(:album) }, valid_session
+        put :update,
+            {
+              id: @album.to_param,
+              artist_id: @album.artist.to_param,
+              album: attributes_for(:album)
+            },
+            valid_session
         expect(response).to redirect_to(artist_album_url(@album.artist, @album))
       end
     end
@@ -67,14 +91,26 @@ describe AlbumsController, type: :controller do
       it 'assigns the album as @album' do
         # Trigger the behavior that occurs when invalid params are submitted
         allow_any_instance_of(Album).to receive(:update).and_return(false)
-        put :update, { id: @album.to_param, artist_id: @album.artist.to_param, album: { 'title' => '' } }, valid_session
+        put :update,
+            {
+              id: @album.to_param,
+              artist_id: @album.artist.to_param,
+              album: { 'title' => '' }
+            },
+            valid_session
         expect(assigns(:album)).to eq(@album)
       end
 
       it "re-renders the 'edit' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         allow_any_instance_of(Album).to receive(:update).and_return(false)
-        put :update, { id: @album.to_param, artist_id: @album.artist.to_param, album: { 'title' => '' } }, valid_session
+        put :update,
+            {
+              id: @album.to_param,
+              artist_id: @album.artist.to_param,
+              album: { 'title' => '' }
+            },
+            valid_session
         expect(response).to render_template('edit')
       end
     end
@@ -83,12 +119,22 @@ describe AlbumsController, type: :controller do
   describe 'DELETE destroy' do
     it 'destroys the requested album' do
       expect do
-        delete :destroy, { id: @album.to_param, artist_id: @album.artist.to_param }, valid_session
+        delete :destroy,
+               {
+                 id: @album.to_param,
+                 artist_id: @album.artist.to_param
+               },
+               valid_session
       end.to change(Album, :count).by(-1)
     end
 
     it "redirects to the artist's list of albums" do
-      delete :destroy, { id: @album.to_param, artist_id: @album.artist.to_param }, valid_session
+      delete :destroy,
+             {
+               id: @album.to_param,
+               artist_id: @album.artist.to_param
+             },
+             valid_session
       expect(response).to redirect_to(artist_albums_url(@album.artist))
     end
   end

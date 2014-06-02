@@ -5,7 +5,8 @@
 #     saved_single_instances[factory_key].reload
 #   rescue NoMethodError, ActiveRecord::RecordNotFound
 #     #was never created (is nil) or was cleared from db
-#     saved_single_instances[factory_key] = Factory.create(factory_key)  #recreate
+#     #recreate
+#     saved_single_instances[factory_key] = Factory.create(factory_key)
 #   end
 #
 #   return saved_single_instances[factory_key]
