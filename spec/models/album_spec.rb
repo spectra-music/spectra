@@ -17,15 +17,19 @@ describe Album, type: :model do
   it { should allow_value(false).for(:is_compilation) }
   it { should_not allow_value(nil).for(:is_compilation) }
 
-  it do should validate_numericality_of(:rating)
-              .only_integer
-              .is_greater_than_or_equal_to(0)
-              .is_less_than_or_equal_to(5) end
+  it do
+    should validate_numericality_of(:rating)
+           .only_integer
+           .is_greater_than_or_equal_to(0)
+           .is_less_than_or_equal_to(5)
+  end
   it { should_not allow_value(nil).for(:rating) }
 
-  it do should validate_numericality_of(:num_discs)
-              .only_integer
-              .is_greater_than(0) end
+  it do
+    should validate_numericality_of(:num_discs)
+           .only_integer
+           .is_greater_than(0)
+  end
 
   it { should allow_value(nil).for(:num_discs) }
 
