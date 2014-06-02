@@ -13,3 +13,18 @@ easy transparent access to data and metadata.
   - Music formats shouldn't matter, because it's just data.
   - Decoding should be done at the most powerful location: the client
   - Deployable anywhere, from a laptop to a large-scale NAS
+
+## Installation
+1. Install Ruby 2.1 and bundler.
+2. `bundle`
+3. `rake db:setup`
+4. `rails server`
+
+## Technologies
+- Ruby 2.1
+- Rails 4
+- Slim
+- SCSS
+- CoffeeScript
+- AngularJS
+- Heroku (for production)
