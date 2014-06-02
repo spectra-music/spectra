@@ -35,7 +35,7 @@ describe GenresController, type: :controller do
   describe 'GET show' do
     it 'assigns the requested genre as @genre' do
       genre = create(:genre)
-      get :show, {id: genre.to_param}, valid_session
+      get :show, { id: genre.to_param }, valid_session
       expect(assigns(:genre)).to eq(genre)
     end
   end
