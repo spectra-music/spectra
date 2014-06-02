@@ -69,7 +69,7 @@ group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
   # RSpec instead of MiniTest::Unit because BDD is best
-  gem 'rspec-rails', '~> 3.0.0.beta'
+  gem 'rspec-rails', '~> 3.0.0'
   # Factory girl populates our database
   gem 'factory_girl_rails'
 end
