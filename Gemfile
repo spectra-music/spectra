@@ -33,6 +33,8 @@ gem 'paperclip', '~> 4.1'
 # RABL helps us build better APIs
 gem 'rabl'
 
+gem 'rubocop'
+
 
 # In production
 group :production do
