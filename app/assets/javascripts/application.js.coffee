@@ -10,12 +10,21 @@
 # Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 # about supported directives.
 #
-#= require jquery
-#= require jquery_ujs
 #= require angular
-#= require paloma
+#= require angular-resource
+#= require spectra
 #= require selectize
+#= require ./angular
 #= require_tree .
+
+#  For templates
+#= require angular-rails-templates
+#= require_tree ../templates
+
+# This is for the sidebar
+# We'll fix this up later
+# TODO: Clean this up and put it somewhere else
+###
 ((window, document) ->
   $ ->
     toggleClass = (element, className) ->
@@ -27,7 +36,7 @@
           classes.splice i, 1
           break
         i++
-      
+
       # The className is not found
       classes.push className  if length is classes.length
       element.className = classes.join(" ")
@@ -47,3 +56,4 @@
 
   return
 ) this, @document
+###

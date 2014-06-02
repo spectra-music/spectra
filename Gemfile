@@ -12,6 +12,7 @@ gem 'coffee-rails', '~> 4.0.0'
 
 # Angular for the frontend
 gem 'angularjs-rails'
+gem 'angular-rails-templates'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -23,6 +24,7 @@ gem 'selectize-rails'
 gem 'paloma'
 # HAML for markup
 gem 'haml-rails'
+gem 'slim-rails'
 gem 'flash_render'
 # taglib for reading ID3
 gem 'taglib-ruby'
