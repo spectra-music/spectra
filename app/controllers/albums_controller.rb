@@ -23,14 +23,20 @@ class AlbumsController < ApplicationController
   # PATCH/PUT /albums/1
   # PATCH/PUT /albums/1.json
   def update
-    params[:album][:artist] = Artist.find_or_create_by(name: params[:album][:artist])
+    params[:album][:artist] = \
+      Artist.find_or_create_by(name: params[:album][:artist])
     respond_to do |format|
       if @album.update(album_params)
-        format.html { redirect_to artist_album_url(@album.artist, @album), notice: 'Album was successfully updated.' }
+        format.html do
+          redirect_to artist_album_url(@album.artist, @album),
+                      notice: 'Album was successfully updated.'
+        end
         format.json { render :show, status: :ok, location: @album }
       else
         format.html { render :edit }
-        format.json { render json: @album.errors, status: :unprocessable_entity }
+        format.json do
+          render json: @album.errors, status: :unprocessable_entity
+        end
       end
     end
   end
@@ -40,7 +46,10 @@ class AlbumsController < ApplicationController
   def destroy
     @album.destroy
     respond_to do |format|
-      format.html { redirect_to artist_albums_url(@album.artist), notice: 'Album was successfully destroyed.' }
+      format.html do
+        redirect_to artist_albums_url(@album.artist),
+                    notice: 'Album was successfully destroyed.'
+      end
       format.json { head :no_content }
     end
   end
@@ -52,8 +61,10 @@ class AlbumsController < ApplicationController
     @album = Album.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
+  # Never trust parameters from the scary internet, only allow the white list
+  # through.
   def album_params
-    params.require(:album).permit(:title, :rating, :artist, :cover, :release_date, :is_compilation)
+    params.require(:album).permit(:title, :rating, :artist, :cover,
+                                  :release_date, :is_compilation)
   end
 end

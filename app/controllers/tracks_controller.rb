@@ -27,7 +27,8 @@ class TracksController < ApplicationController
     @track = Track.new do |track|
       track.title = track_params[:title]
       track.artist = Artist.find_or_create_by(name: track_params[:artist])
-      track.album = Album.find_or_create_by(title: track_params[:album]) do |album|
+      track.album = Album.find_or_create_by(title: track_params[:album]) \
+                    do |album|
         album.artist = track.artist
         album.num_discs = 1
         album.release_date = track_params[:date]
@@ -45,11 +46,17 @@ class TracksController < ApplicationController
 
     respond_to do |format|
       if @track.save
-        format.html { redirect_to artist_album_track_url(@track.album.artist, @track.album, @track), notice: 'Track was successfully created.' }
+        format.html do
+          redirect_to artist_album_track_url(@track.album.artist,
+                                             @track.album, @track),
+                      notice: 'Track was successfully created.'
+        end
         format.json { render :show, status: :created, location: @track }
       else
         format.html { render :new }
-        format.json { render json: @track.errors, status: :unprocessable_entity }
+        format.json do
+          render json: @track.errors, status: :unprocessable_entity
+        end
       end
     end
   end
@@ -59,11 +66,18 @@ class TracksController < ApplicationController
   def update
     respond_to do |format|
       if @track.update(track_params)
-        format.html { redirect_to artist_album_track_url(@track.album.artist, @track.album, @track), notice: 'Track was successfully updated.' }
+        format.html do
+          redirect_to artist_album_track_url(@track.album.artist,
+                                             @track.album,
+                                             @track),
+                      notice: 'Track was successfully updated.'
+        end
         format.json { render :show, status: :ok, location: @track }
       else
         format.html { render :edit }
-        format.json { render json: @track.errors, status: :unprocessable_entity }
+        format.json do
+          render json: @track.errors, status: :unprocessable_entity
+        end
       end
     end
   end
@@ -73,7 +87,9 @@ class TracksController < ApplicationController
   def destroy
     @track.destroy
     respond_to do |format|
-      format.html { redirect_to tracks_url, notice: 'Track was successfully destroyed.' }
+      format.html do
+        redirect_to tracks_url, notice: 'Track was successfully destroyed.'
+      end
       format.json { head :no_content }
     end
   end
@@ -85,8 +101,11 @@ class TracksController < ApplicationController
     @track = Track.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
+  # Never trust parameters from the scary internet, only allow the white list
+  # through.
   def track_params
-    params.require(:track).permit(:title, :rating, :artist, :album, :date, :location, :bitrate, :lyrics, :track_id, :disc_id, :format)
+    params.require(:track).permit(:title, :rating, :artist, :album, :date,
+                                  :location, :bitrate, :lyrics, :track_id,
+                                  :disc_id, :format)
   end
 end

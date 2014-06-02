@@ -19,7 +19,9 @@ class ArtistsController < ApplicationController
       if @artist.update(artist_params)
         format.json { render :show, status: :ok, location: @artist }
       else
-        format.json { render json: @artist.errors, status: :unprocessable_entity }
+        format.json do
+          render json: @artist.errors, status: :unprocessable_entity
+        end
       end
     end
   end
@@ -31,7 +33,8 @@ class ArtistsController < ApplicationController
     @artist = Artist.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
+  # Never trust parameters from the scary internet, only allow the white list
+  # through.
   def artist_params
     params.require(:artist).permit(:rating)
   end
