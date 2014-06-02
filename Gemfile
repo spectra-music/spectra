@@ -9,6 +9,10 @@ gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
+
+# Angular for the frontend
+gem 'angularjs-rails'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # purecss for styling
@@ -18,20 +22,23 @@ gem 'selectize-rails'
 # paloma for page-specific javascript
 gem 'paloma'
 # SLIM for markup
+gem 'slim'
 gem 'slim-rails'
 gem 'flash_render'
 # taglib for reading ID3
 gem 'taglib-ruby'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+
+
 # Friendly stubs for a verbose api
 gem 'friendly_id', '~> 5.0.0'
 # Paperclip manages our album covers
 gem 'paperclip', '~> 4.1'
 # RABL helps us build better APIs
 gem 'rabl'
+
 
 
 # In production
