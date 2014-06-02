@@ -6,5 +6,24 @@ html ngapp= 'spectra'
     = javascript_include_tag 'application'
     = csrf_meta_tags
   body ng-app='spectra'
+    #layout
+        /! Menu toggle
+        a#menuLink.menu-link href= "#menu"
+          /! Hamburger icon
+          span
+        #menu
+          .pure-menu.pure-menu-open
+            a.pure-menu-heading href="/"
+              img src= image_path('SpectraIcon.png')
+            ul
+              li
+                a href='/albums'  Albums
+              li
+                a href='/artists'  Artists
+              li
+                a href='/genres'   Genres
+              li
+                a href='/tracks'  Tracks
+              li
+                a href='/import'  Import
     div ng-view=''
-      = yield
