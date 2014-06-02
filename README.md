@@ -8,7 +8,7 @@
 Spectra is a deployed music hosting system. It sits on your server or NAS, with access to your music files, and allows
 easy transparent access to data and metadata. 
 
-Spectra is built around a set of core ideas:
+## Core ideals
   - APIs should be clean, and RESTful.
   - Music formats shouldn't matter, because it's just data.
   - Decoding should be done at the most powerful location: the client
