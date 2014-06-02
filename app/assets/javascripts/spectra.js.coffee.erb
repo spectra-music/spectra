@@ -12,12 +12,17 @@ spectra = angular.module('spectra', ['ngRoute', 'ngResource'])
 # route for our application. The term "otherwise" here
 # might seem somewhat awkward, but it will make more
 # sense as we add more routes to our application.
-spectra.config(['$routeProvider', ($routeProvider) ->
-  $routeProvider.
-  otherwise({
-      templateUrl: '<%= asset_path("welcome.html") %>',
-      controller: 'WelcomeCtrl'
-    })
+spectra.config(['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
+  $routeProvider
+  .when('/', {
+    templateUrl: '<%= asset_path("welcome/index.html") %>',
+    controller: 'WelcomeCtrl'
+  })
+  .when('/import', {
+    templateUrl: '<%= asset_path("import/index.html") %>',
+    controller: 'ImportCtrl'
+  })
+  $locationProvider.html5Mode(true)
 ])
 
 spectra.config ($httpProvider) ->
