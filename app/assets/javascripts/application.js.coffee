@@ -12,18 +12,19 @@
 #
 # Other stuff
 #= require selectize
+#= require jquery
+#= require jquery_ujs
 
 # Angular Stuff
 #= require angular
 #= require angular-resource
+#= require angular-route
 #= require spectra
 
 # The default require
 #= require_tree .
 
 #  For templates
-#= require angular-rails-templates
-#= require_tree ../templates
 
 # This is for the sidebar
 # We'll fix this up later

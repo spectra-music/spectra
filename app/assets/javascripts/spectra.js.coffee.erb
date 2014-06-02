@@ -1,12 +1,12 @@
 
-defaults = $http.defaults.headers
-defaults.patch = defaults.patch || {}
-defaults.patch['Content-Type'] = 'application/json'
+# defaults = $http.defaults.headers
+# defaults.patch = defaults.patch || {}
+# defaults.patch['Content-Type'] = 'application/json'
 
 # This line is related to our Angular app, not to our
 # HomeCtrl specifically. This is basically how we tell
 # Angular about the existence of our application.
-spectra = angular.module('spectra', ['templates', 'ngResource'])
+spectra = angular.module('spectra', ['ngRoute', 'ngResource'])
 
 # This routing directive tells Angular about the default
 # route for our application. The term "otherwise" here
@@ -15,7 +15,7 @@ spectra = angular.module('spectra', ['templates', 'ngResource'])
 spectra.config(['$routeProvider', ($routeProvider) ->
   $routeProvider.
   otherwise({
-      templateUrl: 'welcome.html',
+      templateUrl: '<%= asset_path("welcome.html") %>',
       controller: 'WelcomeCtrl'
     })
 ])
