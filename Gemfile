@@ -19,6 +19,7 @@ gem 'selectize-rails'
 gem 'paloma'
 # HAML for markup
 gem 'haml-rails'
+gem 'slim-rails'
 gem 'flash_render'
 # taglib for reading ID3
 gem 'taglib-ruby'
