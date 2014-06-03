@@ -24,27 +24,30 @@ class Album < ActiveRecord::Base
   alias_attribute :art, :cover
 
   # Ensure we have a title and artist
-  validates_presence_of :title, :artist
+  validates :title, :artist, presence: true
 
   # Ensure each album title is unique to an artist
-  validates_uniqueness_of :title, case_sensitive: false, scope: :artist
+  validates :title, uniqueness: { case_sensitive: false, scope: :artist }
 
   # Ensure our artist is valid
   validates_associated :artist
 
   # Ensure is_compilation is either true or false
-  validates_inclusion_of :is_compilation, in: [true, false]
+  validates :is_compilation, inclusion: { in: [true, false] }
 
   # Ensure rating is an integer from 0 to 5
-  validates_numericality_of :rating, only_integer: true,
-                                     greater_than_or_equal_to: 0,
-                                     less_than_or_equal_to: 5
+  validates :rating, numericality: {
+                      only_integer: true,
+                      greater_than_or_equal_to: 0,
+                      less_than_or_equal_to: 5
+                    }
 
   # Ensure num_discs is an integer greater than 0
-  validates_numericality_of :num_discs,
-                            only_integer: true,
-                            greater_than: 0,
-                            allow_nil: true
+  validates :num_discs, numericality: {
+                          only_integer: true,
+                          greater_than: 0,
+                          allow_nil: true
+                        }
 
   # Make sure our cover is an image
   validates_attachment_content_type :cover, :content_type => /\Aimage\/.*\Z/

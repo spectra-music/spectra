@@ -1,0 +1,32 @@
+
+# defaults = $http.defaults.headers
+# defaults.patch = defaults.patch || {}
+# defaults.patch['Content-Type'] = 'application/json'
+
+# This line is related to our Angular app, not to our
+# HomeCtrl specifically. This is basically how we tell
+# Angular about the existence of our application.
+spectra = angular.module('spectra', ['ngRoute', 'ngResource'])
+
+# This routing directive tells Angular about the default
+# route for our application. The term "otherwise" here
+# might seem somewhat awkward, but it will make more
+# sense as we add more routes to our application.
+spectra.config(['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
+  $routeProvider
+  .when('/', {
+    templateUrl: '<%= asset_path("welcome/index.html") %>',
+    controller: 'WelcomeCtrl'
+  })
+  .when('/import', {
+    templateUrl: '<%= asset_path("import/index.html") %>',
+    controller: 'ImportCtrl'
+  })
+  $locationProvider.html5Mode(true)
+])
+
+spectra.config ($httpProvider) ->
+  authToken = $("meta[name=\"csrf-token\"]").attr("content")
+  $httpProvider.defaults.headers.common["X-CSRF-TOKEN"] = authToken
+
+angular.module('spectra').factory

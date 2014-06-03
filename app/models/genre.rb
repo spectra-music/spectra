@@ -5,7 +5,6 @@ class Genre < ActiveRecord::Base
 
   friendly_id :name, use: [:slugged, :finders], sequence_separator: '_'
 
-  validates_presence_of :name
-
-  validates_uniqueness_of :name, case_sensitive: false
+  validates :name,  presence: true,
+                    uniqueness: { case_sensitive: false }
 end
