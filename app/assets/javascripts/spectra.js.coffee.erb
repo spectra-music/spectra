@@ -15,12 +15,10 @@ spectra = angular.module('spectra', ['ngRoute', 'ngResource'])
 spectra.config(['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
   $routeProvider
   .when('/', {
-    templateUrl: '<%= asset_path("welcome/index.html") %>',
-    controller: 'WelcomeController'
+    templateUrl: '<%= asset_path("welcome/index.html") %>'
   })
   .when('/import', {
-    templateUrl: '<%= asset_path("import/index.html") %>',
-    controller: 'ImportController'
+    templateUrl: '<%= asset_path("import/index.html") %>'
   })
   $locationProvider.html5Mode(true)
 ])
