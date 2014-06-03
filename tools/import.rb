@@ -3,13 +3,14 @@ require 'taglib'
 require 'pp'
 require 'active_support/core_ext/string/inflections'
 
+I18n.enforce_available_locales = false
+
 class BiWordHash
   def initialize(initial={})
     @forward = {}
     @reverse = {}
-    initial.each_pair do |k,v|
+    initial.each_pair do |k, v|
       v = v.parameterize.underscore.to_sym
-      k = k.to_sym
       @forward[k] = v
       @reverse[v] = k
     end
@@ -33,8 +34,8 @@ class BiWordHash
     fetch(k)
   end
 
-  def []=(k,v)
-    insert(k,v)
+  def []=(k, v)
+    insert(k, v)
   end
 
   def has_key?(k)
@@ -51,131 +52,131 @@ end
 # .to_hash which returns a Map<Symbol, List<String>>
 
 ID3V2_FRAME_SPEC = BiWordHash.new({
-    'AENC' => 'Audio encryption',
-    'APIC' => 'Attached picture',
-    'ASPI' => 'Audio seek point index',
-    'COMM' => 'Comments',
-    'COMR' => 'Commercial frame',
-    'ENCR' => 'Encryption method registration',
-    'EQU2' => 'Equalization (2)',
-    'EQUA' => 'Equalization',
-    'ETCO' => 'Event timing codes',
-    'GEOB' => 'General encapsulated object',
-    'GRID' => 'Group identification registration',
-    'IPLS' => 'Involved people list',
-    'LINK' => 'Linked information',
-    'MCDI' => 'Music CD identifier',
-    'MLLT' => 'MPEG location lookup table',
-    'OWNE' => 'Ownership frame',
-    'PRIV' => 'Private frame',
-    'PCNT' => 'Play counter',
-    'POPM' => 'Popularimeter',
-    'POSS' => 'Position synchronisation frame',
-    'RBUF' => 'Recommended buffer size',
-    'RVA2' => 'Relative volume adjustment (2)',
-    'RVAD' => 'Relative volume adjustment',
-    'RVRB' => 'Reverb',
-    'SEEK' => 'Seek frame',
-    'SIGN' => 'Signature frame',
-    'SYLT' => 'Synchronized lyric/text',
-    'SYTC' => 'Synchronized tempo codes',
-    'TALB' => 'Album',
-    'TBPM' => 'Beats per minute (BPM)',
-    'TCOM' => 'Composer',
-    'TCON' => 'Genre',
-    'TCOP' => 'Copyright message',
-    'TDAT' => 'Date',
-    'TDLY' => 'Playlist delay',
-    'TDOR' => 'Original release time',
-    'TDRC' => 'Recorded on',
-    'TDRL' => 'Released on',
-    'TDTG' => 'Tagged on',
-    'TENC' => 'Encoded by',
-    'TEXT' => 'Lyricist',
-    'TFLT' => 'File type',
-    'TIME' => 'Time',
-    'TIPL' => 'Involved people list',
-    'TIT1' => 'Content group description',
-    'TIT2' => 'Title',
-    'TIT3' => 'Subtitle/Description refinement',
-    'TKEY' => 'Initial key',
-    'TLAN' => 'Language',
-    'TLEN' => 'Length',
-    'TMVL' => 'Musician credits list',
-    'TMED' => 'Media type',
-    'TMOO' => 'Mood',
-    'TOAL' => 'Original album/movie/show title',
-    'TOFN' => 'Original filename',
-    'TOLY' => 'Original lyricist',
-    'TOPE' => 'Original artist',
-    'TORY' => 'Original release year',
-    'TOWN' => 'File owner/licensee',
-    'TPE1' => 'Artist',
-    'TPE2' => 'Album artist',
-    'TPE3' => 'Conductor',
-    'TPE4' => 'Interpreted, remixed, or otherwise modified by',
-    'TPOS' => 'Disc number',
-    'TPUB' => 'Publisher',
-    'TRCK' => 'Track number',
-    'TRDA' => 'Recording dates',
-    'TRSN' => 'Internet radio station name',
-    'TRSO' => 'Internet radio station owner',
-    'TSOA' => 'Sort album',
-    'TSOP' => 'Sort artist',
-    'TSOT' => 'Sort title',
-    'TSIZ' => 'Size',
-    'TSRC' => 'International Standard Recording Code (ISRC)',
-    'TSSE' => 'Software/Hardware and settings used for encoding',
-    'TSST' => 'Set subtitle',
-    'TYER' => 'Year',
-    'TXXX' => 'User defined text information frame',
-    'UFID' => 'Unique file identifier',
-    'USER' => 'Terms of use',
-    'USLT' => 'Unsynchronized lyric/text transcription',
-    'WCOM' => 'Commercial information',
-    'WCOP' => 'Copyright/Legal information',
-    'WOAF' => 'Official audio file webpage',
-    'WOAR' => 'Official artist/performer webpage',
-    'WOAS' => 'Official audio source webpage',
-    'WORS' => 'Official internet radio station homepage',
-    'WPAY' => 'Payment',
-    'WPUB' => 'Publishers official webpage',
-    'WXXX' => 'User defined URL link frame'
-})
+                                      'AENC' => 'Audio encryption',
+                                      'APIC' => 'Attached picture',
+                                      'ASPI' => 'Audio seek point index',
+                                      'COMM' => 'Comments',
+                                      'COMR' => 'Commercial frame',
+                                      'ENCR' => 'Encryption method registration',
+                                      'EQU2' => 'Equalization (2)',
+                                      'EQUA' => 'Equalization',
+                                      'ETCO' => 'Event timing codes',
+                                      'GEOB' => 'General encapsulated object',
+                                      'GRID' => 'Group identification registration',
+                                      'IPLS' => 'Involved people list',
+                                      'LINK' => 'Linked information',
+                                      'MCDI' => 'Music CD identifier',
+                                      'MLLT' => 'MPEG location lookup table',
+                                      'OWNE' => 'Ownership frame',
+                                      'PRIV' => 'Private frame',
+                                      'PCNT' => 'Play counter',
+                                      'POPM' => 'Popularimeter',
+                                      'POSS' => 'Position synchronisation frame',
+                                      'RBUF' => 'Recommended buffer size',
+                                      'RVA2' => 'Relative volume adjustment (2)',
+                                      'RVAD' => 'Relative volume adjustment',
+                                      'RVRB' => 'Reverb',
+                                      'SEEK' => 'Seek frame',
+                                      'SIGN' => 'Signature frame',
+                                      'SYLT' => 'Synchronized lyric/text',
+                                      'SYTC' => 'Synchronized tempo codes',
+                                      'TALB' => 'Album',
+                                      'TBPM' => 'Beats per minute (BPM)',
+                                      'TCOM' => 'Composer',
+                                      'TCON' => 'Genre',
+                                      'TCOP' => 'Copyright message',
+                                      'TDAT' => 'Date',
+                                      'TDLY' => 'Playlist delay',
+                                      'TDOR' => 'Original release time',
+                                      'TDRC' => 'Recorded on',
+                                      'TDRL' => 'Released on',
+                                      'TDTG' => 'Tagged on',
+                                      'TENC' => 'Encoded by',
+                                      'TEXT' => 'Lyricist',
+                                      'TFLT' => 'File type',
+                                      'TIME' => 'Time',
+                                      'TIPL' => 'Involved people list',
+                                      'TIT1' => 'Content group description',
+                                      'TIT2' => 'Title',
+                                      'TIT3' => 'Subtitle/Description refinement',
+                                      'TKEY' => 'Initial key',
+                                      'TLAN' => 'Language',
+                                      'TLEN' => 'Length',
+                                      'TMVL' => 'Musician credits list',
+                                      'TMED' => 'Media type',
+                                      'TMOO' => 'Mood',
+                                      'TOAL' => 'Original album/movie/show title',
+                                      'TOFN' => 'Original filename',
+                                      'TOLY' => 'Original lyricist',
+                                      'TOPE' => 'Original artist',
+                                      'TORY' => 'Original release year',
+                                      'TOWN' => 'File owner/licensee',
+                                      'TPE1' => 'Artist',
+                                      'TPE2' => 'Album artist',
+                                      'TPE3' => 'Conductor',
+                                      'TPE4' => 'Interpreted, remixed, or otherwise modified by',
+                                      'TPOS' => 'Disc number',
+                                      'TPUB' => 'Publisher',
+                                      'TRCK' => 'Track number',
+                                      'TRDA' => 'Recording dates',
+                                      'TRSN' => 'Internet radio station name',
+                                      'TRSO' => 'Internet radio station owner',
+                                      'TSOA' => 'Sort album',
+                                      'TSOP' => 'Sort artist',
+                                      'TSOT' => 'Sort title',
+                                      'TSIZ' => 'Size',
+                                      'TSRC' => 'International Standard Recording Code (ISRC)',
+                                      'TSSE' => 'Software/Hardware and settings used for encoding',
+                                      'TSST' => 'Set subtitle',
+                                      'TYER' => 'Year',
+                                      'TXXX' => 'User defined text information frame',
+                                      'UFID' => 'Unique file identifier',
+                                      'USER' => 'Terms of use',
+                                      'USLT' => 'Unsynchronized lyric/text transcription',
+                                      'WCOM' => 'Commercial information',
+                                      'WCOP' => 'Copyright/Legal information',
+                                      'WOAF' => 'Official audio file webpage',
+                                      'WOAR' => 'Official artist/performer webpage',
+                                      'WOAS' => 'Official audio source webpage',
+                                      'WORS' => 'Official internet radio station homepage',
+                                      'WPAY' => 'Payment',
+                                      'WPUB' => 'Publishers official webpage',
+                                      'WXXX' => 'User defined URL link frame'
+                                  })
 
 XIPH_COMMENT_FIELD_SPEC = BiWordHash.new({
-    'TITLE' => 'Title',
-    'VERSION' => 'Version',
-    'ALBUM' => 'Album',
-    'TRACKNUMBER' => 'Track number',
-    'ARTIST' => 'Artist',
-    'PERFORMER' => 'Performer',
-    'COPYRIGHT' => 'Copyright',
-    'LICENSE' => 'License',
-    'ORGANIZATION' => 'Organization',
-    'DESCRIPTION' => 'Description',
-    'GENRE' => 'Genre',
-    'DATE' => 'Date',
-    'LOCATION' => 'Location',
-    'CONTACT' => 'Contact info',
-    'ALBUMARTIST' => 'Album artist',
-    'COMMENT' => 'Comment',
-    'DISCNUMBER' => 'Disc number',
-    'ISRC' => 'ISRC number'
-})
+                                             'TITLE' => 'Title',
+                                             'VERSION' => 'Version',
+                                             'ALBUM' => 'Album',
+                                             'TRACKNUMBER' => 'Track number',
+                                             'ARTIST' => 'Artist',
+                                             'PERFORMER' => 'Performer',
+                                             'COPYRIGHT' => 'Copyright',
+                                             'LICENSE' => 'License',
+                                             'ORGANIZATION' => 'Organization',
+                                             'DESCRIPTION' => 'Description',
+                                             'GENRE' => 'Genre',
+                                             'DATE' => 'Date',
+                                             'LOCATION' => 'Location',
+                                             'CONTACT' => 'Contact info',
+                                             'ALBUMARTIST' => 'Album artist',
+                                             'COMMENT' => 'Comment',
+                                             'DISCNUMBER' => 'Disc number',
+                                             'ISRC' => 'ISRC number'
+                                         })
 
 module TagLib
   class Tag
     # Converts the tag info to a hash
     def to_hash
       {
-        title:   [title],
-        album:   [album],
-        artist:  [artist],
-        comment: [comment],
-        genre:   [genre],
-        track:   [track == 0 ? nil : track.to_s],
-        year:    [year == 0 ? nil : year.to_s]
+          title: [title],
+          album: [album],
+          artist: [artist],
+          comment: [comment],
+          genre: [genre],
+          track: [track == 0 ? nil : track.to_s],
+          year: [year == 0 ? nil : year.to_s]
       }
     end
   end
@@ -187,7 +188,7 @@ module TagLib
       frame_list.each do |fl|
         frame_id = fl.frame_id
         unless frame_id.nil?
-          key = ID3V2_FRAME_SPEC[frame_id.to_sym]
+          key = ID3V2_FRAME_SPEC[frame_id]
           map[key] = fl.to_string
         end
       end
@@ -235,9 +236,9 @@ module TagLib
       }
 
       unless xing_header.nil?
-        map.merge({ total_frames: xing_header.total_frames,
-                    total_size: xing_header.total_size,
-                    valid_xing_header: xing_header.valid? })
+        map.merge({total_frames: xing_header.total_frames,
+                   total_size: xing_header.total_size,
+                   valid_xing_header: xing_header.valid?})
       end
       map.merge super.to_hash
     end
@@ -257,9 +258,9 @@ module TagLib
 
     class XiphComment
       def to_hash
-        map = { vendor_id: vendor_id }
+        map = {vendor_id: vendor_id}
         field_list_map.each_pair do |k, v|
-          key = XIPH_COMMENT_FIELD_SPEC.has_key?(k.to_sym) ? XIPH_COMMENT_FIELD_SPEC[k.to_sym] : k.to_sym
+          key = XIPH_COMMENT_FIELD_SPEC.has_key?(k) ? XIPH_COMMENT_FIELD_SPEC[k] : k.downcase.to_sym
           map[key] = v.size == 1 ? v.first : v
         end
         map
@@ -292,16 +293,19 @@ def read_track(path)
   # end
 
   case File.extname(path)
-  when '.flac'
-    puts 'Found a FLAC!'
-    TagLib::FLAC::File.open(path, &file_handler)
-  when '.m4a', '.aac', '.mp4'
-    puts 'Found a MP4!'
-  when '.mp3'
-    puts 'Found a MP3!'
-    TagLib::MPEG::File.open(path, &file_handler)
-  else
-    puts 'IDK!'
+    when '.flac'
+      puts 'Found a FLAC!'
+      TagLib::FLAC::File.open(path, &file_handler)
+    when '.m4a', '.aac', '.mp4'
+      puts 'Found a MP4!'
+    when '.mp3'
+      puts 'Found a MP3!'
+      TagLib::MPEG::File.open(path, &file_handler)
+    when '.ogg'
+      puts 'Found an OGG!'
+      TagLib::Ogg::Vorbis::File.open(path, &file_handler)
+    else
+      puts 'IDK!'
   end
 
 end
