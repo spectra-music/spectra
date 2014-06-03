@@ -18,11 +18,12 @@ easy transparent access to data and metadata.
 
 ### Development
 1. Install Ruby 2.1 and bundler.
-2. `git clone https://github.com/spectra-music/spectra`
-3. `cd spectra`
-2. `bundle`
-3. `rake db:setup`
-4. `rails server`
+2. [Install taglib.](http://rubydoc.info/gems/taglib-ruby#Installation). The `taglib-ruby` gem bill be installed for you.
+3. `git clone https://github.com/spectra-music/spectra`
+4. `cd spectra`
+5. `bundle`
+6. `rake db:setup`
+7. `rails server`
 
 ### Production
 [coming soon]
