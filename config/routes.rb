@@ -17,6 +17,9 @@ Rails.application.routes.draw do
   get '/albums' => 'albums#all'
   resources :tracks, only:[:index, :new, :create]
 
+  get '/dropbox/authorize', to: 'dropbox#authorize'
+  get '/dropbox/callback', to: 'dropbox#callback', as: :dropbox_callback
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

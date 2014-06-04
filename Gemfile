@@ -31,7 +31,6 @@ gem 'taglib-ruby'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-
 # Friendly stubs for a verbose api
 gem 'friendly_id', '~> 5.0.0'
 # Paperclip manages our album covers
@@ -39,7 +38,8 @@ gem 'paperclip', '~> 4.1'
 # RABL helps us build better APIs
 gem 'rabl'
 
-
+# Dropbox api support
+gem 'dropbox-api', '~> 0.4'
 
 # In production
 group :production do
