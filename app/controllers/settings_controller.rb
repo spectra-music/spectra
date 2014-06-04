@@ -2,16 +2,18 @@ class SettingsController < ApplicationController
 
   # GET /settings.json
   def index
+    @settings = Settings.unscoped.get_all
     respond_to do |format|
       # to get all items for render list
-      format.json { render json: Settings.unscoped.get_all }
+      format.json { render json: @settings }
     end
   end
 
   # GET /settings/:var
   def show
+    @setting = Settings.unscoped[params[:var]]
     respond_to do |format|
-      format.json {render json: Settings.unscoped[params[:var]] }
+      format.json {render json: @setting }
     end
   end
 

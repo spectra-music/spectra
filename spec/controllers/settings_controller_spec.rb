@@ -24,6 +24,21 @@ RSpec.describe SettingsController, type: :controller do
   # TracksController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+  describe 'GET index' do
+    it 'assigns all setting as @settings' do
+      setting = create(:settings)
+      get :index, {format: :json}, valid_session
+      expect(assigns(:settings)).to eq(Settings.unscoped.get_all)
+    end
+  end
+
+  describe 'GET show' do
+    it 'assigns the requested artist as @setting' do
+      setting = create(:settings)
+      get :show, {var: setting.var, format: :json}, valid_session
+      expect(assigns(:setting)).to eq(setting.value)
+    end
+  end
 
   describe 'POST create' do
     describe 'with valid params' do
@@ -42,7 +57,7 @@ RSpec.describe SettingsController, type: :controller do
         # specifies that the Track created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        @settings = create(:settings)
+        settings = create(:settings)
         put :update, {var: 'uuid', value: '8910', format: :json}, valid_session
         expect(Settings[:uuid]).to eql('8910')
       end
@@ -50,7 +65,7 @@ RSpec.describe SettingsController, type: :controller do
   end
   describe 'DELETE destroy' do
     it 'destroys the requested setting' do
-      @settings = create(:settings, var:'uuid3', value:'abcd')
+      settings = create(:settings, var:'uuid3', value:'abcd')
       expect {
         delete :destroy, {var:'uuid3'}, valid_session
       }.to change(Settings, :count).by(-1)
