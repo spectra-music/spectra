@@ -38,6 +38,8 @@ gem 'friendly_id', '~> 5.0.0'
 gem 'paperclip', '~> 4.1'
 # RABL helps us build better APIs
 gem 'rabl'
+# Persistent user preferences
+gem "rails-settings-cached", "~> 0.4.1"
 
 
 
