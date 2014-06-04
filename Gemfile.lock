@@ -114,6 +114,8 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.1.1)
       sprockets-rails (~> 2.0)
+    rails-settings-cached (0.4.1)
+      rails (>= 4.0.0)
     rails_12factor (0.0.2)
       rails_serve_static_assets
       rails_stdout_logging
@@ -222,6 +224,7 @@ DEPENDENCIES
   purecss
   rabl
   rails (= 4.1.1)
+  rails-settings-cached (~> 0.4.1)
   rails_12factor
   rake
   rspec-rails (~> 3.0.0)
