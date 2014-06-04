@@ -20,6 +20,7 @@
 #= require angular-resource
 #= require angular-route
 #= require spectra
+#= require_directory ./angular/services/
 
 # The default require
 #= require_tree .

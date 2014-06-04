@@ -59,4 +59,8 @@ class Album < ActiveRecord::Base
   def average_rating
     tracks.average(:rating)
   end
+
+  def release_year
+    release_date.try(:year)
+  end
 end

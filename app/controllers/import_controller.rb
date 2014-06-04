@@ -1,6 +1,9 @@
 class ImportController < ApplicationController
   include ActionController::Live
 
+  def index
+  end
+
   # GET /import/add?path=
   def add
     js false

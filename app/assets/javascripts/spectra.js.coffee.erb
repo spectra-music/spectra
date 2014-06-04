@@ -20,6 +20,10 @@ spectra.config(['$routeProvider', '$locationProvider', ($routeProvider, $locatio
   .when('/import', {
     templateUrl: '<%= asset_path("import/index.html") %>'
   })
+  .when('/albums', {
+    templateUrl: '<%= asset_path("albums/index.html") %>',
+    controller: 'AlbumIndexController'
+  })
   $locationProvider.html5Mode(true)
 ])
 

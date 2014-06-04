@@ -19,13 +19,6 @@ describe AlbumsController, type: :controller do
     end
   end
 
-  describe 'GET all' do
-    it 'assigns all albums as @albums' do
-      get :all, {}, valid_session
-      expect(assigns(:albums)).to eq([@album])
-    end
-  end
-
   describe 'GET show' do
     it 'assigns the requested album as @album' do
       get :show, {id: @album.to_param, artist_id: @album.artist.to_param}, valid_session
