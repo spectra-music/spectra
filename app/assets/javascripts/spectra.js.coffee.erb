@@ -6,7 +6,12 @@
 # This line is related to our Angular app, not to our
 # HomeCtrl specifically. This is basically how we tell
 # Angular about the existence of our application.
-spectra = angular.module('spectra', ['ngRoute', 'ngResource'])
+spectra = angular.module('spectra', [
+  'ngRoute',
+  'ngResource',
+  'import',
+  'albums'
+  ])
 
 # This routing directive tells Angular about the default
 # route for our application. The term "otherwise" here
@@ -15,14 +20,7 @@ spectra = angular.module('spectra', ['ngRoute', 'ngResource'])
 spectra.config(['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
   $routeProvider
   .when('/', {
-    templateUrl: '<%= asset_path("welcome/index.html") %>'
-  })
-  .when('/import', {
-    templateUrl: '<%= asset_path("import/index.html") %>'
-  })
-  .when('/albums', {
-    templateUrl: '<%= asset_path("albums/index.html") %>',
-    controller: 'AlbumIndexController'
+    templateUrl: '<%= asset_path("home/index.html") %>'
   })
   $locationProvider.html5Mode(true)
 ])

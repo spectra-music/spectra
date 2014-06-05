@@ -8,7 +8,7 @@
         th Title
         th Rating
         th Artist
-        th Release date
+        th Release Year
         th colspan='2'
     tbody
       tr ng-repeat="album in albums"
@@ -21,7 +21,7 @@
         td
           a href='/artists/{{ album.artist.friendly_id }}' {{ album.artist.name }}
         td
-          | {{ album.release_date }}
+          | {{ album.release_year }}
         td
           a href= '/artists/{{ album.artist.friendly_id }}/albums/{{ album.friendly_id }}/edit' Edit
         td

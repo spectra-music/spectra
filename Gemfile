@@ -19,8 +19,7 @@ gem 'jquery-rails'
 gem 'purecss'
 # selectize for intelligent select boxes
 gem 'selectize-rails'
-# paloma for page-specific javascript
-gem 'paloma'
+
 # SLIM for markup
 gem 'slim'
 gem 'slim-rails'
