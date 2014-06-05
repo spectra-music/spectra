@@ -22,7 +22,7 @@ spectra.config(['$routeProvider', '$locationProvider', ($routeProvider, $locatio
   .when('/', {
     templateUrl: '<%= asset_path("home/index.html") %>'
   })
-  $locationProvider.html5Mode(true)
+  $locationProvider.hashPrefix('!')
 ])
 
 spectra.config ($httpProvider) ->
