@@ -15,7 +15,7 @@
         td
           img src='{{ album.cover }}'
         td
-          a href='/albums/{{ album.id }}' {{ album.title }}
+          a href='/artists/{{ album.artist.friendly_id }}/albums/{{ album.friendly_id }}/' {{ album.title }}
         td
          | {{ album.rating }}
         td
