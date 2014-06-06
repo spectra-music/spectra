@@ -20,6 +20,7 @@
 #= require angular-resource
 #= require angular-route
 #= require spectra
+#= require albums/albums
 
 # The default require
 #= require_tree .

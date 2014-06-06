@@ -13,4 +13,8 @@ angular.module('albums', ['ngRoute', 'ngResource'])
     templateUrl: '<%= asset_path("albums/show.html") %>',
     controller: 'ArtistAlbumShowController'
   })
+  .when('/artists/:artist/albums/:album/edit', {
+    templateUrl: '<%= asset_path("albums/edit.html") $>',
+    controller: 'ArtistAlbumEditController'
+  })
 ])
