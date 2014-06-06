@@ -97,7 +97,7 @@ GEM
       pry (>= 0.9.10)
     puma (2.8.2)
       rack (>= 1.1, < 2.0)
-    purecss (0.4.2.1)
+    purecss (0.5.0)
       rails (>= 3.1)
     rabl (0.10.1)
       activesupport (>= 2.3.14)
@@ -137,7 +137,7 @@ GEM
       rspec-support (~> 3.0.0)
     rspec-mocks (3.0.0)
       rspec-support (~> 3.0.0)
-    rspec-rails (3.0.0)
+    rspec-rails (3.0.1)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       railties (>= 3.0)
@@ -221,7 +221,7 @@ DEPENDENCIES
   pg
   pry-rails
   puma
-  purecss
+  purecss (~> 0.5.0)
   rabl
   rails (= 4.1.1)
   rails-settings-cached (~> 0.4.1)

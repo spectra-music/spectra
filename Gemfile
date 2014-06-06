@@ -16,7 +16,7 @@ gem 'angularjs-rails'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # purecss for styling
-gem 'purecss'
+gem 'purecss', '~> 0.5.0'
 # selectize for intelligent select boxes
 gem 'selectize-rails'
 # paloma for page-specific javascript
@@ -39,7 +39,7 @@ gem 'paperclip', '~> 4.1'
 # RABL helps us build better APIs
 gem 'rabl'
 # Persistent user preferences
-gem "rails-settings-cached", "~> 0.4.1"
+gem 'rails-settings-cached', '~> 0.4.1'
 
 
 
