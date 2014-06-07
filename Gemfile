@@ -19,17 +19,20 @@ gem 'jquery-rails'
 gem 'purecss'
 # selectize for intelligent select boxes
 gem 'selectize-rails'
+# pikaday and moment for date select
+gem 'pikaday-gem'
+gem 'momentjs-rails'
 
 # SLIM for markup
 gem 'slim'
 gem 'slim-rails'
 gem 'flash_render'
+
 # taglib for reading ID3
 gem 'taglib-ruby'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
 
 # Friendly stubs for a verbose api
 gem 'friendly_id', '~> 5.0.0'
