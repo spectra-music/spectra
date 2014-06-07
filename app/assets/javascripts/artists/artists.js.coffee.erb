@@ -5,4 +5,8 @@ angular.module('artists', ['ngRoute', 'ngResource'])
     templateUrl: '<%= asset_path("artists/index.html") %>',
     controller: 'ArtistsIndexController'
   })
+  .when('/artists/:artist', {
+    templateUrl: '<%= asset_path("artists/show.html") %>',
+    controller: 'ArtistShowController'
+  })
 ])
