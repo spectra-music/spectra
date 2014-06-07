@@ -10,7 +10,8 @@ spectra = angular.module('spectra', [
   'ngRoute',
   'ngResource',
   'import',
-  'albums'
+  'albums',
+  'artists'
   ])
 
 # This routing directive tells Angular about the default
@@ -25,8 +26,7 @@ spectra.config(['$routeProvider', '$locationProvider', ($routeProvider, $locatio
   $locationProvider.hashPrefix('!')
 ])
 
-spectra.config ($httpProvider) ->
+spectra.config(['$httpProvider', ($httpProvider) ->
   authToken = $("meta[name=\"csrf-token\"]").attr("content")
   $httpProvider.defaults.headers.common["X-CSRF-TOKEN"] = authToken
-
-angular.module('spectra').factory
+])

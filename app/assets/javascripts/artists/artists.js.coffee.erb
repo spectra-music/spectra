@@ -1,0 +1,8 @@
+angular.module('artists', ['ngRoute', 'ngResource'])
+.config(['$routeProvider', ($routeProvider) ->
+  $routeProvider
+  .when('/artists', {
+    templateUrl: '<%= asset_path("artists/index.html") %>',
+    controller: 'ArtistsIndexController'
+  })
+])

@@ -14,6 +14,8 @@
 #= require jquery
 #= require jquery_ujs
 #= require selectize
+#= require moment
+#= require pikaday
 
 # Angular Stuff
 #= require angular
@@ -21,6 +23,7 @@
 #= require angular-route
 #= require spectra
 #= require albums/albums
+#= require artists/artists
 
 # The default require
 #= require_tree .
