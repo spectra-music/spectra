@@ -2,168 +2,147 @@
 require 'taglib'
 require 'pp'
 require 'active_support/core_ext/string/inflections'
+require 'chair'
+require 'table_print'
 
 I18n.enforce_available_locales = false
-
-class BiWordHash
-  def initialize(initial={})
-    @forward = {}
-    @reverse = {}
-    initial.each_pair do |k, v|
-      v = v.parameterize.underscore.to_sym
-      @forward[k] = v
-      @reverse[v] = k
-    end
-  end
-
-  def insert(k, v)
-    @forward[k] = v
-    @reverse[v] = k
-    v
-  end
-
-  def fetch(k)
-    @forward[k]
-  end
-
-  def rfetch(v)
-    @reverse[v]
-  end
-
-  def [](k)
-    fetch(k)
-  end
-
-  def []=(k, v)
-    insert(k, v)
-  end
-
-  def has_key?(k)
-    @forward.has_key? k
-  end
-
-  def has_value?(v)
-    @reverse.has_key? v
-  end
-end
 
 # In order to ease getting info for all tag types,
 # we define an interface 'Hashable' which contains
 # .to_hash which returns a Map<Symbol, List<String>>
 
-ID3V2_FRAME_SPEC = BiWordHash.new({
-                                      'AENC' => 'Audio encryption',
-                                      'APIC' => 'Attached picture',
-                                      'ASPI' => 'Audio seek point index',
-                                      'COMM' => 'Comments',
-                                      'COMR' => 'Commercial frame',
-                                      'ENCR' => 'Encryption method registration',
-                                      'EQU2' => 'Equalization (2)',
-                                      'EQUA' => 'Equalization',
-                                      'ETCO' => 'Event timing codes',
-                                      'GEOB' => 'General encapsulated object',
-                                      'GRID' => 'Group identification registration',
-                                      'IPLS' => 'Involved people list',
-                                      'LINK' => 'Linked information',
-                                      'MCDI' => 'Music CD identifier',
-                                      'MLLT' => 'MPEG location lookup table',
-                                      'OWNE' => 'Ownership frame',
-                                      'PRIV' => 'Private frame',
-                                      'PCNT' => 'Play counter',
-                                      'POPM' => 'Popularimeter',
-                                      'POSS' => 'Position synchronisation frame',
-                                      'RBUF' => 'Recommended buffer size',
-                                      'RVA2' => 'Relative volume adjustment (2)',
-                                      'RVAD' => 'Relative volume adjustment',
-                                      'RVRB' => 'Reverb',
-                                      'SEEK' => 'Seek frame',
-                                      'SIGN' => 'Signature frame',
-                                      'SYLT' => 'Synchronized lyric/text',
-                                      'SYTC' => 'Synchronized tempo codes',
-                                      'TALB' => 'Album',
-                                      'TBPM' => 'Beats per minute (BPM)',
-                                      'TCOM' => 'Composer',
-                                      'TCON' => 'Genre',
-                                      'TCOP' => 'Copyright message',
-                                      'TDAT' => 'Date',
-                                      'TDLY' => 'Playlist delay',
-                                      'TDOR' => 'Original release time',
-                                      'TDRC' => 'Recorded on',
-                                      'TDRL' => 'Released on',
-                                      'TDTG' => 'Tagged on',
-                                      'TENC' => 'Encoded by',
-                                      'TEXT' => 'Lyricist',
-                                      'TFLT' => 'File type',
-                                      'TIME' => 'Time',
-                                      'TIPL' => 'Involved people list',
-                                      'TIT1' => 'Content group description',
-                                      'TIT2' => 'Title',
-                                      'TIT3' => 'Subtitle/Description refinement',
-                                      'TKEY' => 'Initial key',
-                                      'TLAN' => 'Language',
-                                      'TLEN' => 'Length',
-                                      'TMVL' => 'Musician credits list',
-                                      'TMED' => 'Media type',
-                                      'TMOO' => 'Mood',
-                                      'TOAL' => 'Original album/movie/show title',
-                                      'TOFN' => 'Original filename',
-                                      'TOLY' => 'Original lyricist',
-                                      'TOPE' => 'Original artist',
-                                      'TORY' => 'Original release year',
-                                      'TOWN' => 'File owner/licensee',
-                                      'TPE1' => 'Artist',
-                                      'TPE2' => 'Album artist',
-                                      'TPE3' => 'Conductor',
-                                      'TPE4' => 'Interpreted, remixed, or otherwise modified by',
-                                      'TPOS' => 'Disc number',
-                                      'TPUB' => 'Publisher',
-                                      'TRCK' => 'Track number',
-                                      'TRDA' => 'Recording dates',
-                                      'TRSN' => 'Internet radio station name',
-                                      'TRSO' => 'Internet radio station owner',
-                                      'TSOA' => 'Sort album',
-                                      'TSOP' => 'Sort artist',
-                                      'TSOT' => 'Sort title',
-                                      'TSIZ' => 'Size',
-                                      'TSRC' => 'International Standard Recording Code (ISRC)',
-                                      'TSSE' => 'Software/Hardware and settings used for encoding',
-                                      'TSST' => 'Set subtitle',
-                                      'TYER' => 'Year',
-                                      'TXXX' => 'User defined text information frame',
-                                      'UFID' => 'Unique file identifier',
-                                      'USER' => 'Terms of use',
-                                      'USLT' => 'Unsynchronized lyric/text transcription',
-                                      'WCOM' => 'Commercial information',
-                                      'WCOP' => 'Copyright/Legal information',
-                                      'WOAF' => 'Official audio file webpage',
-                                      'WOAR' => 'Official artist/performer webpage',
-                                      'WOAS' => 'Official audio source webpage',
-                                      'WORS' => 'Official internet radio station homepage',
-                                      'WPAY' => 'Payment',
-                                      'WPUB' => 'Publishers official webpage',
-                                      'WXXX' => 'User defined URL link frame'
-                                  })
+ID_LOOKUP_TABLE = Chair.new :name, :slug
+ID_LOOKUP_TABLE.set_primary_key! :name
+ID_LOOKUP_TABLE.add_index! :slug
 
-XIPH_COMMENT_FIELD_SPEC = BiWordHash.new({
-                                             'TITLE' => 'Title',
-                                             'VERSION' => 'Version',
-                                             'ALBUM' => 'Album',
-                                             'TRACKNUMBER' => 'Track number',
-                                             'ARTIST' => 'Artist',
-                                             'PERFORMER' => 'Performer',
-                                             'COPYRIGHT' => 'Copyright',
-                                             'LICENSE' => 'License',
-                                             'ORGANIZATION' => 'Organization',
-                                             'DESCRIPTION' => 'Description',
-                                             'GENRE' => 'Genre',
-                                             'DATE' => 'Date',
-                                             'LOCATION' => 'Location',
-                                             'CONTACT' => 'Contact info',
-                                             'ALBUMARTIST' => 'Album artist',
-                                             'COMMENT' => 'Comment',
-                                             'DISCNUMBER' => 'Disc number',
-                                             'ISRC' => 'ISRC number'
-                                         })
+# ID3v24
+# 'Involved people list' => 'TIPL',
+ID_LOOKUP_TABLE.add_columns! :id3v2, :xiph, :mp4_itunes, :mp4v2
+
+[
+    ["Album Artist"                                     , nil  , "TPE2" , "ALBUMARTIST"  , "aART"     , "albumArtist"      ],
+    ["Album"                                            , nil  , "TALB" , "ALBUM"        , "©alb"     , "album"            ],
+    ["Artist"                                           , nil  , "TPE1" , "ARTIST"       , "©ART"     , "artist"           ],
+    ["Attached picture"                                 , nil  , "APIC" , nil            , nil        , nil                ],
+    ["Audio encryption"                                 , nil  , "AENC" , nil            , nil        , nil                ],
+    ["Audio seek point index"                           , nil  , "ASPI" , nil            , nil        , nil                ],
+    ["BPM"                                              , nil  , "TBPM" , nil            , "tmpo"     , "tempo"            ],
+    ["Comments"                                         , nil  , "COMM" , nil            , nil        , nil                ],
+    ["Commercial frame"                                 , nil  , "COMR" , nil            , nil        , nil                ],
+    ["Commercial information"                           , nil  , "WCOM" , nil            , nil        , nil                ],
+    ["Composer"                                         , nil  , "TCOM" , nil            , "©wrt"     , "composer"         ],
+    ["Compilation"                                      , nil  , "TCMP" , nil            , "cpil"     , "compilation"      ],
+    ["Conductor"                                        , nil  , "TPE3" , nil            , nil        , nil                ],
+    ["Content group description"                        , nil  , "TIT1" , nil            , nil        , nil                ],
+    ["Copyright"                                        , nil  , "TCOP" , "COPYRIGHT"    , "cprt"     , "copyright"        ],
+    ["Copyright/Legal information"                      , nil  , "WCOP" , nil            , nil        , nil                ],
+    ["Date"                                             , nil  , "TDAT" , "DATE"         , "©day"     , "releaseDate"      ],
+    ["Disc Number"                                      , nil  , "TPOS" , "DISCNUMBER"   , "disk"     , "disk"             ],
+    ["Encoded By"                                       , nil  , "TENC" , nil            , "©enc"     , "encodedBy"        ],
+    ["Encryption method registration"                   , nil  , "ENCR" , nil            , nil        , nil                ],
+    ["Equalization (2)"                                 , nil  , "EQU2" , nil            , nil        , nil                ],
+    ["Equalization"                                     , nil  , "EQUA" , nil            , nil        , nil                ],
+    ["Event timing codes"                               , nil  , "ETCO" , nil            , nil        , nil                ],
+    ["File owner/licensee"                              , nil  , "TOWN" , nil            , nil        , nil                ],
+    ["File type"                                        , nil  , "TFLT" , nil            , nil        , nil                ],
+    ["General encapsulated object"                      , nil  , "GEOB" , nil            , nil        , nil                ],
+    ["Genre"                                            , nil  , "TCON" , "GENRE"        , nil        , nil                ],
+    ["Group identification registration"                , nil  , "GRID" , nil            , nil        , nil                ],
+    ["Initial key"                                      , nil  , "TKEY" , nil            , nil        , nil                ],
+    ["International Standard Recording Code (ISRC)"     , nil  , "TSRC" , nil            , nil        , nil                ],
+    ["Internet radio station name"                      , nil  , "TRSN" , nil            , nil        , nil                ],
+    ["Internet radio station owner"                     , nil  , "TRSO" , nil            , nil        , nil                ],
+    ["Interpreted, remixed, or otherwise modified by"   , nil  , "TPE4" , nil            , nil        , nil                ],
+    ["Involved people list"                             , nil  , "IPLS" , nil            , nil        , nil                ],
+    ["Language"                                         , nil  , "TLAN" , nil            , nil        , nil                ],
+    ["Length"                                           , nil  , "TLEN" , nil            , nil        , nil                ],
+    ["Linked information"                               , nil  , "LINK" , nil            , nil        , nil                ],
+    ["Lyricist"                                         , nil  , "TEXT" , nil            , nil        , nil                ],
+    ["Media type"                                       , nil  , "TMED" , nil            , nil        , nil                ],
+    ["Mood"                                             , nil  , "TMOO" , nil            , nil        , nil                ],
+    ["MPEG location lookup table"                       , nil  , "MLLT" , nil            , nil        , nil                ],
+    ["Music CD identifier"                              , nil  , "MCDI" , nil            , nil        , nil                ],
+    ["Musician credits list"                            , nil  , "TMVL" , nil            , nil        , nil                ],
+    ["Official artist/performer webpage"                , nil  , "WOAR" , nil            , nil        , nil                ],
+    ["Official audio file webpage"                      , nil  , "WOAF" , nil            , nil        , nil                ],
+    ["Official audio source webpage"                    , nil  , "WOAS" , nil            , nil        , nil                ],
+    ["Official internet radio station homepage"         , nil  , "WORS" , nil            , nil        , nil                ],
+    ["Original album/movie/show title"                  , nil  , "TOAL" , nil            , nil        , nil                ],
+    ["Original artist"                                  , nil  , "TOPE" , nil            , nil        , nil                ],
+    ["Original filename"                                , nil  , "TOFN" , nil            , nil        , nil                ],
+    ["Original lyricist"                                , nil  , "TOLY" , nil            , nil        , nil                ],
+    ["Original release time"                            , nil  , "TDOR" , nil            , nil        , nil                ],
+    ["Original release year"                            , nil  , "TORY" , nil            , nil        , nil                ],
+    ["Ownership frame"                                  , nil  , "OWNE" , nil            , nil        , nil                ],
+    ["Payment"                                          , nil  , "WPAY" , nil            , nil        , nil                ],
+    ["Play counter"                                     , nil  , "PCNT" , nil            , nil        , nil                ],
+    ["Playlist delay"                                   , nil  , "TDLY" , nil            , nil        , nil                ],
+    ["Popularimeter"                                    , nil  , "POPM" , nil            , nil        , nil                ],
+    ["Position synchronisation frame"                   , nil  , "POSS" , nil            , nil        , nil                ],
+    ["Private frame"                                    , nil  , "PRIV" , nil            , nil        , nil                ],
+    ["Publisher"                                        , nil  , "TPUB" , nil            , nil        , nil                ],
+    ["Publishers official webpage"                      , nil  , "WPUB" , nil            , nil        , nil                ],
+    ["Recommended buffer size"                          , nil  , "RBUF" , nil            , nil        , nil                ],
+    ["Recorded on"                                      , nil  , "TDRC" , nil            , nil        , nil                ],
+    ["Recording dates"                                  , nil  , "TRDA" , nil            , nil        , nil                ],
+    ["Relative volume adjustment (2)"                   , nil  , "RVA2" , nil            , nil        , nil                ],
+    ["Relative volume adjustment"                       , nil  , "RVAD" , nil            , nil        , nil                ],
+    ["Released on"                                      , nil  , "TDRL" , nil            , nil        , nil                ],
+    ["Reverb"                                           , nil  , "RVRB" , nil            , nil        , nil                ],
+    ["Seek frame"                                       , nil  , "SEEK" , nil            , nil        , nil                ],
+    ["Set subtitle"                                     , nil  , "TSST" , nil            , nil        , nil                ],
+    ["Signature frame"                                  , nil  , "SIGN" , nil            , nil        , nil                ],
+    ["Size"                                             , nil  , "TSIZ" , nil            , nil        , nil                ],
+    ["Software/Hardware and settings used for encoding" , nil  , "TSSE" , nil            , nil        , nil                ],
+    ["Sort Album"                                       , nil  , "TSOA" , nil            , "soal"     , "sortAlbum"        ],
+    ["Sort Artist"                                      , nil  , "TSOP" , nil            , "soar"     , "sortArtist"       ],
+    ["Sort Title"                                       , nil  , "TSOT" , nil            , "sonm"     , "sortName"         ],
+    ["Subtitle/Description refinement"                  , nil  , "TIT3" , nil            , nil        , nil                ],
+    ["Synchronized lyric/text"                          , nil  , "SYLT" , nil            , nil        , nil                ],
+    ["Synchronized tempo codes"                         , nil  , "SYTC" , nil            , nil        , nil                ],
+    ["Tagged on"                                        , nil  , "TDTG" , nil            , nil        , nil                ],
+    ["Terms of use"                                     , nil  , "USER" , nil            , nil        , nil                ],
+    ["Time"                                             , nil  , "TIME" , nil            , nil        , nil                ],
+    ["Title"                                            , nil  , "TIT2" , "TITLE"        , "©nam"     , "name"             ],
+    ["Track Number"                                     , nil  , "TRCK" , "TRACKNUMBER"  , "trkn"     , "track"            ],
+    ["Unique file identifier"                           , nil  , "UFID" , nil            , nil        , nil                ],
+    ["Lyrics"                                           , nil  , "USLT" , nil            , "©lyr"     , "lyrics"           ],
+    ["User defined text information frame"              , nil  , "TXXX" , nil            , nil        , nil                ],
+    ["User defined URL link frame"                      , nil  , "WXXX" , nil            , nil        , nil                ],
+    ["Year"                                             , nil  , "TYER" , nil            , nil        , nil                ],
+    ["Version"                                          , nil  , nil    , "VERSION"      , nil        , nil                ],
+    ["Performer"                                        , nil  , nil    , "PERFORMER"    , nil        , nil                ],
+    ["License"                                          , nil  , nil    , "LICENSE"      , nil        , nil                ],
+    ["Organization"                                     , nil  , nil    , "ORGANIZATION" , nil        , nil                ],
+    ["Description"                                      , nil  , nil    , "DESCRIPTION"  , "desc"     , "description"      ],
+    ["Location"                                         , nil  , nil    , "LOCATION"     , nil        , nil                ],
+    ["Contact Info"                                     , nil  , nil    , "CONTACT"      , nil        , nil                ],
+    ["Comment"                                          , nil  , nil    , "COMMENT"      , "©cmt"     , "comments"         ],
+    ["ISRC Number"                                      , nil  , nil    , "ISRC"         , nil        , nil                ],
+    ["Grouping"                                         , nil  , nil    , nil            , "©grp"     , "grouping"         ],
+    ["Genre, Pre-defined"                               , nil  , nil    , nil            , "gnre"     , "genre"            ],
+    ["Genre, User defined"                              , nil  , nil    , nil            , "©gen"     , "genre"            ],
+    ["Long description"                                 , nil  , nil    , nil            , "ldes"     , "longDescription"  ],
+    ["Sort Album Artist"                                , nil  , nil    , nil            , "soaa"     , "sortAlbumArtist"  ],
+    ["Sort Composer"                                    , nil  , nil    , nil            , "soco"     , "sortComposer"     ],
+    ["Cover Art"                                        , nil  , nil    , nil            , "covr"     , "artwork"          ],
+    ["Encoding Tool"                                    , nil  , nil    , nil            , "©too"     , "encodingTool"     ],
+    ["Purchase Date"                                    , nil  , nil    , nil            , "purd"     , "purchaseDate"     ],
+    ["Podcast"                                          , nil  , nil    , nil            , "pcst"     , "podcast"          ],
+    ["Podcast URL"                                      , nil  , nil    , nil            , "purl"     , nil                ],
+    ["Keywords"                                         , nil  , nil    , nil            , "keyw"     , "keywords"         ],
+    ["Category"                                         , nil  , nil    , nil            , "catg"     , "category"         ],
+    ["Media Type"                                       , nil  , nil    , nil            , "stik"     , "mediaType"        ],
+    ["Content Rating"                                   , nil  , nil    , nil            , "rtng"     , "contentRating"    ],
+    ["Gapless Playback"                                 , nil  , nil    , nil            , "pgap"     , "gapless"          ],
+].each { |row| ID_LOOKUP_TABLE.insert! row }
+
+def rl(col)
+  lambda { |r| r[col].inspect }
+end
+
+tp.set :max_width, 80 # columns won't exceed 80 characters
+tp ID_LOOKUP_TABLE.all.map { |r| r.to_hash }, {:name => rl(:name)}, {:slug => rl(:slug)}, {:id3v2 => rl(:id3v2)}, {:xiph => rl(:xiph)}, {:mp4_itunes => rl(:mp4_itunes)}, {:mp4v2 => rl(:mp4v2)}
 
 module TagLib
   class Tag
@@ -183,12 +162,12 @@ module TagLib
 
   class ID3v2::Tag
     def to_hash
-      puts "ID3v2"
+      puts 'ID3v2'
       map = {}
       frame_list.each do |fl|
         frame_id = fl.frame_id
         unless frame_id.nil?
-          key = ID3V2_FRAME_SPEC[frame_id]
+          key = ID_LOOKUP_TABLE.find_by(id3v2: frame_id)
           map[key] = fl.to_string
         end
       end
@@ -217,12 +196,31 @@ module TagLib
     end
   end
 
-  class MP4::Properties
-    def to_hash
-      {
-          bits_per_sample: bits_per_sample,
-          encrypted: encrypted?
-      }.merge super.to_hash
+  module MP4
+    class ItemListMap
+      def to_hash
+        map = {}
+        to_a.each do |e|
+          if map.has_key? map[e[0]]
+            map[e[0]] <<= e[1]
+          else
+            map[e[0]] = [e[1]]
+          end
+        end
+        map
+      end
+    end
+    class Tag
+      def to_hash
+        item_list_map.to_hash
+      end
+    end
+    class Properties
+      def to_hash
+        {
+            bits_per_sample: bits_per_sample,
+        }.merge super.to_hash
+      end
     end
   end
 
@@ -274,11 +272,16 @@ end
 
 def file_handler
   proc do |file|
-    tag = file.id3v2_tag || file.id3v1_tag || file.xiph_comment || file.tag
-    puts "Tags: "
+    case file
+      when TagLib::MP4::File
+        tag = file.tag
+      else
+        tag = file.id3v2_tag || file.id3v1_tag || file.xiph_comment || file.tag
+    end
+    puts 'Tags: '
     pp tag.to_hash
     properties = file.audio_properties
-    puts "Properties: "
+    puts 'Properties: '
     pp properties.to_hash
   end
 end
@@ -298,6 +301,7 @@ def read_track(path)
       TagLib::FLAC::File.open(path, &file_handler)
     when '.m4a', '.aac', '.mp4'
       puts 'Found a MP4!'
+      TagLib::MP4::File.open(path, &file_handler)
     when '.mp3'
       puts 'Found a MP3!'
       TagLib::MPEG::File.open(path, &file_handler)
