@@ -65,6 +65,7 @@ group :development do
   gem 'spring'
   # Pry offers a better rails console
   gem 'pry-rails'
+  gem 'faker'
 end
 
 group :development, :test do
