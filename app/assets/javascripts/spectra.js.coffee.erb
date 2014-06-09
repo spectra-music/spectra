@@ -9,6 +9,7 @@
 spectra = angular.module('spectra', [
   'ngRoute',
   'ngResource',
+  'angular-flash',
   'import',
   'albums',
   'artists'
@@ -29,4 +30,7 @@ spectra.config(['$routeProvider', '$locationProvider', ($routeProvider, $locatio
 spectra.config(['$httpProvider', ($httpProvider) ->
   authToken = $("meta[name=\"csrf-token\"]").attr("content")
   $httpProvider.defaults.headers.common["X-CSRF-TOKEN"] = authToken
+  $httpProvider.defaults.headers.patch = {
+      'Content-Type': 'application/json;charset=utf-8'
+  }
 ])

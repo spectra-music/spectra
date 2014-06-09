@@ -3,6 +3,7 @@ html ngapp= 'spectra'
   head
     title Spectra
     = stylesheet_link_tag    'application', media: 'all'
+    link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/css/selectize.default.css"
     = javascript_include_tag 'application'
     = csrf_meta_tags
   body ng-app='spectra'
@@ -26,4 +27,7 @@ html ngapp= 'spectra'
                 a href='#!/tracks'  Tracks
               li ng-class="{ 'menu-item-divided pure-menu-selected' : isActive('/import') }"
                 a href='#!/import'  Import
+    br
+    .offset
+      flash-messages
     div ng-view=''

@@ -1,9 +1,9 @@
-angular.module('albums', ['ngRoute', 'ngResource'])
+angular.module('albums', ['ngRoute', 'ngResource', 'ui.select', 'angularPikaday'])
 .config(['$routeProvider', ($routeProvider) ->
   $routeProvider
   .when('/albums', {
     templateUrl: '<%= asset_path("albums/index.html") %>',
-    controller: 'AlbumIndexController'
+    controller: 'AlbumsIndexController'
   })
   .when('/artists/:artist/albums', {
     templateUrl: '<%= asset_path("albums/index.html") %>',
@@ -14,7 +14,7 @@ angular.module('albums', ['ngRoute', 'ngResource'])
     controller: 'ArtistAlbumShowController'
   })
   .when('/artists/:artist/albums/:album/edit', {
-    templateUrl: '<%= asset_path("albums/edit.html") $>',
+    templateUrl: '<%= asset_path("albums/edit.html") %>',
     controller: 'ArtistAlbumEditController'
   })
 ])

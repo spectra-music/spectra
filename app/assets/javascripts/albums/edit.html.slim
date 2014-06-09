@@ -1,0 +1,31 @@
+.content
+  h1 Edit Album
+  form.pure-form.pure-form-aligned multipart='true'
+    fieldset
+      .pure-control-group
+        label for='title' Title
+        input#title type='text' ng-model='album.title' name='title' placeholder='Album Title' required='true'
+      .pure-control-group
+        label for='artist' Album Artist
+        ui-select ng-model="album.artist.selected" theme="selectize" ng-disabled="disabled"
+          ui-select-match placeholder="Select an artist"{{$select.selected.name}}
+          ui-select-choices repeat="a in artists | filter: $select.search"
+            div
+              | {{a.name}}
+      .pure-control-group
+        label for='rating' Rating
+        input#rating type='number' ng-model='album.rating' placeholder='0 to 5' name='rating' min='0' max='5'
+      .pure-control-group
+        label for='cover' Cover Art
+        input#cover type='file' ng-model='album.cover' name='cover'
+      .pure-control-group
+        label for='release-date' Release Date
+        input pikaday="releaseDate" set-default-date="true" default-date="{{album.release_date_formatted}}" min-date="01/01/1900" max-date="{{maxDate}}" format='MMMM Do YYYY'
+      .pure-control-group
+        label for='compilation' Compilation?
+        input#compilation type='checkbox' name='is-compilations' ng-model='album.is_compilation'
+      .pure-controls
+        button.pure-button.pure-button-primary ng-click='update()' style='margin-right: 10px;' Save
+        a.pure-button href='#!/artists/{{album.artist.name}}/albums/{{album.friendly_id}}' Back
+  p
+    | {{params}}

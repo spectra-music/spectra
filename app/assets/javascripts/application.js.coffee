@@ -22,6 +22,7 @@
 #= require angular-resource
 #= require angular-route
 #= require spectra
+#= require common/flash
 #= require albums/albums
 #= require artists/artists
 

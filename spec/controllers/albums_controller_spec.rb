@@ -53,7 +53,7 @@ describe AlbumsController, type: :controller do
 
       it 'redirects to the album' do
         put :update, {id: @album.to_param, artist_id: @album.artist.to_param, album: attributes_for(:album)}, valid_session
-        expect(response).to redirect_to(artist_album_url(@album.artist, @album))
+        expect(response).to be_ok
       end
     end
 
