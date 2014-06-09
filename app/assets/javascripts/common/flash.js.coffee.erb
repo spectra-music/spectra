@@ -1,0 +1,60 @@
+angular.module('angular-flash', []).factory("flash", ($rootScope) ->
+  queues = {
+    notice: [],
+    success: [],
+    warning: [],
+    error: []
+  }
+  currentMessages = {
+    notice: '',
+    success: '',
+    warning: '',
+    error: ''
+  }
+
+  $rootScope.$on("$locationChangeStart", () ->
+    currentMessages.notice = queues.notice.shift() || ""
+    currentMessages.success = queues.success.shift() || ""
+    currentMessages.warning = queues.warning.shift() || ""
+    currentMessages.error = queues.error.shift() || ""
+  )
+
+  {
+    notice: {
+      setMessage: (message) ->
+        queues.notice.push(message)
+      ,
+      getMessage: () ->
+        currentMessages.notice
+    },
+    success: {
+      setMessage: (message) ->
+        queues.success.push(message)
+      ,
+      getMessage: () ->
+        currentMessages.success
+    },
+    warning: {
+      setMessage: (message) ->
+        queues.warning.push(message)
+      ,
+      getMessage: () ->
+        currentMessages.warning
+    },
+    error: {
+      setMessage: (message) ->
+        queues.error.push(message)
+      ,
+      getMessage: () ->
+        currentMessages.error
+    }
+  }
+)
+.directive('flashMessages', [ 'flash', (flash) ->
+  {
+    restrict: 'E',
+    templateUrl: '<%= asset_path("common/flash.html") %>',
+    link: (scope, elem, attrs) ->
+      scope.flash = flash
+  }
+])
