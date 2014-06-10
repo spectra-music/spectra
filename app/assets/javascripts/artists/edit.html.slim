@@ -1,0 +1,20 @@
+.content
+  h1 Edit Artist
+
+  form.pure-form.pure-form-aligned multipart='true'
+    fieldset
+      #error-explanation
+        .pure-alert.pure-alert-error ng-show='errors.length > 0'
+          | The form contained {{ errors.length }} errors
+        ul
+          li ng-repeat='error in errors'
+            | * {{ error }}
+      .pure-control-group
+        label for='name' Name
+        input#name type='text' ng-model='artist.name' name='name' placeholder='Artist Name' required='true'
+      .pure-control-group
+        label for='rating' Rating
+        input#rating type='number' ng-model='artist.rating' placeholder='0 to 5' name='rating' min='0' max='6'
+      .pure-controls
+        button.pure-button.pure-button-primary ng-click='update()' style='margin-right: 10px;' Save
+        button.pure-button ng-click='back()' Back

@@ -9,4 +9,8 @@ angular.module('artists', ['ngRoute', 'ngResource'])
     templateUrl: '<%= asset_path("artists/show.html") %>',
     controller: 'ArtistShowController'
   })
+  .when('/artists/:artist/edit', {
+    templateUrl: '<%= asset_path("artists/edit.html") %>',
+    controller: 'ArtistEditController'
+  })
 ])
