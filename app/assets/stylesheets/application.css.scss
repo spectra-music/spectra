@@ -280,3 +280,11 @@ body {
   background-color: rgb(83, 180, 79);
   color: #fff;
 }
+
+#error-explanation {
+  color: #D13C38;
+  ul {
+    list-style: none;
+    margin: 0 0 18px 0;
+  }
+}

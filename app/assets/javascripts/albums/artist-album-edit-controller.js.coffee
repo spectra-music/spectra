@@ -12,6 +12,7 @@ angular.module('albums').controller('ArtistAlbumEditController', ['$scope', '$ht
   )
 
   $scope.update = () ->
+    $scope.errors = []
     $scope.params = {
       id: $scope.album.friendly_id,
       album: {
@@ -27,7 +28,9 @@ angular.module('albums').controller('ArtistAlbumEditController', ['$scope', '$ht
       "/artists/#{$scope.album.artist.friendly_id}/albums/#{$scope.album.friendly_id}.json",
       $scope.params
     ).success( (data) ->
-        flash.success.setMessage(data.notice)
-        $location.path("/artists/#{data.artist}/albums/#{data.album}")
-      )
+      flash.success.setMessage(data.notice)
+      $location.path("/artists/#{data.artist}/albums/#{data.album}")
+    ).error( (data) ->
+      $scope.errors = data.errors
+    )
 ])

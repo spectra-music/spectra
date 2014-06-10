@@ -1,7 +1,14 @@
 .content
   h1 Edit Album
+
   form.pure-form.pure-form-aligned multipart='true'
     fieldset
+      #error-explanation
+        .pure-alert.pure-alert-error ng-show='errors.length > 0'
+          | The form contained {{ errors.length }} errors
+        ul
+          li ng-repeat='error in errors'
+            | * {{ error }}
       .pure-control-group
         label for='title' Title
         input#title type='text' ng-model='album.title' name='title' placeholder='Album Title' required='true'
@@ -27,5 +34,3 @@
       .pure-controls
         button.pure-button.pure-button-primary ng-click='update()' style='margin-right: 10px;' Save
         a.pure-button href='#!/artists/{{album.artist.name}}/albums/{{album.friendly_id}}' Back
-  p
-    | {{params}}
