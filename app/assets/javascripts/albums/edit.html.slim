@@ -36,5 +36,4 @@
         input#compilation type='checkbox' name='is-compilations' ng-model='album.is_compilation'
       .pure-controls
         button.pure-button.pure-button-primary ng-click='update()' style='margin-right: 10px;' Save
-        button.pure-button ng-click='show()' style='margin-right: 10px;' Show
-        a.pure-button href='#!/artists/{{album.artist.name}}/albums/{{album.friendly_id}}' Back
+        button.pure-button ng-click='back()' Back

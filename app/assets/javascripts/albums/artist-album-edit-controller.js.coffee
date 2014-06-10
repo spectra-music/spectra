@@ -36,4 +36,7 @@ angular.module('albums').controller('ArtistAlbumEditController', ['$scope', '$ht
     ).error( (data) ->
       $scope.errors = data.errors
     )
+
+  $scope.back = () ->
+    $location.path("artists/#{$scope.album.artist.friendly_id}/albums/#{$scope.album.friendly_id}")
 ])
