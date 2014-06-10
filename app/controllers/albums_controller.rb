@@ -26,12 +26,11 @@ class AlbumsController < ApplicationController
 
     @album = Album.find(params[:id])
     @album.artist = Artist.find_or_create_by(name: params[:artist])
+    @album.slug = nil
     respond_to do |format|
       if @album.update(album_params)
-        format.html { redirect_to artist_album_url(@album.artist, @album), notice: 'Album was successfully updated.' }
         format.json { render json: {album: @album.slug, artist: @album.artist.slug, notice: 'Album was successfully updated.'} , status: :ok, location: artist_album_url(@album.artist, @album) }
       else
-        format.html { render :edit }
         format.json { render json: { errors: @album.errors.full_messages }, status: :unprocessable_entity }
       end
     end
@@ -42,7 +41,6 @@ class AlbumsController < ApplicationController
   def destroy
     @album.destroy
     respond_to do |format|
-      format.html { redirect_to artist_albums_url(@album.artist), notice: 'Album was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

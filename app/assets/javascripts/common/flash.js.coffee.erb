@@ -12,6 +12,13 @@ angular.module('angular-flash', []).factory("flash", ($rootScope) ->
     error: ''
   }
 
+  $rootScope.$on("event:angularFlash", () ->
+    currentMessages.notice = queues.notice.shift() || ""
+    currentMessages.success = queues.success.shift() || ""
+    currentMessages.warning = queues.warning.shift() || ""
+    currentMessages.error = queues.error.shift() || ""
+  )
+
   $rootScope.$on("$locationChangeStart", () ->
     currentMessages.notice = queues.notice.shift() || ""
     currentMessages.success = queues.success.shift() || ""
@@ -23,6 +30,7 @@ angular.module('angular-flash', []).factory("flash", ($rootScope) ->
     notice: {
       setMessage: (message) ->
         queues.notice.push(message)
+
       ,
       getMessage: () ->
         currentMessages.notice
