@@ -1,14 +1,16 @@
 angular.module('albums').controller('ArtistAlbumEditController', ['$scope', '$http', '$routeParams', '$q', '$location', 'flash', ($scope, $http, $routeParams, $q, $location, flash) ->
   album = $http.get("/artists/#{$routeParams.artist}/albums/#{$routeParams.album}.json")
   artist = $http.get("/artists.json")
+  genres = $http.get("/genres.json")
 
-  $q.all([album, artist]).then((promises) ->
+  $q.all([album, artist, genres]).then((promises) ->
     $scope.album = promises[0].data
     $scope.album.release_date = moment($scope.album.release_date)
     $scope.maxDate = moment().format("MM/DD/YYYY")
     $scope.album.release_date_formatted =  moment($scope.album.release_date).format('MM/DD/YYYY')
     $scope.artists = promises[1].data
     $scope.album.artist.selected = $scope.artists.filter((x) -> x.name == $scope.album.artist.name)[0]
+    $scope.genres = promises[2].data
   )
 
   $scope.update = () ->
@@ -22,7 +24,8 @@ angular.module('albums').controller('ArtistAlbumEditController', ['$scope', '$ht
         release_date: moment($scope.releaseDate.getDate()).format('YYYY-MM-DD')
         is_compilation: $scope.album.is_compilation
       },
-      artist: $scope.album.artist.selected.name
+      artist: $scope.album.artist.selected.name,
+      genres: $scope.album.genres
     }
     $http.put(
       "/artists/#{$scope.album.artist.friendly_id}/albums/#{$scope.album.friendly_id}.json",

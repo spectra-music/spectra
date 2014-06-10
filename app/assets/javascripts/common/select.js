@@ -15,7 +15,7 @@ if (angular.element.prototype.querySelectorAll === undefined) {
   };
 }
 
-angular.module('ui.select', [])
+angular.module('ui.select')
 
 .constant('uiSelectConfig', {
   theme: 'bootstrap',

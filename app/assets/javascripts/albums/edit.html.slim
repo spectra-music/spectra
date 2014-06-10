@@ -20,6 +20,9 @@
             div
               | {{a.name}}
       .pure-control-group
+        label for='genres' Genres
+        input#genres tagcomplete='' ng-model="album.genres" options="genres" data-placeholder="Select some genres" name='genres'
+      .pure-control-group
         label for='rating' Rating
         input#rating type='number' ng-model='album.rating' placeholder='0 to 5' name='rating' min='0' max='5'
       .pure-control-group
@@ -33,4 +36,5 @@
         input#compilation type='checkbox' name='is-compilations' ng-model='album.is_compilation'
       .pure-controls
         button.pure-button.pure-button-primary ng-click='update()' style='margin-right: 10px;' Save
+        button.pure-button ng-click='show()' style='margin-right: 10px;' Show
         a.pure-button href='#!/artists/{{album.artist.name}}/albums/{{album.friendly_id}}' Back

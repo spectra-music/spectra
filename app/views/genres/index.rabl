@@ -1,3 +1,3 @@
 collection @genres
-attributes :name
+attributes :name, :friendly_id
 node(:url) { |g| genre_url(g) }
