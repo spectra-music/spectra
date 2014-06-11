@@ -5,5 +5,4 @@ angular.module('albums').controller('ArtistAlbumsIndexController', ['$scope', '$
 
   $scope.deleteAlbum = (album) ->
     albumDelete.deleteAlbum($scope, album)
-
 ])

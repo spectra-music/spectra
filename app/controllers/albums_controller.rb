@@ -1,14 +1,15 @@
 class AlbumsController < ApplicationController
   before_action :set_album, only: [:show, :edit, :update, :destroy]
 
-  # GET /albums
-  def all
-    @albums = Album.all
-  end
-
   # GET /artists/name/albums
   def index
-    @albums = Artist.find(params.permit(:artist_id)[:artist_id]).albums
+    if not params[:artist_id].nil?
+      @albums = Artist.find(params.permit(:artist_id)[:artist_id]).albums
+    elsif not params[:genre_id].nil?
+      @albums = Genre.find(params.permit(:genre_id)[:genre_id]).albums
+    else
+      @albums = Album.all
+    end
   end
 
   # GET /albums/1

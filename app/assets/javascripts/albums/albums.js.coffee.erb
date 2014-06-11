@@ -9,6 +9,10 @@ angular.module('albums', ['ngRoute', 'ngResource', 'ui.select', 'angularPikaday'
     templateUrl: '<%= asset_path("albums/index.html") %>',
     controller: 'ArtistAlbumsIndexController'
   })
+  .when('/genres/:genre/albums', {
+    templateUrl: '<%= asset_path("albums/index.html") %>',
+    controller: 'GenreAlbumsIndexController'
+  })
   .when('/artists/:artist/albums/:album', {
     templateUrl: '<%= asset_path("albums/show.html") %>',
     controller: 'ArtistAlbumShowController'
