@@ -3,8 +3,17 @@ class TracksController < ApplicationController
 
   # GET /tracks
   # GET /tracks.json
-  def index
+  def all
     @tracks = Track.all
+  end
+
+  def index
+    unless (params[:artist_id].nil? or params[:album_id].nil?)
+      p = params.permit(:artist_id, :album_id)
+      @tracks = Artist.find(p[:artist_id]).albums.find(p[:album_id]).tracks
+    else
+      @tracks = Track.all
+    end
   end
 
   # GET /tracks/1

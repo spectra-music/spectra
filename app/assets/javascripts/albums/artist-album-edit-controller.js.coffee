@@ -3,14 +3,24 @@ angular.module('albums').controller('ArtistAlbumEditController', ['$scope', '$ht
   artist = $http.get("/artists.json")
   genres = $http.get("/genres.json")
 
+  intersects = (a, b) ->
+    slice = Array.prototype.slice
+    rest = slice.call(arguments, 1)
+    _.filter _.uniq(a), (item) ->
+      _.every rest, (b) ->
+        _.any(b, (element) ->  _.isEqual(element, item) )
+
+
   $q.all([album, artist, genres]).then((promises) ->
     $scope.album = promises[0].data
     $scope.album.release_date = moment($scope.album.release_date)
     $scope.maxDate = moment().format("MM/DD/YYYY")
     $scope.album.release_date_formatted =  moment($scope.album.release_date).format('MM/DD/YYYY')
-    $scope.artists = promises[1].data
-    $scope.album.artist.selected = $scope.artists.filter((x) -> x.name == $scope.album.artist.name)[0]
-    $scope.genres = promises[2].data
+    $scope.artists = _.pluck(promises[1].data, 'name')
+    $scope.album.artist_friendly_id = $scope.album.artist.friendly_id
+    $scope.album.artist = $scope.album.artist.name
+    $scope.genres = _.pluck(promises[2].data, 'name')
+    $scope.album.genres = _.pluck($scope.album.genres, 'name')
   )
 
   $scope.update = () ->
@@ -24,11 +34,11 @@ angular.module('albums').controller('ArtistAlbumEditController', ['$scope', '$ht
         release_date: moment($scope.releaseDate.getDate()).format('YYYY-MM-DD')
         is_compilation: $scope.album.is_compilation
       },
-      artist: $scope.album.artist.selected.name,
+      artist: $scope.album.artist,
       genres: $scope.album.genres
     }
     $http.put(
-      "/artists/#{$scope.album.artist.friendly_id}/albums/#{$scope.album.friendly_id}.json",
+      "/artists/#{$scope.album.artist_friendly_id}/albums/#{$scope.album.friendly_id}.json",
       $scope.params
     ).success( (data) ->
       $location.path("/artists/#{data.artist}/albums/#{data.album}")

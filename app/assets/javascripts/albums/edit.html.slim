@@ -14,14 +14,10 @@
         input#title type='text' ng-model='album.title' name='title' placeholder='Album Title' required='true'
       .pure-control-group
         label for='artist' Album Artist
-        ui-select ng-model="album.artist.selected" theme="selectize" ng-disabled="disabled"
-          ui-select-match placeholder="Select an artist"{{$select.selected.name}}
-          ui-select-choices repeat="a in artists | filter: $select.search"
-            div
-              | {{a.name}}
+        select#artist ng-model="album.artist" ng-options="artist as artist for artist in artists" placeholder="Select an artist" name='artists' selectize='{create: true}'
       .pure-control-group
         label for='genres' Genres
-        input#genres tagcomplete='' ng-model="album.genres" options="genres" data-placeholder="Select some genres" name='genres'
+        select#genres ng-model="album.genres" ng-options="genre for genre in genres" placeholder="Select some genres" name='genres' multiple='' selectize='{create: true}'
       .pure-control-group
         label for='rating' Rating
         input#rating type='number' ng-model='album.rating' placeholder='0 to 5' name='rating' min='0' max='5'
@@ -37,3 +33,8 @@
       .pure-controls
         button.pure-button.pure-button-primary ng-click='update()' style='margin-right: 10px;' Save
         button.pure-button ng-click='back()' Back
+
+      div ng-repeat='album in album.genres'
+        | {{album}}
+      div
+        | {{album.artist }}

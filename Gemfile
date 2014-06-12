@@ -23,6 +23,8 @@ gem 'selectize-rails'
 gem 'pikaday-gem'
 gem 'momentjs-rails'
 
+gem 'underscore-rails'
+
 # SLIM for markup
 gem 'slim'
 gem 'slim-rails'

@@ -29,7 +29,7 @@ class AlbumsController < ApplicationController
     @album.artist = Artist.find_or_create_by(name: params[:artist])
     unless params[:genres].nil?
       @album.genres = []
-      params[:genres].each { |genre| @album.genres << Genre.find(genre[:friendly_id]) }
+      params[:genres].each { |genre| @album.genres << Genre.find_or_create_by(name: genre) }
     end
     @album.slug = nil
     respond_to do |format|
