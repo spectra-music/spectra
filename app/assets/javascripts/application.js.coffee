@@ -26,6 +26,7 @@
 #= require_dir common
 #= require albums/albums
 #= require artists/artists
+#= require genres/genres
 
 # The default require
 #= require_tree .
