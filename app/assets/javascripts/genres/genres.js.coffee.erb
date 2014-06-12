@@ -5,4 +5,8 @@ angular.module('genres', ['ngRoute', 'ngResource'])
     templateUrl: '<%= asset_path("genres/index.html") %>',
     controller: 'GenresIndexController'
   })
+  .when('/genres/:genre', {
+    templateUrl: '<%= asset_path("genres/show.html") %>',
+    controller: 'GenreShowController'
+  })
 ])
