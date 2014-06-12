@@ -16,7 +16,7 @@
     tbody
       tr ng-repeat="album in albums | filter:searchText"
         td
-          img src='{{ album.cover }}'
+          img ng-src='{{ album.cover }}'
         td
           a href='#!/artists/{{ album.artist.friendly_id }}/albums/{{ album.friendly_id }}/' {{ album.title }}
         td
