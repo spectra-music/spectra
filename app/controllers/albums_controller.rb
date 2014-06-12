@@ -26,7 +26,9 @@ class AlbumsController < ApplicationController
   def update
 
     @album = Album.find(params[:id])
-    @album.artist = Artist.find_or_create_by(name: params[:artist])
+    unless params[:artist].nil?
+      @album.artist = Artist.find_or_create_by(name: params[:artist], rating: 0)
+    end
     unless params[:genres].nil?
       @album.genres = []
       params[:genres].each { |genre| @album.genres << Genre.find_or_create_by(name: genre) }
