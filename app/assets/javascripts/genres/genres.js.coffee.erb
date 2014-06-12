@@ -1,0 +1,8 @@
+angular.module('genres', ['ngRoute', 'ngResource'])
+.config(['$routeProvider', ($routeProvider) ->
+  $routeProvider
+  .when('/genres', {
+    templateUrl: '<%= asset_path("genres/index.html") %>',
+    controller: 'GenresIndexController'
+  })
+])
