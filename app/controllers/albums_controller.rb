@@ -27,7 +27,8 @@ class AlbumsController < ApplicationController
 
     @album = Album.find(params[:id])
     unless params[:artist].nil?
-      @album.artist = Artist.find_or_create_by(name: params[:artist], rating: 0)
+      @album.artist = Artist.find_or_initialize_by(name: params[:artist])
+      @album.artist.rating = 0 if @album.artist.rating.nil?
     end
     unless params[:genres].nil?
       @album.genres = []
