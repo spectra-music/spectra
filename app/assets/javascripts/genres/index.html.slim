@@ -1,6 +1,6 @@
 .header
   h1 All Genres
-.content
+.content ng-hide='loading || !genres'
   form.pure-form
     .pure-control-group
       input.pure-input-1 ng-model="searchText" placeholder="Search"

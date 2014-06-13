@@ -13,7 +13,9 @@ spectra = angular.module('spectra', [
   'import',
   'albums',
   'artists',
-  'genres'
+  'genres',
+  'tracks',
+  'spinner'
   ])
 
 # This routing directive tells Angular about the default
@@ -34,4 +36,5 @@ spectra.config(['$httpProvider', ($httpProvider) ->
   $httpProvider.defaults.headers.patch = {
       'Content-Type': 'application/json;charset=utf-8'
   }
+  $httpProvider.interceptors.push( 'loadingSpinnerInterceptor' );
 ])

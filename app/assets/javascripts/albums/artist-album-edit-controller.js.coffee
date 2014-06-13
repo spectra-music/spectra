@@ -3,14 +3,6 @@ angular.module('albums').controller('ArtistAlbumEditController', ['$scope', '$ht
   artist = $http.get("/artists.json")
   genres = $http.get("/genres.json")
 
-  intersects = (a, b) ->
-    slice = Array.prototype.slice
-    rest = slice.call(arguments, 1)
-    _.filter _.uniq(a), (item) ->
-      _.every rest, (b) ->
-        _.any(b, (element) ->  _.isEqual(element, item) )
-
-
   $q.all([album, artist, genres]).then((promises) ->
     $scope.album = promises[0].data
     $scope.album.release_date = moment($scope.album.release_date)

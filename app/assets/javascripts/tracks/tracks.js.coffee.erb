@@ -1,0 +1,8 @@
+angular.module('tracks', ['ngRoute', 'ngResource', 'selectize'])
+.config(['$routeProvider', ($routeProvider) ->
+  $routeProvider
+  .when('/tracks', {
+    templateUrl: '<%= asset_path("tracks/index.html") %>',
+    controller: 'TracksIndexController'
+  })
+])

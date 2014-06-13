@@ -1,10 +1,10 @@
 .header
   h1 All Albums
-.content
+.content ng-hide='loading || !albums'
   form.pure-form
     .pure-control-group
       input.pure-input-1 ng-model="searchText" placeholder="Search"
-  bt
+  br
   table.pure-table.pure-table-bordered style='width: 100%;'
     thead
       tr

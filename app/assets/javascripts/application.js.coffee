@@ -27,6 +27,7 @@
 #= require albums/albums
 #= require artists/artists
 #= require genres/genres
+#= require tracks/tracks
 
 # The default require
 #= require_tree .
