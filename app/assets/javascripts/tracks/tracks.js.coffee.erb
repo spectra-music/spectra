@@ -5,4 +5,8 @@ angular.module('tracks', ['ngRoute', 'ngResource', 'selectize'])
     templateUrl: '<%= asset_path("tracks/index.html") %>',
     controller: 'TracksIndexController'
   })
+  .when('/artists/:artist/albums/:album/tracks', {
+    templateUrl: '<%= asset_path("tracks/index.html") %>',
+    controller: 'ArtistAlbumTracksIndexController'
+  })
 ])
