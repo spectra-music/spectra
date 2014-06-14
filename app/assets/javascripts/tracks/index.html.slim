@@ -23,15 +23,15 @@
     tbody
         tr ng-repeat='track in tracks | filter:searchText'
           td
-            a href='#!/artists/{{ track.artist.friendly_id }}/albums/{{ track.album.friendly_id }}/tracks/{{ track.friendly_id }}'
+            a ng-href='#!/artists/{{ track.artist.friendly_id }}/albums/{{ track.album.friendly_id }}/tracks/{{ track.friendly_id }}'
               | {{ track.title }}
           td
             | {{ track.rating }}
           td
-            a href='#!/artists/{{ track.artist.friendly_id }}'
+            a ng-href='#!/artists/{{ track.artist.friendly_id }}'
               | {{ track.artist.name }}
           td
-            a href='#!/artists/{{ track.artist.friendly_id }}/albums/{{ track.album.friendly_id }}'
+            a ng-href='#!/artists/{{ track.artist.friendly_id }}/albums/{{ track.album.friendly_id }}'
               | {{ track.album.title }}
           td
             | {{ track.date }}
@@ -48,10 +48,10 @@
           td
             | {{ track.format }}
           td
-            a href='#!/artists/{{ track.artist.friendly_id }}/albums/{{ track.album.friendly_id }}/tracks/{{ track.friendly_id }}/edit'
+            a ng-href='#!/artists/{{ track.artist.friendly_id }}/albums/{{ track.album.friendly_id }}/tracks/{{ track.friendly_id }}/edit'
               | Edit
           td
-            a href='' ng-click='deleteTrack(track)' Delete
+            a ng-href='' ng-click='deleteTrack(track)' Delete
   br
-  a.pure-button.pure-button-primary href='#!/artists/{{ track.artist.friendly_id }}/albums/{{ track.album.friendly_id }}/tracks/{{ track.friendly_id }}/new'
+  a.pure-button.pure-button-primary ng-href='{{ newPath }}'
     | New Track

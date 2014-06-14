@@ -33,32 +33,23 @@ class TracksController < ApplicationController
   # POST /tracks
   # POST /tracks.json
   def create
-    @track = Track.new do |track|
-      track.title = track_params[:title]
-      track.artist = Artist.find_or_create_by(name: params[:track][:artist])
-      track.album = Album.find_or_create_by(title: params[:track][:album]) do |album|
-        album.artist = track.artist
-        album.num_discs = 1
-        album.release_date = track_params[:date]
-        album.is_compilation = false
-      end
-      track.date = track_params[:date]
-      track.location = track_params[:location]
-      track.rating = track_params[:rating]
-      track.bitrate = track_params[:bitrate]
-      track.lyrics = track_params[:lyrics]
-      track.track_id = track_params[:track_id]
-      track.disc_id = track_params[:disc_id]
-      track.format = track_params[:format]
+    @track = Track.new(track_params)
+    @track.artist = Artist.find_or_initialize_by(name: params[:artist]) do |artist|
+      artist.rating = 0
+    end
+    @track.album = Album.find_or_initialize_by(name: params[:album]) do |album|
+      album.artist = @track.artist
+      album.num_discs = 1
+      album.release_date = @track.date
+      album.is_compilation = false
+      album.rating = 0
     end
 
     respond_to do |format|
       if @track.save
-        format.html { redirect_to artist_album_track_url(@track.album.artist, @track.album, @track), notice: 'Track was successfully created.' }
-        format.json { render :show, status: :created, location: @track }
+        format.json { render json: {track: @track.slug, album: @track.album.slug, artist: @track.artist.slug, notice: 'Track was successfully created.'}, status: :created, location: artist_album_track_url(@track.artist, @track.album, @track) }
       else
-        format.html { render :new }
-        format.json { render json: @track.errors, status: :unprocessable_entity }
+        format.json { render json: { errors: @track.errors.full_messages }, status: :unprocessable_entity }
       end
     end
   end
@@ -67,12 +58,14 @@ class TracksController < ApplicationController
   # PATCH/PUT /tracks/1.json
   def update
     unless params[:artist].nil?
-      @track.artist = Artist.find_or_initialize_by(name: params[:artist])
-      @track.artist.rating = 0 if @track.artist.rating.nil?
+      @track.artist = Artist.find_or_initialize_by(name: params[:artist]) do |artist|
+        artist.rating = 0
+      end
     end
     unless params[:album].nil?
-      @track.album = Album.find_or_initialize_by(name: params[:album])
-      @track.album.rating = 0 if @track.album.rating.nil?
+      @track.album = Album.find_or_initialize_by(name: params[:album]) do |album|
+        album.rating = 0
+      end
     end
     unless params[:genres].nil?
       @track.genres = []

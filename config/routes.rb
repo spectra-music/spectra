@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   end
 
   resources :albums, only:[:index]
-  resources :tracks, only:[:index, :new, :create]
+  resources :tracks, only:[:index, :create]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

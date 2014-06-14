@@ -45,22 +45,6 @@ describe TracksController, type: :controller do
     end
   end
 
-  describe 'GET new' do
-    it 'assigns a new track as @track' do
-      get :new, {}, valid_session
-      expect(assigns(:track)).to be_a_new(Track)
-    end
-  end
-
-  describe 'GET edit' do
-    it 'assigns the requested track as @track' do
-      get :edit, {id: @track.to_param,
-                  artist_id: @track.album.artist.to_param,
-                  album_id: @track.album.to_param }, valid_session
-      expect(assigns(:track)).to eq(@track)
-    end
-  end
-
   describe 'POST create' do
     describe 'with valid params' do
       it 'creates a new Track' do
@@ -68,9 +52,9 @@ describe TracksController, type: :controller do
           post(:create, {track: attributes_for(:track,
                                                title: 'Tokyo Skies',
                                                track_id: 2,
-                                               location: '/mnt/Data/Music/Chipzel/Spectra/Tokyo Skies.flac')
-                                .merge(album: @track.album.title,
-                                       artist: @track.artist.name) },
+                                               location: '/mnt/Data/Music/Chipzel/Spectra/Tokyo Skies.flac'),
+                                album: @track.album.title,
+                                artist: @track.artist.name, format: :json },
                valid_session)
         }.to change(Track, :count).by(1)
       end
@@ -79,9 +63,9 @@ describe TracksController, type: :controller do
         post(:create, {track: attributes_for(:track,
                                              title: 'Forged in Stars',
                                              track_id: 3,
-                                             location: '/mnt/Data/Music/Chipzel/Spectra/Forged in Stars.flac')
-                              .merge(album: @track.album.title,
-                                     artist: @track.artist.name)}, valid_session)
+                                             location: '/mnt/Data/Music/Chipzel/Spectra/Forged in Stars.flac'),
+                      album: @track.album.title,
+                      artist: @track.artist.name, format: :json}, valid_session)
         expect(assigns(:track)).to be_a(Track)
         expect(assigns(:track)).to be_persisted
       end
@@ -90,12 +74,12 @@ describe TracksController, type: :controller do
         post(:create, {track: attributes_for(:track,
                                              title: 'Formed in the Clouds',
                                              track_id: 4,
-                                             location: '/mnt/Data/Music/Chipzel/Spectra/Formed in the Clouds.flac')
-                              .merge(album: @track.album.title,
-                                     artist: @track.artist.name)},
+                                             location: '/mnt/Data/Music/Chipzel/Spectra/Formed in the Clouds.flac'),
+                              album: @track.album.title,
+                      artist: @track.artist.name, format: :json},
              valid_session)
         track = Track.last
-        expect(response).to redirect_to(artist_album_track_url(track.album.artist, track.album, track))
+        expect(response).to have_http_status(:created)
       end
     end
 
@@ -103,15 +87,15 @@ describe TracksController, type: :controller do
       it 'assigns a newly created but unsaved track as @track' do
         # Trigger the behavior that occurs when invalid params are submitted
         allow_any_instance_of(Track).to receive(:save).and_return(false)
-        post :create, { track: {'title' => ''}}, valid_session
+        post :create, { track: {'title' => ''}, format: :json}, valid_session
         expect(assigns(:track)).to be_a_new(Track)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         allow_any_instance_of(Track).to receive(:save).and_return(false)
-        post :create, {track: {'title' => ''}}, valid_session
-        expect(response).to render_template('new')
+        post :create, {track: {'title' => ''}, format: :json}, valid_session
+        expect(response).to be_unprocessable
       end
     end
   end

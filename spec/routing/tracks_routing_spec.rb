@@ -5,7 +5,6 @@ describe TracksController, type: :routing do
     it { should route(:get, '/tracks').to('tracks#index') }
     it { should route(:get, '/artists/chipzel/albums/spectra/tracks/new')
                 .to('tracks#new', artist_id: 'chipzel', album_id: 'spectra') }
-    it { should route(:get, '/tracks/new').to('tracks#new') }
     it { should route(:get, '/artists/chipzel/albums/spectra/tracks/spectra')
                 .to('tracks#show', id: 'spectra', artist_id: 'chipzel', album_id: 'spectra') }
 

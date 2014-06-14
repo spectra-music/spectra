@@ -1,6 +1,6 @@
 .content
   h1
-    | {{ type }} Track
+    | {{ pageType }} Track
 
   form.pure-form.pure-form-aligned multipart='true'
     fieldset
@@ -20,11 +20,14 @@
         label for='album' Album
         select#album ng-model="track.album" ng-options="album as album for album in albums" placeholder="Select an album" name='albums' selectize='{create: true}'
       .pure-control-group
+        label for='genres' Genres
+        select#genres ng-model="track.genres" ng-options="genre for genre in genres" placeholder="Select some genres" name='genres' multiple='' selectize='{create: true}'
+      .pure-control-group
         label for='date' Release Date
         input#date pikaday="date" set-default-date="true" default-date="{{track.date_formatted}}" min-date="01/01/1900" max-date="{{maxDate}}" format='MMMM Do YYYY'
       .pure-control-group
         label for='rating' Rating
-        input#rating type='number' ng-model='track.rating' name='rating' placeholder='0 to 5' min='0' max='6'
+        input#rating type='number' ng-model='track.rating' name='rating' placeholder='0 to 5' min='0' max='5'
       .pure-control-group
         label for='location' Location
         input#location type='text' ng-model='track.location' name='location' placeholder='Location'
