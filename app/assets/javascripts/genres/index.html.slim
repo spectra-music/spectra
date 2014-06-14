@@ -12,4 +12,4 @@
     tbody
       tr ng-repeat="genre in genres | filter:searchText"
         td
-          a href='#!/genres/{{genre.friendly_id}}' {{genre.name}}
+          a ng-href='#!/genres/{{genre.friendly_id}}' {{genre.name}}

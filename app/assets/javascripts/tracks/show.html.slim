@@ -10,12 +10,12 @@
   p
     strong
       ' Artist:
-    a href='#!/artists/{{ track.artist.friendly_id }}'
+    a ng-href='#!/artists/{{ track.artist.friendly_id }}'
       | {{ track.artist.name }}
   p
     strong
       ' Album:
-    a href='#!/artists/{{ track.artist.friendly_id }}/albums/{{ track.album.friendly_id }}'
+    a ng-href='#!/artists/{{ track.artist.friendly_id }}/albums/{{ track.album.friendly_id }}'
       | {{ track.album.title }}
   p
     strong
@@ -45,5 +45,5 @@
     strong
       ' Format:
     | {{ track.format }}
-  a href='#!/artists/{{ track.artist.friendly_id }}/albums/{{ track.album.friendly_id }}/tracks/{{ track.friendly_id }}/edit'
+  a ng-href='#!/artists/{{ track.artist.friendly_id }}/albums/{{ track.album.friendly_id }}/tracks/{{ track.friendly_id }}/edit'
     | Edit

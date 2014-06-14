@@ -13,6 +13,6 @@
     tbody
       tr ng-repeat="artist in artists | filter:searchText"
         td
-          a href='#!/artists/{{artist.friendly_id}}' {{artist.name}}
+          a ng-href='#!/artists/{{artist.friendly_id}}' {{artist.name}}
         td
           | {{artist.rating}}
