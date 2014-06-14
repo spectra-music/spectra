@@ -35,8 +35,8 @@ class TracksController < ApplicationController
   def create
     @track = Track.new do |track|
       track.title = track_params[:title]
-      track.artist = Artist.find_or_create_by(name: track_params[:artist])
-      track.album = Album.find_or_create_by(title: track_params[:album]) do |album|
+      track.artist = Artist.find_or_create_by(name: params[:track][:artist])
+      track.album = Album.find_or_create_by(title: params[:track][:album]) do |album|
         album.artist = track.artist
         album.num_discs = 1
         album.release_date = track_params[:date]
@@ -66,13 +66,24 @@ class TracksController < ApplicationController
   # PATCH/PUT /tracks/1
   # PATCH/PUT /tracks/1.json
   def update
+    unless params[:artist].nil?
+      @track.artist = Artist.find_or_initialize_by(name: params[:artist])
+      @track.artist.rating = 0 if @track.artist.rating.nil?
+    end
+    unless params[:album].nil?
+      @track.album = Album.find_or_initialize_by(name: params[:album])
+      @track.album.rating = 0 if @track.album.rating.nil?
+    end
+    unless params[:genres].nil?
+      @track.genres = []
+      params[:genres].each { |genre| @track.genres << Genre.find_or_create_by(name: genre) }
+    end
+    @track.slug = nil
     respond_to do |format|
       if @track.update(track_params)
-        format.html { redirect_to artist_album_track_url(@track.album.artist, @track.album, @track), notice: 'Track was successfully updated.' }
-        format.json { render :show, status: :ok, location: @track }
+        format.json { render json: {track: @track.slug, album: @track.album.slug, artist: @track.artist.slug, notice: 'Track was successfully updated.'}, status: :ok, location: artist_album_track_url(@track.artist, @track.album, @track) }
       else
-        format.html { render :edit }
-        format.json { render json: @track.errors, status: :unprocessable_entity }
+        format.json { render json: { errors: @track.errors.full_messages }, status: :unprocessable_entity }
       end
     end
   end
@@ -95,6 +106,6 @@ class TracksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def track_params
-      params.require(:track).permit(:title, :rating, :artist, :album, :date, :location, :bitrate, :lyrics, :track_id, :disc_id, :format)
+      params.require(:track).permit(:title, :rating, :date, :location, :bitrate, :lyrics, :track_id, :disc_id, :format)
     end
 end

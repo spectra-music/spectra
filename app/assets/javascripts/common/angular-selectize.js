@@ -76,7 +76,6 @@
               return;
             }
             var selected = newModelValue ? getSelectedItems(newModelValue) : selectize.items;
-            console.log(selected)
             selectize.clear();
             if (newOptions) {
               selectize.clearOptions();

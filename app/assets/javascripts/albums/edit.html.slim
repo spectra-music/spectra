@@ -26,7 +26,7 @@
         input#cover type='file' ng-model='album.cover' name='cover'
       .pure-control-group
         label for='release-date' Release Date
-        input pikaday="releaseDate" set-default-date="true" default-date="{{album.release_date_formatted}}" min-date="01/01/1900" max-date="{{maxDate}}" format='MMMM Do YYYY'
+        input#release-date pikaday="releaseDate" set-default-date="true" default-date="{{album.release_date_formatted}}" min-date="01/01/1900" max-date="{{maxDate}}" format='MMMM Do YYYY'
       .pure-control-group
         label for='compilation' Compilation?
         input#compilation type='checkbox' name='is-compilations' ng-model='album.is_compilation'

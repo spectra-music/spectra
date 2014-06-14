@@ -1,4 +1,4 @@
-angular.module('tracks', ['ngRoute', 'ngResource', 'selectize'])
+angular.module('tracks', ['ngRoute', 'ngResource', 'selectize', 'angularPikaday' ])
 .config(['$routeProvider', ($routeProvider) ->
   $routeProvider
   .when('/tracks', {
@@ -13,4 +13,9 @@ angular.module('tracks', ['ngRoute', 'ngResource', 'selectize'])
     templateUrl: '<%= asset_path("tracks/show.html") %>',
     controller: 'ArtistAlbumTrackShowController'
   })
+  .when('/artists/:artist/albums/:album/tracks/:track/edit', {
+    templateUrl: '<%= asset_path("tracks/form.html") %>',
+    controller: 'TrackEditController'
+  })
+
 ])

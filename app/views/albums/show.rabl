@@ -1,5 +1,5 @@
 object @album
 extends 'albums/item'
-child(:artist) { attributes :name, :id, :friendly_id }
+child(:artist) { attributes :name }
 node(:cover) {|album| album.cover.url(:large)}
-child(:genres) { attributes :name, :friendly_id }
+child(:genres) { attributes :name}

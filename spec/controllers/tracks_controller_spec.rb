@@ -70,7 +70,7 @@ describe TracksController, type: :controller do
                                                track_id: 2,
                                                location: '/mnt/Data/Music/Chipzel/Spectra/Tokyo Skies.flac')
                                 .merge(album: @track.album.title,
-                                       artist: @track.artist.name)},
+                                       artist: @track.artist.name) },
                valid_session)
         }.to change(Track, :count).by(1)
       end
@@ -127,14 +127,14 @@ describe TracksController, type: :controller do
         put :update, {id: @track.to_param,
                       artist_id: @track.album.artist.to_param,
                       album_id: @track.album.to_param,
-                      track: {'title' => 'Only Human', 'track_id' => '5'}}, valid_session
+                      track: {'title' => 'Only Human', 'track_id' => '5'}, format: :json}, valid_session
       end
 
       it 'assigns the requested track as @track' do
         put :update, {id: @track.to_param,
                       artist_id: @track.album.artist.to_param,
                       album_id: @track.album.to_param,
-                      track: attributes_for(:track)}, valid_session
+                      track: attributes_for(:track), format: :json}, valid_session
         expect(assigns(:track)).to eq(@track)
       end
 
@@ -142,8 +142,8 @@ describe TracksController, type: :controller do
         put :update, {id: @track.to_param,
                       artist_id: @track.album.artist.to_param,
                       album_id: @track.album.to_param,
-                      track: attributes_for(:track)}, valid_session
-        expect(response).to redirect_to(artist_album_track_url(@track.album.artist, @track.album, @track))
+                      track: attributes_for(:track), format: :json}, valid_session
+        expect(response).to be_ok
       end
     end
 
@@ -154,7 +154,7 @@ describe TracksController, type: :controller do
         put :update, {id: @track.to_param,
                       artist_id: @track.album.artist.to_param,
                       album_id: @track.album.to_param,
-                      track: {'title' => 'invalid value'}}, valid_session
+                      track: {'title' => 'invalid value'}, format: :json}, valid_session
         expect(assigns(:track)).to eq(@track)
       end
 
@@ -164,8 +164,8 @@ describe TracksController, type: :controller do
         put :update, {id: @track.to_param,
                       artist_id: @track.album.artist.to_param,
                       album_id: @track.album.to_param,
-                      track: {'title' => 'invalid value'}}, valid_session
-        expect(response).to render_template("edit")
+                      track: {'title' => 'invalid value'}, format: :json}, valid_session
+        expect(response).to be_unprocessable
       end
     end
   end

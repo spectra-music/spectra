@@ -9,7 +9,6 @@ angular.module('albums').controller('ArtistAlbumEditController', ['$scope', '$ht
     $scope.maxDate = moment().format("MM/DD/YYYY")
     $scope.album.release_date_formatted =  moment($scope.album.release_date).format('MM/DD/YYYY')
     $scope.artists = _.pluck(promises[1].data, 'name')
-    $scope.album.artist_friendly_id = $scope.album.artist.friendly_id
     $scope.album.artist = $scope.album.artist.name
     $scope.genres = _.pluck(promises[2].data, 'name')
     $scope.album.genres = _.pluck($scope.album.genres, 'name')
@@ -30,15 +29,15 @@ angular.module('albums').controller('ArtistAlbumEditController', ['$scope', '$ht
       genres: $scope.album.genres
     }
     $http.put(
-      "/artists/#{$scope.album.artist_friendly_id}/albums/#{$scope.album.friendly_id}.json",
+      "/artists/#{$routeParams.artist}/albums/#{$routeParams.album}.json",
       $scope.params
     ).success( (data) ->
-      $location.path("/artists/#{data.artist}/albums/#{data.album}")
       flash.success.setMessage(data.notice)
+      $location.path("/artists/#{data.artist}/albums/#{data.album}")
     ).error( (data) ->
       $scope.errors = data.errors
     )
 
   $scope.back = () ->
-    $location.path("artists/#{$scope.album.artist.friendly_id}/albums/#{$scope.album.friendly_id}")
+    $location.path("artists/#{$routeParams.artist}/albums/#{$routeParams.album}")
 ])
