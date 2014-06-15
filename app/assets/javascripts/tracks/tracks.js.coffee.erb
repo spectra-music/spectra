@@ -1,0 +1,29 @@
+angular.module('tracks', ['ngRoute', 'ngResource', 'selectize', 'angularPikaday' ])
+.config(['$routeProvider', ($routeProvider) ->
+  $routeProvider
+  .when('/tracks', {
+    templateUrl: '<%= asset_path("tracks/index.html") %>',
+    controller: 'TracksIndexController'
+  })
+  .when('/tracks/new', {
+    templateUrl: '<%= asset_path("tracks/form.html") %>',
+    controller: 'TrackNewController'
+  })
+  .when('/artists/:artist/albums/:album/tracks', {
+    templateUrl: '<%= asset_path("tracks/index.html") %>',
+    controller: 'ArtistAlbumTracksIndexController'
+  })
+  .when('/artists/:artist/albums/:album/tracks/new', {
+    templateUrl: '<%= asset_path("tracks/form.html") %>',
+    controller: 'TrackNewController'
+  })
+  .when('/artists/:artist/albums/:album/tracks/:track', {
+    templateUrl: '<%= asset_path("tracks/show.html") %>',
+    controller: 'ArtistAlbumTrackShowController'
+  })
+  .when('/artists/:artist/albums/:album/tracks/:track/edit', {
+    templateUrl: '<%= asset_path("tracks/form.html") %>',
+    controller: 'TrackEditController'
+  })
+
+])

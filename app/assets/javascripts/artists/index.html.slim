@@ -1,0 +1,18 @@
+.header
+  h1 All Artists
+.content ng-hide='loading || !artists'
+  form.pure-form
+    .pure-control-group
+      input.pure-input-1 ng-model="searchText" placeholder="Search"
+  br
+  table.pure-table.pure-table-bordered style='width: 100%;'
+    thead
+      tr
+        th Name
+        th Rating
+    tbody
+      tr ng-repeat="artist in artists | filter:searchText"
+        td
+          a ng-href='#!/artists/{{artist.friendly_id}}' {{artist.name}}
+        td
+          | {{artist.rating}}

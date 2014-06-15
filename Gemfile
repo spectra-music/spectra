@@ -19,18 +19,22 @@ gem 'jquery-rails'
 gem 'purecss', '~> 0.5.0'
 # selectize for intelligent select boxes
 gem 'selectize-rails'
-# paloma for page-specific javascript
-gem 'paloma'
+# pikaday and moment for date select
+gem 'pikaday-gem'
+gem 'momentjs-rails'
+
+gem 'underscore-rails'
+
 # SLIM for markup
 gem 'slim'
 gem 'slim-rails'
 gem 'flash_render'
+
 # taglib for reading ID3
 gem 'taglib-ruby'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
 
 # Friendly stubs for a verbose api
 gem 'friendly_id', '~> 5.0.0'
@@ -65,6 +69,7 @@ group :development do
   gem 'spring'
   # Pry offers a better rails console
   gem 'pry-rails'
+  gem 'faker'
 end
 
 group :development, :test do

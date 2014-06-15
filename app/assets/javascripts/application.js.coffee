@@ -11,54 +11,23 @@
 # about supported directives.
 #
 # Other stuff
-#= require selectize
 #= require jquery
 #= require jquery_ujs
+#= require selectize
+#= require moment
+#= require pikaday
+#= require underscore
 
 # Angular Stuff
 #= require angular
 #= require angular-resource
 #= require angular-route
 #= require spectra
+#= require_dir common
+#= require albums/albums
+#= require artists/artists
+#= require genres/genres
+#= require tracks/tracks
 
 # The default require
 #= require_tree .
-
-#  For templates
-
-# This is for the sidebar
-# We'll fix this up later
-# TODO: Clean this up and put it somewhere else
-###
-((window, document) ->
-  $ ->
-    toggleClass = (element, className) ->
-      classes = element.className.split(/\s+/)
-      length = classes.length
-      i = 0
-      while i < length
-        if classes[i] is className
-          classes.splice i, 1
-          break
-        i++
-
-      # The className is not found
-      classes.push className  if length is classes.length
-      element.className = classes.join(" ")
-      return
-    layout = document.getElementById("layout")
-    menu = document.getElementById("menu")
-    menuLink = document.getElementById("menuLink")
-    menuLink.onclick = (e) ->
-      active = "active"
-      e.preventDefault()
-      toggleClass layout, active
-      toggleClass menu, active
-      toggleClass menuLink, active
-      return
-
-    return
-
-  return
-) this, @document
-###

@@ -1,0 +1,16 @@
+angular.module('artists', ['ngRoute', 'ngResource'])
+.config(['$routeProvider', ($routeProvider) ->
+  $routeProvider
+  .when('/artists', {
+    templateUrl: '<%= asset_path("artists/index.html") %>',
+    controller: 'ArtistsIndexController'
+  })
+  .when('/artists/:artist', {
+    templateUrl: '<%= asset_path("artists/show.html") %>',
+    controller: 'ArtistShowController'
+  })
+  .when('/artists/:artist/edit', {
+    templateUrl: '<%= asset_path("artists/edit.html") %>',
+    controller: 'ArtistEditController'
+  })
+])

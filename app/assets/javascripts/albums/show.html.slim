@@ -1,0 +1,22 @@
+.content
+  p
+    strong
+      ' Title:
+    | {{ album.title }}
+  p
+    strong
+      ' Artist:
+    | {{ album.artist.name }}
+  p
+    strong
+      ' Rating:
+    | {{ album.rating }}
+  p
+    strong
+      ' Art:
+    img ng-src='{{ album.cover }}'
+  p
+    strong
+      ' Release date:
+    | {{ album.release_year }}
+  a ng-href='#!/artists/{{ album.artist.friendly_id }}/albums/{{ album.friendly_id }}/edit' Edit

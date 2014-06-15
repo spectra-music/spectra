@@ -15,7 +15,23 @@
  *= require purecss
  *= require selectize
  *= require selectize.default
+ *= require pikaday
  */
+
+/* Style when highlighting a search. */
+.ui-select-highlight {
+  font-weight: bold;
+}
+
+/* Fix input width for Selectize theme */
+.selectize-control > .selectize-input > input {
+  width: 100%;
+}
+
+/* Fix dropdown width for Selectize theme */
+.selectize-control > .selectize-dropdown {
+  width: 100%;
+}
 
 body {
   color: #777;
@@ -56,7 +72,8 @@ body {
 .content {
   margin: 0 auto;
   padding: 0 2em;
-  max-width: 800px;
+  margin-left: 75px;
+  // max-width: 1200px;
   margin-bottom: 50px;
   line-height: 1.6em;
 }
@@ -226,6 +243,11 @@ body {
   margin: 0;
 }
 
+
+.offset {
+  margin-left: 100px;
+  margin-right: 25px;
+}
 // Alerts
 
 .pure-alert {
@@ -258,4 +280,12 @@ body {
 .pure-alert-success {
   background-color: rgb(83, 180, 79);
   color: #fff;
+}
+
+#error-explanation {
+  color: #D13C38;
+  ul {
+    list-style: none;
+    margin: 0 0 18px 0;
+  }
 }

@@ -1,4 +1,3 @@
-attributes :title, :rating, :release_date,
-           :num_discs, :num_tracks,
-           :cover, :is_compilation
+attributes :friendly_id, :title, :rating, :release_date,
+           :num_discs, :num_tracks, :is_compilation
 

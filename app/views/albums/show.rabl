@@ -1,3 +1,5 @@
 object @album
 extends 'albums/item'
-glue(:artist) { attribute name: :artist }
+child(:artist) { attributes :name }
+node(:cover) {|album| album.cover.url(:large)}
+child(:genres) { attributes :name}

@@ -1,0 +1,15 @@
+.header
+  h1 All Genres
+.content ng-hide='loading || !genres'
+  form.pure-form
+    .pure-control-group
+      input.pure-input-1 ng-model="searchText" placeholder="Search"
+  br
+  table.pure-table.pure-table-bordered style='width: 100%'
+    thead
+      tr
+        th Name
+    tbody
+      tr ng-repeat="genre in genres | filter:searchText"
+        td
+          a ng-href='#!/genres/{{genre.friendly_id}}' {{genre.name}}

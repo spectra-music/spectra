@@ -1,1 +1,1 @@
-attributes :name, :rating
+attributes :name, :rating, :friendly_id

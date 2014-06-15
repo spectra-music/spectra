@@ -1,1 +1,0 @@
-WelcomeController = Paloma.controller('Welcome')

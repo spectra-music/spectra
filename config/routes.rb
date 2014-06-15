@@ -16,8 +16,8 @@ Rails.application.routes.draw do
     resources :albums, only:[:index]
   end
 
-  get '/albums' => 'albums#all'
-  resources :tracks, only:[:index, :new, :create]
+  resources :albums, only:[:index]
+  resources :tracks, only:[:index, :create]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

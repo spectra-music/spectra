@@ -1,0 +1,24 @@
+angular.module('albums', ['ngRoute', 'ngResource', 'selectize', 'angularPikaday'])
+.config(['$routeProvider', ($routeProvider) ->
+  $routeProvider
+  .when('/albums', {
+    templateUrl: '<%= asset_path("albums/index.html") %>',
+    controller: 'AlbumsIndexController'
+  })
+  .when('/artists/:artist/albums', {
+    templateUrl: '<%= asset_path("albums/index.html") %>',
+    controller: 'ArtistAlbumsIndexController'
+  })
+  .when('/genres/:genre/albums', {
+    templateUrl: '<%= asset_path("albums/index.html") %>',
+    controller: 'GenreAlbumsIndexController'
+  })
+  .when('/artists/:artist/albums/:album', {
+    templateUrl: '<%= asset_path("albums/show.html") %>',
+    controller: 'ArtistAlbumShowController'
+  })
+  .when('/artists/:artist/albums/:album/edit', {
+    templateUrl: '<%= asset_path("albums/edit.html") %>',
+    controller: 'ArtistAlbumEditController'
+  })
+])

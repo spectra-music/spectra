@@ -1,0 +1,6 @@
+angular.module('import', ['ngRoute', 'ngResource'])
+.config(['$routeProvider', ($routeProvider) ->
+  $routeProvider.when('/import', {
+    templateUrl: '<%= asset_path("import/index.html") %>'
+  })
+])
