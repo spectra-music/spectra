@@ -1,9 +1,9 @@
 angular.module('tracks').controller('TrackNewController', ['$q', '$scope', '$http','$routeParams', '$location', 'flash', ($q, $scope, $http, $routeParams, $location, flash) ->
   $scope.pageType = 'New'
   $scope.setDefaultDate = 'false'
-  albums = $http.get("/albums.json")
-  artists = $http.get("/artists.json")
-  genres = $http.get("/genres.json")
+  albums = $http.get("/albums")
+  artists = $http.get("/artists")
+  genres = $http.get("/genres")
 
   $q.all([artists, albums, genres]).then((promises) ->
     $scope.track = {}
@@ -25,7 +25,7 @@ angular.module('tracks').controller('TrackNewController', ['$q', '$scope', '$htt
     }
     $scope.params.track.date = moment($scope.date.getDate()).format('YYYY-MM-DD')
     $http.post(
-      "/tracks.json",
+      "/tracks",
       $scope.params
     ).success( (data) ->
       flash.success.setMessage(data.notice)

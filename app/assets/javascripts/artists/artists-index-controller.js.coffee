@@ -1,5 +1,5 @@
 angular.module('artists').controller('ArtistsIndexController', ['$scope', '$http', ($scope, $http) ->
-  $http.get('/artists.json').success( (data) ->
+  $http.get('/artists').success( (data) ->
     $scope.artists = data
   )
 ])

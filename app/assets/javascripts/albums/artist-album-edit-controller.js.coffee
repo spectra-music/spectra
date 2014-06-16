@@ -1,7 +1,7 @@
 angular.module('albums').controller('ArtistAlbumEditController', ['$scope', '$http', '$routeParams', '$q', '$location', 'flash', ($scope, $http, $routeParams, $q, $location, flash) ->
-  album = $http.get("/artists/#{$routeParams.artist}/albums/#{$routeParams.album}.json")
-  artist = $http.get("/artists.json")
-  genres = $http.get("/genres.json")
+  album = $http.get("/artists/#{$routeParams.artist}/albums/#{$routeParams.album}")
+  artist = $http.get("/artists")
+  genres = $http.get("/genres")
 
   $q.all([album, artist, genres]).then((promises) ->
     $scope.album = promises[0].data
@@ -29,7 +29,7 @@ angular.module('albums').controller('ArtistAlbumEditController', ['$scope', '$ht
       genres: $scope.album.genres
     }
     $http.put(
-      "/artists/#{$routeParams.artist}/albums/#{$routeParams.album}.json",
+      "/artists/#{$routeParams.artist}/albums/#{$routeParams.album}",
       $scope.params
     ).success( (data) ->
       flash.success.setMessage(data.notice)

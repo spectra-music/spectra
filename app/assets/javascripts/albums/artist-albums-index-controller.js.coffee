@@ -1,5 +1,5 @@
 angular.module('albums').controller('ArtistAlbumsIndexController', ['$scope', '$http', '$routeParams', 'albumDelete', ($scope, $http, $routeParams, albumDelete) ->
-  $http.get("/artists/#{$routeParams.artist}/albums.json").success( (data) ->
+  $http.get("/artists/#{$routeParams.artist}/albums").success( (data) ->
     $scope.albums = data
   )
 

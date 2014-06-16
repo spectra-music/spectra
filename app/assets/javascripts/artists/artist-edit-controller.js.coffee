@@ -1,5 +1,5 @@
 angular.module('artists').controller('ArtistEditController', ['$scope', '$http', '$routeParams', '$location', 'flash', ($scope, $http, $routeParams, $location, flash) ->
-  $http.get("/artists/#{$routeParams.artist}.json")
+  $http.get("/artists/#{$routeParams.artist}")
     .success( (data) ->
       $scope.artist = data
     )
@@ -14,7 +14,7 @@ angular.module('artists').controller('ArtistEditController', ['$scope', '$http',
       }
     }
     $http.put(
-      "/artists/#{$scope.artist.friendly_id}.json",
+      "/artists/#{$scope.artist.friendly_id}",
       $scope.params
     ).success( (data) ->
       flash.success.setMessage(data.notice)
