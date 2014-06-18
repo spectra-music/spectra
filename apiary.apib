@@ -1,0 +1,406 @@
+FORMAT: 1A
+
+# spectra
+Spectra is a deployed music hosting system. It sits on your server or NAS, with access to your music files, and allows easy transparent access to data and metadata.
+
+## Errors
+Just a side note, if there is an error on creation or update becasue of invalid parameters, the status code will be `422` and the response will be in the following format
+
+        {
+            "errors": ["error message 1", "error message 2"]
+        }
+# Group Albums
+
+An album stores all the information related to an album. They are created when the first track on the album is created or when editing a track to belong to an album that doesn't already exist. They are deleted when there are no more tracks on that album.
+
+## albums [/albums{?tracks&artist&genre&rating&is_compilations&year}]
++ Parameters
+    + tracks (optional, boolean) ... If true, will return the track information as well
+    + artist (optional, string) ... Filter by an artist friendly_id
+    + genre (optional, string) ... Filter by genre friendly_id
+    + rating (optional, number) ... Filter by rating
+    + is_compilation (optional, boolean) ... Filter by compilation
+    + year (optional, number) ... Filter by release year
+
+### Get all albums [GET]
++ Response 200 (application/json)
+        
+        [{
+            "friendly_id": "spectra",
+            "title": "Spectra",
+            "rating": 5,
+            "release_date": "2013-09-01",
+            "num_discs": 1,
+            "num_tracks": 13,
+            "is_compilation": false,
+            "cover": "/path/to/cover.EXT",
+            "genres": [{
+                "name": "Electronic",
+                "friendly_id": "electronic"
+            },
+            {
+                "name": "Chiptunes",
+                "friendly_id": "chiptunes"
+            }]
+        },
+        {
+            "friendly_id": "the-college-dropout",
+            "title": "The College Dropout",
+            "rating": 2,
+            "release_date": 2004-02-10,
+            "num_discs": 1,
+            "num_tracks": 21,
+            "is_compilation": false,
+            "cover": "/path/to/cover.EXT",
+            "genres": [{
+                "name": "Hip Hop",
+                "friendly_id": "hip-hop"
+            }]
+        }]
+
+## albums/:id [/albums/{id}]
++ Parameters
+    + id (required, string, `spectra`) ... friendly_id for the album
+
+### Get an album [GET]
++ Response 200 (application/json)
+
+        {
+            "friendly_id": "spectra",
+            "title": "Spectra",
+            "rating": 5,
+            "release_date": "2013-09-01",
+            "num_discs": 1,
+            "num_tracks": 13,
+            "is_compilation": false,
+            "cover": "/path/to/cover.EXT",
+            "genres": [{
+                "name": "Electronic",
+                "friendly_id": "electronic"
+            },
+            {
+                "name": "Chiptunes",
+                "friendly_id": "chiptunes"
+            }]
+        }
+
+### Update an album [PUT]
++ Request (application/json)
+
+        {
+            "friendly_id": "wrong-id",
+            "album":{
+                "title": "Spectra",
+                "rating": 4,
+                "release_date": "2013-09-01",
+                "num_discs": 1,
+                "num_tracks": 13,
+                "is_compilation": false,
+                "cover": "/path/to/cover.EXT",
+                },
+            "artist": "Spectra",
+            "genres": ["Electronic"]
+        }
+
++ Response 200 (application/json)
+    
+        {
+            "notice": "Album was successfully updated.",
+            "album": "spectra"
+        }
+
+# Group Artists
+
+An artist stores all the information related to an artists. They can be created by Adding a new track by that artist or by editing an existing track or album to a non existant artist. They are deleted when there no longer exists any tracks or albums by this artist.
+
+## artists [/artists{?rating}]
++ Parameters
+    + rating (optional, number) ... rating of artists you want to get
+
+
+### Get all artists [GET]
+
++ Response 200 (application/json)
+
+        [{
+            "name":"Chipzel",
+            "rating":5,
+            "friendly_id":"chipzel"
+        },
+        {
+            "name":"Kanye West",
+            "rating":2,
+            "friendly_id":"kanye-west"
+        }]
+ 
+## artists/:id [/artists/{id}]
++ Parameters 
+    + id (required, string, `chipzel`) ... `friendly_id` of artist
+    
+### Get an artist [GET]
++ Response 200 (application/json)
+
+        {
+            "friendly_id": "chipzel",
+            "name": "Chipzel",
+            "rating: 5
+        }
+    
+### Update an artist [PUT]
++ Request (application/json)
+
+        { 
+            "friendly_id": "daf-punk",
+            "artist": {
+                "name": "Daft Punk",
+                "rating": 5
+            }
+        }
+
++ Response 200 (application/json)
+    
+        { 
+            "notice": "Artist has been successfully updated", 
+            "artist": "daft-punk"
+        }
+
+# Group Genres
+
+A genre stores all the information related to a genre. A genre is created when that genre is added to an album or a track for the first time.  They can also be created and deleted without having tracks or albums associated with it.  
+
+## genres [/genres]
+
+### Get all genres [GET]
++ Response 200 (application/json)
+        
+        [{
+            "friendly_id": "alternative"
+            "name": "Alternative"
+        },
+        {
+            "friendly_id": "electronic",
+            "name": "Electronic"
+        }]
+
+###  Create a new genre [POST]
++ Request (application/json)
+        
+        {
+            "genre": {
+                "name": "Hip-Hop"
+            }
+        }
+
++ Response 201 (application/json)
+
+        {
+            "notice": "The genre was successfully created",
+            "genre": "hip-hop"
+        }
+
+## genres/:id [/genres/{id}]
++ Parameters
+    + id (required, string, `electronic`) ... The friendly_id of the the genre
+    
+### Get a genre [GET]
++ Response 200 (application/json)
+
+        {
+            "friendly_id": "electronic",
+            "name": "Electronic"
+        }
+        
+### Update a genre [PUT]
++ Request (application/json)
+
+        {
+            "friendly_id": "wrong-id",
+            "genre": {
+                "name": "Electronic"
+            }
+        }
+        
++ Response 200
+    
+        {
+            "notice": "The genere was successfully updated",
+            "genre": "electronic"
+        }
+
+### Delete a genre [DELETE]
++ Response 204
+
+# Group Playlists
+This will be filled in once we have implemented playlists
+
+# Group Tracks
+
+Tracks store information based on the tack. The data stored is limited by ID3.  When they are created, it will also create an album and an artist if they don't already exist. When deleted, they will delete their album and artist if they are no longer associated with any tracks.
+
+## tracks [/tracks]
+
+### Get all of the tracks [GET]
++ Parameters
+    + artist (optional, string) ... Filter by an artist friendly_id
+    + album (optional, string) ... Filter by an album
+    + genre (optional, string) ... Filter by genre friendly_id
+    + rating (optional, number) ... Filter by rating
+    + year (optional, number) ... Filter by release year
+    + format (optional, number) ... Filter by format
+    
++ Response 200 (application/json)
+
+        [{
+            "friendly_id": "let-it-go",
+            "title": "Let It Go",
+            "date": "2013-11-25",
+            "format": "mp3",
+            "bitrate": 256,
+            "lyrics": "Let it go! Let it go! [The rest of the lyrics to the song]",
+            "track_id": 5,
+            "disc_id": 1,
+            "length": "3:44",
+            "location": "/path/to/let-it-go.mp3",
+            "artist: {
+                "friendly_id": "idina-menzel",
+                "name": "Idina Menzel"
+            },
+            "album": {
+                "friendly_id": "frozen-original-motion-picture-soundtrack",
+                "title": "Frozen (Original Motion Picture Soundtrack)"
+            },
+            "genres": [{
+                "name": "Soundtrack",
+                "friendly_id": "soundtrack"
+            },
+            {
+                "name": "Disney",
+                "friendly_id": "disney"
+            }]
+        },
+        {
+            "friendly_id": "so-close",
+            "title": "So Close",
+            "date": "2007-11-20",
+            "format": "mp3",
+            "bitrate": 256,
+            "lyrics": "You're in my arms, and all the world is calm... [The rest of the lyrics to the song]",
+            "track_id": 4,
+            "disc_id": 1,
+            "length": "3:49",
+            "location": "/path/to/so-close.mp3",
+            "artist: {
+                "friendly_id": "jon-mclaughlin",
+                "name": "Jon McLaughlin"
+            },
+            "album": {
+                "friendly_id": "enchanted-original-soundtrack",
+                "title": "Enchanted: Original Soundtrack"
+            },
+            "genres": [{
+                "name": "Pop",
+                "friendly_id": "pop"
+            },
+            {
+                "name": "Vocal Jazz",
+                "friendly_id": "vocal-jazz"
+            }]
+        }]
+
+### Create a new track [POST]
++ Request (application/json)
+
+        {
+            "track": {
+                "title": "Let It Go",
+                "date": "2013-11-25",
+                "format": "mp3",
+                "bitrate": 256,
+                "lyrics": "Let it go! Let it go! [The rest of the lyrics to the song]",
+                "track_id": 5,
+                "disc_id": 1,
+                "length": "3:44",
+                "location": "/path/to/let-it-go.mp3"
+            },
+            "artist: "Idina Menzel",
+            "album": "Frozen (Original Motion Picture Soundtrack)",
+            "genres": ["Soundtrack","Disney"]
+        }
++ Response 201 (application/json)
+
+        {
+            "notice": "Track was successfully created",
+            "track": "let-it-go"
+        }
+        
+## tracks/:id [/tracks{id}]
+
+### Get a track [GET]
++ Response 200 (application/json)
+
+        {
+            "friendly_id": "let-it-go",
+            "title": "Let It Go",
+            "date": "2013-11-25",
+            "format": "mp3",
+            "bitrate": 256,
+            "lyrics": "Let it go! Let it go! [The rest of the lyrics to the song]",
+            "track_id": 5,
+            "disc_id": 1,
+            "length": "3:44",
+            "location": "/path/to/let-it-go.mp3",
+            "artist: {
+                "friendly_id": "idina-menzel",
+                "name": "Idina Menzel"
+            },
+            "album": {
+                "friendly_id": "frozen-original-motion-picture-soundtrack",
+                "title": "Frozen (Original Motion Picture Soundtrack)"
+            },
+            "genres": [{
+                "name": "Soundtrack",
+                "friendly_id": "soundtrack"
+            },
+            {
+                "name": "Disney",
+                "friendly_id": "disney"
+            }]
+        }
+        
+### Update a track [PUT]
++ Request (application/json)
+
+        {
+            "friendly_id": "wrong-id",
+            "track": {
+                "title": "Let It Go",
+                "date": "2013-11-25",
+                "format": "mp3",
+                "bitrate": 256,
+                "lyrics": "Let it go! Let it go! [The rest of the lyrics to the song]",
+                "track_id": 5,
+                "disc_id": 1,
+                "length": "3:44",
+                "location": "/path/to/let-it-go.mp3"
+            },
+            "artist: "Idina Menzel",
+            "album": "Frozen (Original Motion Picture Soundtrack)",
+            "genres": ["Soundtrack","Disney"]
+        }
+
++ Response 200 (application/json)
+
+        {
+            "notice": "Track was successfully updated",
+            "track": "let-it-go"
+        }
+
+### Delete a track [DELETE]
++ Response 204 (application/json)
+
+## tracks/:id/data [/tracks/id/data]
+
+### Get the track itself [GET]
++ Response 200
+    
+
