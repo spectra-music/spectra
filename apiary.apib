@@ -166,7 +166,7 @@ An artist stores all the information related to an artists. They can be created 
 
 # Group Genres
 
-A genre stores all the information related to a genre. A genre is created when that genre is added to an album or a track for the first time.  They can also be created and deleted without having tracks or albums associated with it.  
+A genre stores all the information related to a genre. A genre is created when that genre is added to an album or a track for the first time.  A genre is deleted when it is no longer associated with any track or album.
 
 ## genres [/genres]
 
@@ -181,22 +181,6 @@ A genre stores all the information related to a genre. A genre is created when t
             "friendly_id": "electronic",
             "name": "Electronic"
         }]
-
-###  Create a new genre [POST]
-+ Request (application/json)
-        
-        {
-            "genre": {
-                "name": "Hip-Hop"
-            }
-        }
-
-+ Response 201 (application/json)
-
-        {
-            "notice": "The genre was successfully created",
-            "genre": "hip-hop"
-        }
 
 ## genres/:id [/genres/{id}]
 + Parameters
@@ -226,9 +210,6 @@ A genre stores all the information related to a genre. A genre is created when t
             "notice": "The genere was successfully updated",
             "genre": "electronic"
         }
-
-### Delete a genre [DELETE]
-+ Response 204
 
 # Group Playlists
 This will be filled in once we have implemented playlists
