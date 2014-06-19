@@ -13,9 +13,8 @@ Just a side note, if there is an error on creation or update becasue of invalid 
 
 An album stores all the information related to an album. They are created when the first track on the album is created or when editing a track to belong to an album that doesn't already exist. They are deleted when there are no more tracks on that album.
 
-## albums [/albums{?tracks&artist&genre&rating&is_compilations&year}]
+## albums [/albums{?artist&genre&rating&is_compilations&year}]
 + Parameters
-    + tracks (optional, boolean) ... If true, will return the track information as well
     + artist (optional, string) ... Filter by an artist friendly_id
     + genre (optional, string) ... Filter by genre friendly_id
     + rating (optional, number) ... Filter by rating
