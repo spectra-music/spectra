@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   resources :artists, only: [:index, :show, :update]
 
-  resources :genres, only: [:index, :show, :update]
+  resources :genres, only: [:index, :show]
 
   resources :albums, only: [:index, :show, :update]
 

@@ -38,9 +38,7 @@ describe TracksController, type: :controller do
 
   describe 'GET show' do
     it 'assigns the requested track as @track' do
-      get :show, {id: @track.to_param,
-                  artist_id: @track.album.artist.to_param,
-                  album_id: @track.album.to_param }, valid_session
+      get :show, {id: @track.to_param}, valid_session
       expect(assigns(:track)).to eq(@track)
     end
   end
@@ -109,23 +107,17 @@ describe TracksController, type: :controller do
         # submitted in the request.
         expect_any_instance_of(Track).to receive(:update).with({'title' => 'Only Human', 'track_id' => '5'})
         put :update, {id: @track.to_param,
-                      artist_id: @track.album.artist.to_param,
-                      album_id: @track.album.to_param,
                       track: {'title' => 'Only Human', 'track_id' => '5'}, format: :json}, valid_session
       end
 
       it 'assigns the requested track as @track' do
         put :update, {id: @track.to_param,
-                      artist_id: @track.album.artist.to_param,
-                      album_id: @track.album.to_param,
                       track: attributes_for(:track), format: :json}, valid_session
         expect(assigns(:track)).to eq(@track)
       end
 
       it 'redirects to the track' do
         put :update, {id: @track.to_param,
-                      artist_id: @track.album.artist.to_param,
-                      album_id: @track.album.to_param,
                       track: attributes_for(:track), format: :json}, valid_session
         expect(response).to be_ok
       end
@@ -136,8 +128,6 @@ describe TracksController, type: :controller do
         # Trigger the behavior that occurs when invalid params are submitted
         allow_any_instance_of(Track).to receive(:update).and_return(false)
         put :update, {id: @track.to_param,
-                      artist_id: @track.album.artist.to_param,
-                      album_id: @track.album.to_param,
                       track: {'title' => 'invalid value'}, format: :json}, valid_session
         expect(assigns(:track)).to eq(@track)
       end
@@ -146,8 +136,6 @@ describe TracksController, type: :controller do
         # Trigger the behavior that occurs when invalid params are submitted
         allow_any_instance_of(Track).to receive(:update).and_return(false)
         put :update, {id: @track.to_param,
-                      artist_id: @track.album.artist.to_param,
-                      album_id: @track.album.to_param,
                       track: {'title' => 'invalid value'}, format: :json}, valid_session
         expect(response).to be_unprocessable
       end
@@ -157,18 +145,10 @@ describe TracksController, type: :controller do
   describe 'DELETE destroy' do
     it 'destroys the requested track' do
       expect {
-        delete :destroy, {id: @track.to_param,
-                          artist_id: @track.album.artist.to_param,
-                          album_id: @track.album.to_param}, valid_session
+        delete :destroy, {id: @track.to_param, format: :json}, valid_session
       }.to change(Track, :count).by(-1)
     end
 
-    it 'redirects to the tracks list' do
-      delete :destroy, {id: @track.to_param,
-                        artist_id: @track.album.artist.to_param,
-                        album_id: @track.album.to_param}, valid_session
-      expect(response).to redirect_to(tracks_url)
-    end
   end
 
 end

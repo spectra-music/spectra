@@ -25,27 +25,20 @@ class AlbumsController < ApplicationController
   # PATCH/PUT /albums/1.json
   def update
     @album = Album.find(params[:id])
-    @album.artist = Artist.find_or_initialze_by(name: params[:artist]) do
+    @album.artist = Artist.find_or_initialize_by(name: params[:artist]) do
       rating = 0
     end
-    @album.genres = []
-    params[:genres].each { |genre| @album.genres << Genre.find_or_initialize_by(name: genre) }
+    unless params[:genres].nil?
+      @album.genres = []
+      params[:genres].each { |genre| @album.genres << Genre.find_or_initialize_by(name: genre) }
+    end
     @album.slug = nil
     respond_to do |format|
       if @album.update(album_params)
-        format.json { render json: {album: @album.slug, artist: @album.artist.slug, notice: 'Album was successfully updated.'} , status: :ok, location: artist_album_url(@album.artist, @album) }
+        format.json { render json: {album: @album.slug, artist: @album.artist.slug, notice: 'Album was successfully updated.'} , status: :ok, location: @album }
       else
         format.json { render json: { errors: @album.errors.full_messages }, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # DELETE /albums/1
-  # DELETE /albums/1.json
-  def destroy
-    @album.destroy
-    respond_to do |format|
-      format.json { head :no_content }
     end
   end
 

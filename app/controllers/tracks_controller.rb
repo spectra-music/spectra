@@ -44,7 +44,7 @@ class TracksController < ApplicationController
 
     respond_to do |format|
       if @track.save
-        format.json { render json: {track: @track.slug, album: @track.album.slug, artist: @track.artist.slug, notice: 'Track was successfully created.'}, status: :created, location: artist_album_track_url(@track.artist, @track.album, @track) }
+        format.json { render json: {track: @track.slug, album: @track.album.slug, artist: @track.artist.slug, notice: 'Track was successfully created.'}, status: :created, location: @track }
       else
         format.json { render json: { errors: @track.errors.full_messages }, status: :unprocessable_entity }
       end
@@ -71,7 +71,7 @@ class TracksController < ApplicationController
     @track.slug = nil
     respond_to do |format|
       if @track.update(track_params)
-        format.json { render json: {track: @track.slug, album: @track.album.slug, artist: @track.artist.slug, notice: 'Track was successfully updated.'}, status: :ok, location: artist_album_track_url(@track.artist, @track.album, @track) }
+        format.json { render json: {track: @track.slug, album: @track.album.slug, artist: @track.artist.slug, notice: 'Track was successfully updated.'}, status: :ok, location: @track }
       else
         format.json { render json: { errors: @track.errors.full_messages }, status: :unprocessable_entity }
       end
@@ -83,7 +83,6 @@ class TracksController < ApplicationController
   def destroy
     @track.destroy
     respond_to do |format|
-      format.html { redirect_to tracks_url, notice: 'Track was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
