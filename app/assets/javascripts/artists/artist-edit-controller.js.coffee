@@ -1,5 +1,5 @@
 angular.module('artists').controller('ArtistEditController', ['$scope', '$http', '$routeParams', '$location', 'flash', ($scope, $http, $routeParams, $location, flash) ->
-  $http.get("/artists/#{$routeParams.artist}")
+  $http.get("/artists/#{$routeParams.artist}.json")
     .success( (data) ->
       $scope.artist = data
     )

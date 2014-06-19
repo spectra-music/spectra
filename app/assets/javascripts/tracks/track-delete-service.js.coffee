@@ -4,7 +4,7 @@ angular.module('tracks').service('trackDelete', ['$rootScope', '$http', '$window
 
     if deleteTrack
       $http.delete(
-        "/artists/#{track.artist.friendly_id}/albums/#{track.album.friendly_id}/tracks/#{track.friendly_id}"
+        "/tracks/#{track.friendly_id}"
       ).success( () ->
         flash.success.setMessage('Track was successfully deleted.')
         scope.tracks.splice(scope.tracks.indexOf(track), 1)

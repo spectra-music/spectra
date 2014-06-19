@@ -51,7 +51,7 @@
             a ng-href='#!/artists/{{ track.artist.friendly_id }}/albums/{{ track.album.friendly_id }}/tracks/{{ track.friendly_id }}/edit'
               | Edit
           td
-            a ng-href='' ng-click='deleteTrack(track)' Delete
+            a ng-href='#' ng-click='deleteTrack(track)' Delete
   br
   a.pure-button.pure-button-primary ng-href='{{ newPath }}'
     | New Track

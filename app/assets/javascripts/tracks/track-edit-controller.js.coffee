@@ -3,7 +3,7 @@ angular.module('tracks').controller('TrackEditController', ['$q', '$scope', '$ht
   albums = $http.get("/albums")
   artists = $http.get("/artists")
   genres = $http.get("/genres")
-  track  = $http.get("/artists/#{$routeParams.artist}/albums/#{$routeParams.album}/tracks/#{$routeParams.track}")
+  track  = $http.get("/tracks/#{$routeParams.track}")
 
   $q.all([track, artists, albums, genres]).then((promises) ->
     $scope.track = promises[0].data
@@ -22,11 +22,12 @@ angular.module('tracks').controller('TrackEditController', ['$q', '$scope', '$ht
     $scope.params = {
       track: $scope.track,
       album: $scope.track.album,
-      artist: $scope.track.artist
+      artist: $scope.track.artist,
+      genres: $scope.track.genres
     }
     $scope.params.track.date = moment($scope.date.getDate()).format('YYYY-MM-DD')
     $http.put(
-      "/artists/#{$routeParams.artist}/albums/#{$routeParams.album}/tracks/#{$routeParams.track}",
+      "/tracks/#{$routeParams.track}.json",
       $scope.params
     ).success( (data) ->
       flash.success.setMessage(data.notice)
