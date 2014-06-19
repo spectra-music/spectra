@@ -9,7 +9,7 @@ Spectra is a deployed music hosting system. It sits on your server or NAS, with 
 easy transparent access to data and metadata. 
 
 ## Core ideals
-- APIs should be clean, and RESTful.
+- [APIs](http://docs.spectra.apiary.io/) should be clean, and RESTful.
 - Music formats shouldn't matter, because it's just data.
 - Decoding should be done at the most powerful location: the client
 - Deployable anywhere, from a laptop to a large-scale NAS
