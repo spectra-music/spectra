@@ -192,23 +192,6 @@ A genre stores all the information related to a genre. A genre is created when t
             "friendly_id": "electronic",
             "name": "Electronic"
         }
-        
-### Update a genre [PUT]
-+ Request (application/json)
-
-        {
-            "friendly_id": "wrong-id",
-            "genre": {
-                "name": "Electronic"
-            }
-        }
-        
-+ Response 200
-    
-        {
-            "notice": "The genere was successfully updated",
-            "genre": "electronic"
-        }
 
 # Group Playlists
 This will be filled in once we have implemented playlists
