@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'welcome#index'
+  root 'home#index'
   get 'import', to: 'import#index'
   get 'import/add', to: 'import#add'
 
