@@ -47,7 +47,7 @@ class Track < ActiveRecord::Base
                     }
   scope :artist, -> artist { includes(:artist).where('artists.slug = ? ', artist).references(:artist) }
   scope :genre, -> genre { includes(:genres).where('genres.slug = ? ', genre).references(:genres) }
-  scope :album, -> genre { includes(:album).where('albums.slug = ? ', albums).references(:album) }
+  scope :album, -> album { includes(:album).where('albums.slug = ? ', album).references(:album) }
   scope :rating, -> rating { where(rating: rating) }
   scope :format, -> format { where(format: format) }
   scope :year, -> year { where("date >= ? and date <= ?", "#{year}-01-01", "#{year}-12-31")}
