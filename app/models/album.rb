@@ -15,7 +15,7 @@ class Album < ActiveRecord::Base
                                       thumb: '100x100>'}
 
 
-  friendly_id :title, use: [:slugged, :finders], sequence_separator: '_'
+  friendly_id :slug_candidates, use: [:slugged, :finders]
 
   # Name is another way of getting title
   alias_attribute :name, :title
@@ -57,6 +57,14 @@ class Album < ActiveRecord::Base
   scope :rating, -> rating { where(rating: rating) }
   scope :is_compilation, -> { where(is_compilation: true) }
   scope :year, -> year { where("release_date >= ? and release_date <= ?", "#{year}-01-01", "#{year}-12-31")}
+
+  def slug_candidates
+    [
+      :title,
+      [:title, :artist],
+      [:title, :artist, :release_year]
+    ]
+  end
 
   def num_tracks
     tracks.count

@@ -4,7 +4,7 @@ class Track < ActiveRecord::Base
   belongs_to :album
   has_and_belongs_to_many :genres
 
-  friendly_id :title, use: [:slugged, :finders], sequence_separator: '_'
+  friendly_id :slug_candidates, use: [:slugged, :finders], sequence_separator: '_'
 
   # Ensure a track has a title, artist, album,
   # track_id, and location exist
@@ -51,4 +51,12 @@ class Track < ActiveRecord::Base
   scope :rating, -> rating { where(rating: rating) }
   scope :format, -> format { where(format: format) }
   scope :year, -> year { where("date >= ? and date <= ?", "#{year}-01-01", "#{year}-12-31")}
+
+  def slug_candidates
+    [
+      :title,
+      [:title, :artist],
+      [:title, :album, :artist ]
+    ]
+  end
 end
