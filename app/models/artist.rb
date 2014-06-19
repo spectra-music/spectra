@@ -15,4 +15,6 @@ class Artist < ActiveRecord::Base
                       greater_than_or_equal_to: 0,
                       less_than_or_equal_to: 5
                     }
+
+  scope :rating, -> rating { where(rating: rating) }
 end

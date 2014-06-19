@@ -1,15 +1,15 @@
 class AlbumsController < ApplicationController
   before_action :set_album, only: [:show, :edit, :update, :destroy]
+  has_scope :artist
+  has_scope :genre
+  has_scope :rating
+  has_scope :is_compilation, type: :boolean
+  has_scope :year
 
-  # GET /artists/name/albums
+  # GET /albums
+  # GET /albums.json
   def index
-    if not params[:artist_id].nil?
-      @albums = Artist.find(params.permit(:artist_id)[:artist_id]).albums
-    elsif not params[:genre_id].nil?
-      @albums = Genre.find(params.permit(:genre_id)[:genre_id]).albums
-    else
-      @albums = Album.all
-    end
+    @albums = apply_scopes(Album).all
   end
 
   # GET /albums/1
@@ -24,16 +24,12 @@ class AlbumsController < ApplicationController
   # PATCH/PUT /albums/1
   # PATCH/PUT /albums/1.json
   def update
-
     @album = Album.find(params[:id])
-    unless params[:artist].nil?
-      @album.artist = Artist.find_or_initialize_by(name: params[:artist])
-      @album.artist.rating = 0 if @album.artist.rating.nil?
+    @album.artist = Artist.find_or_initialze_by(name: params[:artist]) do
+      rating = 0
     end
-    unless params[:genres].nil?
-      @album.genres = []
-      params[:genres].each { |genre| @album.genres << Genre.find_or_create_by(name: genre) }
-    end
+    @album.genres = []
+    params[:genres].each { |genre| @album.genres << Genre.find_or_initialize_by(name: genre) }
     @album.slug = nil
     respond_to do |format|
       if @album.update(album_params)

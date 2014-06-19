@@ -52,6 +52,12 @@ class Album < ActiveRecord::Base
   # Make sure our cover is an image
   validates_attachment_content_type :cover, :content_type => /\Aimage\/.*\Z/
 
+  scope :artist, -> artist { includes(:artist).where('artists.slug = ? ', artist).references(:artist) }
+  scope :genre, -> genre { includes(:genres).where('genres.slug = ? ', genre).references(:genres) }
+  scope :rating, -> rating { where(rating: rating) }
+  scope :is_compilation, -> { where(is_compilation: true) }
+  scope :year, -> year { where("release_date >= ? and release_date <= ?", "#{year}-01-01", "#{year}-12-31")}
+
   def num_tracks
     tracks.count
   end

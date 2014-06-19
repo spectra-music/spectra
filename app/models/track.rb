@@ -45,4 +45,10 @@ class Track < ActiveRecord::Base
                       greater_than_or_equal_to: 0,
                       less_than_or_equal_to: 5
                     }
+  scope :artist, -> artist { includes(:artist).where('artists.slug = ? ', artist).references(:artist) }
+  scope :genre, -> genre { includes(:genres).where('genres.slug = ? ', genre).references(:genres) }
+  scope :album, -> genre { includes(:album).where('albums.slug = ? ', albums).references(:album) }
+  scope :rating, -> rating { where(rating: rating) }
+  scope :format, -> format { where(format: format) }
+  scope :year, -> year { where("date >= ? and date <= ?", "#{year}-01-01", "#{year}-12-31")}
 end

@@ -1,10 +1,11 @@
 class ArtistsController < ApplicationController
   before_action :set_artist, only: [:show, :update]
+  has_scope :rating
 
   # GET /artists
   # GET /artists.json
   def index
-    @artists = Artist.all
+    @artists = apply_scopes(Artist).all
   end
 
   # GET /artists/chipzel

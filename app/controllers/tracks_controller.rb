@@ -1,19 +1,16 @@
 class TracksController < ApplicationController
   before_action :set_track, only: [:show, :edit, :update, :destroy]
+  has_scope :artist
+  has_scope :genre
+  has_scope :album
+  has_scope :rating
+  has_scope :format
+  has_scope :year
 
   # GET /tracks
   # GET /tracks.json
-  def all
-    @tracks = Track.all
-  end
-
   def index
-    unless (params[:artist_id].nil? or params[:album_id].nil?)
-      p = params.permit(:artist_id, :album_id)
-      @tracks = Artist.find(p[:artist_id]).albums.find(p[:album_id]).tracks
-    else
-      @tracks = Track.all
-    end
+    @tracks = apply_scopes(Track).all
   end
 
   # GET /tracks/1
