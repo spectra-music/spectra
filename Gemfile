@@ -45,6 +45,8 @@ gem 'rabl'
 # Persistent user preferences
 gem 'rails-settings-cached', '~> 0.4.1'
 
+gem 'has_scope'
+
 
 
 # In production

@@ -66,6 +66,7 @@ GEM
       rails (>= 2.3.8)
     friendly_id (5.0.4)
       activerecord (>= 4.0.0)
+    has_scope (0.5.1)
     hike (1.2.3)
     i18n (0.6.9)
     jquery-rails (3.1.0)
@@ -219,6 +220,7 @@ DEPENDENCIES
   faker
   flash_render
   friendly_id (~> 5.0.0)
+  has_scope
   jquery-rails
   momentjs-rails
   oj
