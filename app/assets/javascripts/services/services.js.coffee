@@ -1,3 +1,3 @@
 angular.module('services', ['ngResource', 'restangular']).config((RestangularProvider) ->
-  RestangularProvider.setRequestSuffix('.json')
+  # RestangularProvider.setRequestSuffix('.json')
 )
