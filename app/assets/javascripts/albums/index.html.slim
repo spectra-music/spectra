@@ -12,21 +12,21 @@
         th Title
         th Rating
         th Artist
-        th Release Year
+        th Release Date
         th colspan='2'
     tbody
       tr ng-repeat="album in albums | filter:searchText"
         td
           img ng-src='{{ album.cover }}'
         td
-          a ng-href='#!/artists/{{ album.artist.friendly_id }}/albums/{{ album.friendly_id }}/' {{ album.title }}
+          a ui-sref='albums.show({album: album.friendly_id })' {{ album.title }}
         td
          | {{ album.rating }}
         td
           a ng-href='#!/artists/{{ album.artist.friendly_id }}' {{ album.artist.name }}
         td
-          | {{ album.release_year }}
+          | {{ album.release_date }}
         td
-          a ng-href='#!/artists/{{ album.artist.friendly_id }}/albums/{{ album.friendly_id }}/edit' Edit
+          a ui-sref='albums.edit({album: album.friendly_id })' Edit
         td
           a href='' ng-click='deleteAlbum(album)' Delete

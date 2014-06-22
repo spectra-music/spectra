@@ -23,11 +23,13 @@
 #= require angular-resource
 #= require angular-route
 #= require spectra
-#= require_dir common
+#= require_tree ./common
+#= require services/services
 #= require albums/albums
 #= require artists/artists
 #= require genres/genres
 #= require tracks/tracks
+
 
 # The default require
 #= require_tree .

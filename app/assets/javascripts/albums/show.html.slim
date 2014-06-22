@@ -18,5 +18,5 @@
   p
     strong
       ' Release date:
-    | {{ album.release_year }}
-  a ng-href='#!/artists/{{ album.artist.friendly_id }}/albums/{{ album.friendly_id }}/edit' Edit
+    | {{ album.release_date }}
+  a ng-href='#!/albums/{{ album.friendly_id }}/edit' Edit

@@ -27,13 +27,12 @@ html ngapp= 'spectra'
                 a href='#!/tracks'  Tracks
               li ng-class="{ 'menu-item-divided pure-menu-selected' : isActive('/import') }"
                 a href='#!/import'  Import
-    br
     .offset
       flash-messages
-    div ng-view=''
-    .spinner ng-show='loading'
-      .rect1
-      .rect2
-      .rect3
-      .rect4
-      .rect5
+    div ui-view=''
+    / .spinner ng-show='loading'
+    /   .rect1
+    /   .rect2
+    /   .rect3
+    /   .rect4
+    /   .rect5

@@ -1,7 +1,7 @@
-angular.module('services').factory('Artist', ['$resource', ($resource)->
-  $resource('artist/:id.json', {id:'@id'}, {
-    get: {method:'GET'},
-    query: {method:'GET', isArray:true},
-    update: {method:'PUT'}
+angular.module('services').factory('ArtistFactory', ['Restangular', (Restangular)->
+  {
+    all: (success, error) -> Restangular.all('artists').getList().then(success, error),
+    one: (id, success, error) -> Restangular.one('artists', id).get().then(success, error),
+    update: (id, params, success, error) -> Restangular.one('artists', id).patch(params).then(success, error)
   }
 ])

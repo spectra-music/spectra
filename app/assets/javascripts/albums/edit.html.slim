@@ -20,7 +20,7 @@
         select#genres ng-model="album.genres" ng-options="genre for genre in genres" placeholder="Select some genres" name='genres' multiple='' selectize='{create: true}'
       .pure-control-group
         label for='rating' Rating
-        input#rating type='number' ng-model='album.rating' placeholder='0 to 5' name='rating' min='0' max='5'
+        input#rating type='number' ng-model='album.rating' placeholder='0 to 5' name='rating' min='0' max='7'
       .pure-control-group
         label for='cover' Cover Art
         input#cover type='file' ng-model='album.cover' name='cover'
