@@ -1,5 +1,3 @@
-angular.module('genres').controller('GenresIndexController', ['$scope', '$http', ($scope, $http) ->
-  $http.get('/genres').success( (data) ->
-    $scope.genres = data
-  )
+angular.module('genres').controller('GenresIndexController', ['$scope', 'GenreFactory', ($scope, GenreFactory) ->
+  GenreFactory.all (data) -> $scope.genres = data
 ])

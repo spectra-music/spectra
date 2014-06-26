@@ -1,11 +1,18 @@
-angular.module('genres', ['ngRoute', 'ngResource'])
-.config(['$routeProvider', ($routeProvider) ->
-  $routeProvider
-  .when('/genres', {
+angular.module('genres', ['ui.router'])
+.config(['$stateProvider', ($stateProvider) ->
+  $stateProvider
+  .state('genres', {
+    url: '/genres',
+    abstract: true,
+    template: '<div ui-view />'
+  })
+  .state('genres.index', {
+    url: '',
     templateUrl: '<%= asset_path("genres/index.html") %>',
     controller: 'GenresIndexController'
   })
-  .when('/genres/:genre', {
+  .state('genres.show', {
+    url: '/:genre',
     templateUrl: '<%= asset_path("genres/show.html") %>',
     controller: 'GenreShowController'
   })
