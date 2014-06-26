@@ -1,25 +1,25 @@
-angular.module('artists').controller('ArtistEditController', ['$scope', '$http', '$routeParams', '$location', 'flash', ($scope, $http, $routeParams, $location, flash) ->
-  $http.get("/artists/#{$routeParams.artist}.json")
-    .success( (data) ->
+angular.module('artists').controller('ArtistEditController',
+  ['$scope', '$http', '$stateParams', '$state', 'flash', 'ArtistFactory'
+  ($scope, $http, $stateParams, $state, flash, ArtistFactory) ->
+    ArtistFactory.one $stateParams.artist, (data) ->
       $scope.artist = data
-    )
 
-  $scope.update = () ->
-    $scope.errors = []
-    $scope.params = {
-      id: $scope.artist.friendly_id,
-      artist: {
-        name: $scope.artist.name,
-        rating: $scope.artist.rating,
+    $scope.update = () ->
+      $scope.errors = []
+      $scope.params = {
+        id: $scope.artist.friendly_id,
+        artist: {
+          name: $scope.artist.name,
+          rating: $scope.artist.rating,
+        }
       }
-    }
-    $http.put(
-      "/artists/#{$scope.artist.friendly_id}",
-      $scope.params
-    ).success( (data) ->
-      flash.success.setMessage(data.notice)
-      $location.path("/artists/#{data.artist}")
-    ).error( (data) ->
-      $scope.errors = data.errors
-    )
-])
+      success = (data) ->
+        flash.success.setMessage(data.notice)
+        $state.go("^.show", {artist: data.artist})
+      error = (errResponse) ->
+        $scope.errors = errResponse.data.errors
+
+      ArtistFactory.update($stateParams.artist, $scope.params, success, error)
+    $scope.back = () ->
+      $state.go("^.show", $stateParams)
+  ])

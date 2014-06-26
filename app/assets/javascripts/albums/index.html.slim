@@ -23,7 +23,7 @@
         td
          | {{ album.rating }}
         td
-          a ng-href='#!/artists/{{ album.artist.friendly_id }}' {{ album.artist.name }}
+          a ui-sref='artists.show({artist: album.artist.friendly_id})' {{ album.artist.name }}
         td
           | {{ album.release_date }}
         td

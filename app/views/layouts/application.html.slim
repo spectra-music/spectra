@@ -3,7 +3,6 @@ html ngapp= 'spectra'
   head
     title Spectra
     = stylesheet_link_tag    'application', media: 'all'
-    link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.8.5/css/selectize.default.css"
     = javascript_include_tag 'application'
     = csrf_meta_tags
   body ng-app='spectra'
@@ -30,9 +29,9 @@ html ngapp= 'spectra'
     .offset
       flash-messages
     div ui-view=''
-    / .spinner ng-show='loading'
-    /   .rect1
-    /   .rect2
-    /   .rect3
-    /   .rect4
-    /   .rect5
+    .spinner ng-show='loading'
+      .rect1
+      .rect2
+      .rect3
+      .rect4
+      .rect5
