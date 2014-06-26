@@ -9,11 +9,31 @@ angular.module('genres', ['ui.router'])
   .state('genres.index', {
     url: '',
     templateUrl: '<%= asset_path("genres/index.html") %>',
-    controller: 'GenresIndexController'
+    controller: 'GenreIndexController'
   })
   .state('genres.show', {
-    url: '/:genre',
-    templateUrl: '<%= asset_path("genres/show.html") %>',
-    controller: 'GenreShowController'
+    url: '/:genre?albums',
+    views: {
+      '': {
+        templateUrl: '<%= asset_path("genres/show.html") %>',
+        controller: 'GenreShowController'
+      },
+      'tracks@genres.show': {
+        templateProvider: ($http, $stateParams) ->
+          if $stateParams.albums is 'true'
+            $http.get('<%= asset_path("albums/index.html") %>').then(
+              (response) -> response.data
+            )
+          else
+            $http.get('<%= asset_path("tracks/index.html") %>').then(
+              (response) -> response.data
+            )
+        controllerProvider: ($stateParams) ->
+          if $stateParams.albums is 'true'
+            'GenreShowAlbumsController'
+          else
+            'GenreShowTracksController'
+      }
+    }
   })
 ])
