@@ -13,7 +13,7 @@
         th Rating
         th Artist
         th Release Date
-        th colspan='2'
+        th
     tbody
       tr ng-repeat="album in albums | filter:searchText"
         td
@@ -28,5 +28,3 @@
           | {{ album.release_date }}
         td
           a ui-sref='albums.edit({album: album.friendly_id })' Edit
-        td
-          a href='' ng-click='deleteAlbum(album)' Delete
