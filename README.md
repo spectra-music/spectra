@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/spectra-music/spectra.png?label=ready&title=Ready)](https://waffle.io/spectra-music/spectra)
 #Spectra
 #### Server-side music management done right
 [![Dependency Status](http://img.shields.io/gemnasium/spectra-music/spectra.svg?style=flat)](https://gemnasium.com/spectra-music/spectra)
