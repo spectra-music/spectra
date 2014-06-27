@@ -10,9 +10,12 @@
       tr
         th Name
         th Rating
+        th
     tbody
       tr ng-repeat="artist in artists | filter:searchText"
         td
-          a ng-href='#!/artists/{{artist.friendly_id}}' {{artist.name}}
+          a ui-sref='artists.show({artist: artist.friendly_id})' {{artist.name}}
         td
           | {{artist.rating}}
+        td
+          a ui-sref='artists.edit({artist: artist.friendly_id})' Edit

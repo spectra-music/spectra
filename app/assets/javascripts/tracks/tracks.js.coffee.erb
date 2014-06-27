@@ -1,27 +1,23 @@
-angular.module('tracks', ['ngRoute', 'ngResource', 'selectize', 'angularPikaday' ])
-.config(['$routeProvider', ($routeProvider) ->
-  $routeProvider
-  .when('/tracks', {
-    templateUrl: '<%= asset_path("tracks/index.html") %>',
-    controller: 'TracksIndexController'
+angular.module('tracks', ['ui.router', 'selectize', 'angularPikaday' ])
+.config(['$stateProvider', ($stateProvider) ->
+  $stateProvider
+  .state('tracks', {
+    url: '/tracks',
+    abstract: true,
+    template: '<div ui-view />'
   })
-  .when('/tracks/new', {
+  .state('tracks.index', {
+    url: '',
+    templateUrl: '<%= asset_path("tracks/index.html") %>',
+    controller: 'TrackIndexController'
+  })
+  .state('tracks.new', {
+    url: '/new',
     templateUrl: '<%= asset_path("tracks/form.html") %>',
     controller: 'TrackNewController'
   })
-  .when('/artists/:artist/albums/:album/tracks', {
-    templateUrl: '<%= asset_path("tracks/index.html") %>',
-    controller: 'ArtistAlbumTracksIndexController'
-  })
-  .when('/artists/:artist/albums/:album/tracks/new', {
-    templateUrl: '<%= asset_path("tracks/form.html") %>',
-    controller: 'TrackNewController'
-  })
-  .when('/artists/:artist/albums/:album/tracks/:track', {
-    templateUrl: '<%= asset_path("tracks/show.html") %>',
-    controller: 'ArtistAlbumTrackShowController'
-  })
-  .when('/artists/:artist/albums/:album/tracks/:track/edit', {
+  .state('tracks.edit', {
+    url: '/:track/edit',
     templateUrl: '<%= asset_path("tracks/form.html") %>',
     controller: 'TrackEditController'
   })

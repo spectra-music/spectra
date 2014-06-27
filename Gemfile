@@ -45,6 +45,8 @@ gem 'rabl'
 # Persistent user preferences
 gem 'rails-settings-cached', '~> 0.4.1'
 
+gem 'has_scope'
+
 
 
 # In production
@@ -79,6 +81,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
   # Factory girl populates our database
   gem 'factory_girl_rails'
+  #Testing angular
+  gem 'jasmine-rails'
 end
 
 group :test do

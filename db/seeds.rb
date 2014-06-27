@@ -36,7 +36,8 @@ rand = Random.new
                     rating: rand.rand(0..5),
                     album: album,
                     artist: artist,
-                    location: Faker::Internet.url
+                    location: Faker::Internet.url,
+                    date: rand.rand(Date.new(1900, 1, 1)..Date.today)
        )
       track.genres = genre
       track.save!

@@ -6,3 +6,4 @@ attributes :title, :rating,
 
 child(:artist) { attributes :name, :friendly_id }
 child(:album) { attributes :title, :friendly_id }
+child(:genres) { attributes :name, :friendly_id }

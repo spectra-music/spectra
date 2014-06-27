@@ -23,15 +23,14 @@
     tbody
         tr ng-repeat='track in tracks | filter:searchText'
           td
-            a ng-href='#!/artists/{{ track.artist.friendly_id }}/albums/{{ track.album.friendly_id }}/tracks/{{ track.friendly_id }}'
-              | {{ track.title }}
+            | {{ track.title }}
           td
             | {{ track.rating }}
           td
-            a ng-href='#!/artists/{{ track.artist.friendly_id }}'
+            a ui-sref='artists.show({artist: track.artist.friendly_id})'
               | {{ track.artist.name }}
           td
-            a ng-href='#!/artists/{{ track.artist.friendly_id }}/albums/{{ track.album.friendly_id }}'
+            a ui-sref='albums.show({album: track.album.friendly_id})'
               | {{ track.album.title }}
           td
             | {{ track.date }}
@@ -48,10 +47,10 @@
           td
             | {{ track.format }}
           td
-            a ng-href='#!/artists/{{ track.artist.friendly_id }}/albums/{{ track.album.friendly_id }}/tracks/{{ track.friendly_id }}/edit'
+            a ui-sref='tracks.edit({track: track.friendly_id})'
               | Edit
           td
-            a ng-href='' ng-click='deleteTrack(track)' Delete
+            a href='' ng-click='deleteTrack(track)' Delete
   br
-  a.pure-button.pure-button-primary ng-href='{{ newPath }}'
+  a.pure-button.pure-button-primary ui-sref='tracks.new()'
     | New Track

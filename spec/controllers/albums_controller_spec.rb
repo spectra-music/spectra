@@ -36,17 +36,18 @@ describe AlbumsController, type: :controller do
         expect_any_instance_of(Album).to receive(:update).with({ 'title' => 'Super Hexagon'})
         put :update, {id: @album.to_param,
                       format: :json,
-                      artist_id: @album.artist.to_param,
-                      album: {'title' => 'Super Hexagon'}}, valid_session
+                      artist: @album.artist.name,
+                      album: {'title' => 'Super Hexagon'},
+                      genres: []}, valid_session
       end
 
       it 'assigns the requested album as @album' do
-        put :update, {id: @album.to_param, artist_id: @album.artist.to_param, album: attributes_for(:album), artist: @album.artist.name, format: :json}, valid_session
+        put :update, {id: @album.to_param, album: attributes_for(:album), artist: @album.artist.name, format: :json}, valid_session
         expect(assigns(:album)).to eq(@album)
       end
 
       it 'redirects to the album' do
-        put :update, {id: @album.to_param, artist_id: @album.artist.to_param, album: attributes_for(:album), artist: @album.artist.name, format: :json}, valid_session
+        put :update, {id: @album.to_param, album: attributes_for(:album), artist: @album.artist.name, format: :json}, valid_session
         expect(response).to be_ok
       end
     end
@@ -65,14 +66,6 @@ describe AlbumsController, type: :controller do
         put :update, {id: @album.to_param, artist_id: @album.artist.to_param, album: {'title' => ''}, artist: @album.artist.name, format: :json}, valid_session
         expect(response).to be_unprocessable
       end
-    end
-  end
-
-  describe 'DELETE destroy' do
-    it 'destroys the requested album' do
-      expect {
-        delete :destroy, {id: @album.to_param, artist_id: @album.artist.to_param, format: :json }, valid_session
-      }.to change(Album, :count).by(-1)
     end
   end
 
