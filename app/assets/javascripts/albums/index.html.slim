@@ -1,0 +1,30 @@
+.header
+  h1 All Albums
+.content ng-hide='loading || !albums'
+  form.pure-form
+    .pure-control-group
+      input.pure-input-1 ng-model="searchText" placeholder="Search"
+  br
+  table.pure-table.pure-table-bordered style='width: 100%;'
+    thead
+      tr
+        th Cover
+        th Title
+        th Rating
+        th Artist
+        th Release Date
+        th
+    tbody
+      tr ng-repeat="album in albums | filter:searchText"
+        td
+          img ng-src='{{ album.cover }}'
+        td
+          a ui-sref='albums.show({album: album.friendly_id })' {{ album.title }}
+        td
+         | {{ album.rating }}
+        td
+          a ui-sref='artists.show({artist: album.artist.friendly_id})' {{ album.artist.name }}
+        td
+          | {{ album.release_date }}
+        td
+          a ui-sref='albums.edit({album: album.friendly_id })' Edit

@@ -1,0 +1,44 @@
+angular.module('artists', ['ui.router'])
+.config(['$stateProvider', ($stateProvider) ->
+  $stateProvider
+  .state('artists', {
+    url: '/artists',
+    abstract: true,
+    template: '<div ui-view />'
+  })
+  .state('artists.index', {
+    url: '',
+    templateUrl: '<%= asset_path("artists/index.html") %>',
+    controller: 'ArtistIndexController'
+  })
+  .state('artists.show', {
+    url: '/:artist?albums',
+    views: {
+      '': {
+        templateUrl: '<%= asset_path("artists/show.html") %>',
+        controller: 'ArtistShowController'
+      },
+      'tracks@artists.show': {
+        templateProvider: ($http, $stateParams) ->
+          if $stateParams.albums is 'true'
+            $http.get('<%= asset_path("albums/index.html") %>').then(
+              (response) -> response.data
+            )
+          else
+            $http.get('<%= asset_path("tracks/index.html") %>').then(
+              (response) -> response.data
+            )
+        controllerProvider: ($stateParams) ->
+          if $stateParams.albums is 'true'
+            'ArtistShowAlbumsController'
+          else
+            'ArtistShowTracksController'
+      }
+    }
+  })
+  .state('artists.edit', {
+    url: '/:artist/edit',
+    templateUrl: '<%= asset_path("artists/edit.html") %>',
+    controller: 'ArtistEditController'
+  })
+])

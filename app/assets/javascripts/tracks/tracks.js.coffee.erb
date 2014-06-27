@@ -1,0 +1,25 @@
+angular.module('tracks', ['ui.router', 'selectize', 'angularPikaday' ])
+.config(['$stateProvider', ($stateProvider) ->
+  $stateProvider
+  .state('tracks', {
+    url: '/tracks',
+    abstract: true,
+    template: '<div ui-view />'
+  })
+  .state('tracks.index', {
+    url: '',
+    templateUrl: '<%= asset_path("tracks/index.html") %>',
+    controller: 'TrackIndexController'
+  })
+  .state('tracks.new', {
+    url: '/new',
+    templateUrl: '<%= asset_path("tracks/form.html") %>',
+    controller: 'TrackNewController'
+  })
+  .state('tracks.edit', {
+    url: '/:track/edit',
+    templateUrl: '<%= asset_path("tracks/form.html") %>',
+    controller: 'TrackEditController'
+  })
+
+])

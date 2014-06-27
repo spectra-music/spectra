@@ -6,27 +6,37 @@
 # This line is related to our Angular app, not to our
 # HomeCtrl specifically. This is basically how we tell
 # Angular about the existence of our application.
-spectra = angular.module('spectra', ['ngRoute', 'ngResource'])
+spectra = angular.module('spectra', [
+  'ui.router',
+  'services',
+  'angularFlash',
+  'import',
+  'albums',
+  'artists',
+  'genres',
+  'tracks',
+  'spinner'
+  ])
 
 # This routing directive tells Angular about the default
 # route for our application. The term "otherwise" here
 # might seem somewhat awkward, but it will make more
 # sense as we add more routes to our application.
-spectra.config(['$routeProvider', '$locationProvider', ($routeProvider, $locationProvider) ->
-  $routeProvider
-  .when('/', {
-    templateUrl: '<%= asset_path("welcome/index.html") %>',
-    controller: 'WelcomeCtrl'
+spectra.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', ($stateProvider, $locationProvider, $urlRouterProvider) ->
+  $stateProvider
+  .state('home', {
+    url: '/',
+    templateUrl: '<%= asset_path("home/index.html") %>'
   })
-  .when('/import', {
-    templateUrl: '<%= asset_path("import/index.html") %>',
-    controller: 'ImportCtrl'
-  })
-  $locationProvider.html5Mode(true)
+  $locationProvider.hashPrefix('!')
+  $urlRouterProvider.otherwise('/')
 ])
 
-spectra.config ($httpProvider) ->
+spectra.config(['$httpProvider', ($httpProvider) ->
   authToken = $("meta[name=\"csrf-token\"]").attr("content")
   $httpProvider.defaults.headers.common["X-CSRF-TOKEN"] = authToken
-
-angular.module('spectra').factory
+  $httpProvider.defaults.headers.patch = {
+      'Content-Type': 'application/json;charset=utf-8'
+  }
+  $httpProvider.interceptors.push( 'loadingSpinnerInterceptor' );
+])

@@ -1,10 +1,7 @@
 class ImportController < ApplicationController
   include ActionController::Live
 
-  # GET /import
-  # GET /import.json
   def index
-    render 'index'
   end
 
   # GET /import/add?path=

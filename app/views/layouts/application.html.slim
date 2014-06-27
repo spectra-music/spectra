@@ -6,5 +6,32 @@ html ngapp= 'spectra'
     = javascript_include_tag 'application'
     = csrf_meta_tags
   body ng-app='spectra'
-    div ng-view=''
-      = yield
+    #layout
+        /! Menu toggle
+        a#menuLink.menu-link href= "#menu"
+          /! Hamburger icon
+          span
+        #menu ng-controller="NavController"
+          .pure-menu.pure-menu-open
+            a.pure-menu-heading href="/"
+              img src= image_path('SpectraIcon.png')
+            ul
+              li ng-class="{ 'menu-item-divided pure-menu-selected' : isActive('/albums') }"
+                a href='#!/albums'  Albums
+              li ng-class="{ 'menu-item-divided pure-menu-selected' : isActive('/artists') }"
+                a href='#!/artists'  Artists
+              li ng-class="{ 'menu-item-divided pure-menu-selected' : isActive('/genres') }"
+                a href='#!/genres'   Genres
+              li ng-class="{ 'menu-item-divided pure-menu-selected' : isActive('/tracks') }"
+                a href='#!/tracks'  Tracks
+              li ng-class="{ 'menu-item-divided pure-menu-selected' : isActive('/import') }"
+                a href='#!/import'  Import
+    .offset
+      flash-messages
+    div ui-view=''
+    .spinner ng-show='loading'
+      .rect1
+      .rect2
+      .rect3
+      .rect4
+      .rect5

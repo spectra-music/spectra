@@ -19,6 +19,7 @@ FactoryGirl.define do
     rating 5
     num_discs 1
     is_compilation false
+    release_date Date.new(2013, 9, 1)
     initialize_with { Album.find_or_create_by(title: title)}
     factory :album_with_tracks do
       after :create do |album, evaluator|

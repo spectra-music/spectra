@@ -1,0 +1,9 @@
+div
+  .pure-alert ng-show="flash.notice.getMessage()"
+    | {{ flash.notice.getMessage() }}
+  .pure-alert.pure-alert-success ng-show="flash.success.getMessage()"
+    | {{ flash.success.getMessage() }}
+  .pure-alert.pure-alert-warning ng-show="flash.warning.getMessage()"
+    | {{ flash.warning.getMessage() }}
+  .pure-alert.pure-alert-error ng-show="flash.error.getMessage()"
+    | {{ flash.error.getMessage() }}

@@ -1,0 +1,25 @@
+angular.module('albums', ['ui.router', 'selectize', 'angularPikaday'])
+.config(['$stateProvider', ($stateProvider) ->
+  $stateProvider
+  .state('albums', {
+    url: '/albums',
+    abstract: true,
+    template: '<div ui-view />'
+  })
+  .state('albums.index', {
+    url: '',
+    templateUrl: '<%= asset_path("albums/index.html") %>',
+    controller: 'AlbumIndexController'
+  })
+  .state('albums.show', {
+    url: '/:album',
+    templateUrl: '<%= asset_path("albums/show.html") %>',
+    controller: 'AlbumShowController'
+  })
+  .state('albums.edit', {
+    url: '/:album/edit',
+    templateUrl: '<%= asset_path("albums/edit.html") %>',
+    controller: 'AlbumEditController'
+  })
+])
+

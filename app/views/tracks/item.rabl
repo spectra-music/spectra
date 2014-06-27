@@ -2,6 +2,8 @@ attributes :title, :rating,
            :date, :format,
            :bitrate, :lyrics,
            :track_id, :disc_id,
+           :location, :friendly_id
 
-glue(:artist) { attribute name: :artist }
-glue(:album) { attribute title: :album }
+child(:artist) { attributes :name, :friendly_id }
+child(:album) { attributes :title, :friendly_id }
+child(:genres) { attributes :name, :friendly_id }

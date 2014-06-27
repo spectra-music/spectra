@@ -1,0 +1,67 @@
+.content
+  p
+    strong
+      ' Title:
+    | {{ album.title }}
+  p
+    strong
+      ' Artist:
+    | {{ album.artist.name }}
+  p
+    strong
+      ' Rating:
+    | {{ album.rating }}
+  p
+    strong
+      ' Art:
+    img ng-src='{{ album.cover }}'
+  p
+    strong
+      ' Release date:
+    | {{ album.release_date }}
+  a ng-href='#!/albums/{{ album.friendly_id }}/edit' Edit
+  table.pure-table.pure-table-bordered
+      thead
+        tr
+          th Title
+          th Rating
+          th Artist
+          th Album
+          th Date
+          th Location
+          th Bitrate
+          th Lyrics
+          th Track
+          th Disc
+          th Format
+          th colspan='1'
+      tbody
+          tr ng-repeat='track in tracks | filter:searchText'
+            td
+              a ng-href='#!/artists/{{ track.artist.friendly_id }}/albums/{{ track.album.friendly_id }}/tracks/{{ track.friendly_id }}'
+                | {{ track.title }}
+            td
+              | {{ track.rating }}
+            td
+              a ng-href='#!/artists/{{ track.artist.friendly_id }}'
+                | {{ track.artist.name }}
+            td
+              a ng-href='#!/artists/{{ track.artist.friendly_id }}/albums/{{ track.album.friendly_id }}'
+                | {{ track.album.title }}
+            td
+              | {{ track.date }}
+            td
+              | {{ track.location }}
+            td
+              | {{ track.bitrate }}
+            td
+              | {{ track.lyrics }}
+            td
+              | {{ track.track_id }}
+            td
+              | {{ track.disc_id }}
+            td
+              | {{ track.format }}
+            td
+              a ng-href='#!/artists/{{ track.artist.friendly_id }}/albums/{{ track.album.friendly_id }}/tracks/{{ track.friendly_id }}/edit'
+                | Edit

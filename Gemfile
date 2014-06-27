@@ -16,21 +16,25 @@ gem 'angularjs-rails'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # purecss for styling
-gem 'purecss'
+gem 'purecss', '~> 0.5.0'
 # selectize for intelligent select boxes
 gem 'selectize-rails'
-# paloma for page-specific javascript
-gem 'paloma'
+# pikaday and moment for date select
+gem 'pikaday-gem'
+gem 'momentjs-rails'
+
+gem 'underscore-rails'
+
 # SLIM for markup
 gem 'slim'
 gem 'slim-rails'
 gem 'flash_render'
+
 # taglib for reading ID3
 gem 'taglib-ruby'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
 
 # Friendly stubs for a verbose api
 gem 'friendly_id', '~> 5.0.0'
@@ -38,6 +42,10 @@ gem 'friendly_id', '~> 5.0.0'
 gem 'paperclip', '~> 4.1'
 # RABL helps us build better APIs
 gem 'rabl'
+# Persistent user preferences
+gem 'rails-settings-cached', '~> 0.4.1'
+
+gem 'has_scope'
 
 
 
@@ -63,6 +71,7 @@ group :development do
   gem 'spring'
   # Pry offers a better rails console
   gem 'pry-rails'
+  gem 'faker'
 end
 
 group :development, :test do
@@ -72,6 +81,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
   # Factory girl populates our database
   gem 'factory_girl_rails'
+  #Testing angular
+  gem 'jasmine-rails'
 end
 
 group :test do
