@@ -1,5 +1,5 @@
 angular.module('artists').controller('ArtistEditController',
-  ['$scope', '$http', '$stateParams', '$state', 'flash', 'ArtistFactory'
+  ['$scope', '$http', '$stateParams', '$state', 'flash', 'ArtistFactory',
   ($scope, $http, $stateParams, $state, flash, ArtistFactory) ->
     ArtistFactory.one $stateParams.artist, (data) ->
       $scope.artist = data

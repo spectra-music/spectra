@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
   root to: 'home#index'
   get 'import', to: 'import#index'
   get 'import/add', to: 'import#add'
