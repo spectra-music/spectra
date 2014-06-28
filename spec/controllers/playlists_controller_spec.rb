@@ -23,13 +23,11 @@ describe PlaylistsController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # Playlist. As you add validations to Playlist, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:valid_attributes) do
+    { name: "Hip and Happening"}
+  end
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:invalid_attributes) { {name: ''} }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
