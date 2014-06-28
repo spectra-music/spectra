@@ -5,8 +5,8 @@ class Track < ActiveRecord::Base
   has_and_belongs_to_many :genres
   has_many :playlist_tracks
 
-  has_many :playlists, through: :tracks, source: :playable, :source_type => 'Playlist'
-  has_many :flexlists, through: :tracks, source: :playable, :source_type => 'Flexlist'
+  has_many :playlists, through: :playlist_tracks, source: :playable, :source_type => 'Playlist'
+  has_many :flexlists, through: :playlist_tracks, source: :playable, :source_type => 'Flexlist'
 
   friendly_id :slug_candidates, use: [:slugged, :finders]
 
