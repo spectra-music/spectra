@@ -3,5 +3,6 @@
 FactoryGirl.define do
   factory :playlist do
     name "MyString"
+    initialize_with { Playlist.find_or_create_by(name: name) }
   end
 end

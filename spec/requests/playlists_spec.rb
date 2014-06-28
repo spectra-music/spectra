@@ -1,6 +1,6 @@
-require 'rails_helper'
+require 'spec_helper'
 
-RSpec.describe "Playlists", :type => :request do
+describe "Playlists", type: :request do
   describe "GET /playlists" do
     it "works! (now write some real specs)" do
       get playlists_path

@@ -1,6 +1,6 @@
-require 'rails_helper'
+require 'spec_helper'
 
-RSpec.describe "Flexlists", :type => :request do
+describe "Flexlists", type: :request do
   describe "GET /flexlists" do
     it "works! (now write some real specs)" do
       get flexlists_path

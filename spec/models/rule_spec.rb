@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe Playlist, type: :model do
+describe Rule, :type => :model do
   pending "add some examples to (or delete) #{__FILE__}"
 end
