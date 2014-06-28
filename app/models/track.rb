@@ -5,9 +5,10 @@ class Track < ActiveRecord::Base
   has_and_belongs_to_many :genres
   has_many :playlist_tracks
 
-  has_many :playlists, through: :tracks
+  has_many :playlists, through: :tracks, source: :playable, :source_type => 'Playlist'
+  has_many :flexlists, through: :tracks, source: :playable, :source_type => 'Flexlist'
 
-  friendly_id :slug_candidates, use: [:slugged, :finders], sequence_separator: '_'
+  friendly_id :slug_candidates, use: [:slugged, :finders]
 
   # Ensure a track has a title, artist, album,
   # track_id, and location exist
