@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140628031625) do
+ActiveRecord::Schema.define(version: 20140628203826) do
 
   create_table "albums", force: true do |t|
     t.string   "title"
@@ -90,7 +90,10 @@ ActiveRecord::Schema.define(version: 20140628031625) do
     t.string   "value_end"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "flexlist_id"
   end
+
+  add_index "rules", ["flexlist_id"], name: "index_rules_on_flexlist_id"
 
   create_table "settings", force: true do |t|
     t.string   "var",                   null: false
