@@ -5,7 +5,8 @@ module Playable
     has_many :playlist_tracks, as: :playable
     has_many :tracks, through: :playlist_tracks
 
-    validates :name, uniqueness: true
+    validates :name, presence: true,
+                     uniqueness: { case_sensitive: false }
   end
 
 end
