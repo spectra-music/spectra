@@ -101,14 +101,14 @@ describe FlexlistsController, type: :controller do
   describe "PUT update" do
     describe "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        { name: "Super Current" }
       }
 
       it "updates the requested flexlist" do
         flexlist = Flexlist.create! valid_attributes
         put :update, {:id => flexlist.to_param, :flexlist => new_attributes}, valid_session
         flexlist.reload
-        skip("Add assertions for updated state")
+        expect(flexlist.name).to eq("Super Current")
       end
 
       it "assigns the requested flexlist as @flexlist" do

@@ -101,14 +101,14 @@ describe PlaylistsController, type: :controller do
   describe "PUT update" do
     describe "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        { name: "Super Current" }
       }
 
       it "updates the requested playlist" do
         playlist = Playlist.create! valid_attributes
         put :update, {:id => playlist.to_param, :playlist => new_attributes}, valid_session
         playlist.reload
-        skip("Add assertions for updated state")
+        expect(playlist.name).to eq("Super Current")
       end
 
       it "assigns the requested playlist as @playlist" do
