@@ -5,6 +5,8 @@
 [![Code Climate](https://img.shields.io/codeclimate/github/spectra-music/spectra.png?style=flat)](https://codeclimate.com/github/spectra-music/spectra)
 [![Coverage](https://img.shields.io/codeclimate/coverage/github/spectra-music/spectra.png?style=flat)](https://codeclimate.com/github/spectra-music/spectra)
 [![Gitter](http://img.shields.io/badge/Gitter-spectra--music %2F spectra-1DD873.svg?style=flat)](https://gitter.im/spectra-music/spectra)  
+[![Stories in Ready](https://badge.waffle.io/spectra-music/spectra.png?label=ready&title=Ready)](https://waffle.io/spectra-music/spectra)
+
 Spectra is a deployed music hosting system. It sits on your server or NAS, with access to your music files, and allows
 easy transparent access to data and metadata. 
 
