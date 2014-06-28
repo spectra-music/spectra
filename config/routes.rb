@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :flexlists
-
-  resources :playlists
-
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
   root to: 'home#index'
   get 'import', to: 'import#index'
@@ -22,4 +18,8 @@ Rails.application.routes.draw do
       get :data
     end
   end
+
+  resources :flexlists
+
+  resources :playlists
 end

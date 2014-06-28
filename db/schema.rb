@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140628203826) do
+ActiveRecord::Schema.define(version: 20140628204310) do
 
   create_table "albums", force: true do |t|
     t.string   "title"
@@ -52,7 +52,10 @@ ActiveRecord::Schema.define(version: 20140628203826) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
   end
+
+  add_index "flexlists", ["slug"], name: "index_flexlists_on_slug", unique: true
 
   create_table "genres", force: true do |t|
     t.string   "name"
@@ -81,7 +84,10 @@ ActiveRecord::Schema.define(version: 20140628203826) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "slug"
   end
+
+  add_index "playlists", ["slug"], name: "index_playlists_on_slug", unique: true
 
   create_table "rules", force: true do |t|
     t.string   "field"
