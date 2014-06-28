@@ -194,7 +194,35 @@ A genre stores all the information related to a genre. A genre is created when t
         }
 
 # Group Playlists
-This will be filled in once we have implemented playlists
+Playlists sotre information about a playlists. They have a name and a collection of tracks. They can exist without associated tracks.
+
+## playlists [/playlists]
+
+### Get all of the playlists [GET]
++ Response 200 (application/json)
+
+        [{ 
+            "name": "Hip and Happening",
+            "friendly_id": "hip-and-happening",
+        },
+        {
+            "name": "Super Current",
+            "friendly_id": "super-current"
+        }]
+
+### Create a new playlist [POST]
++ Request  (application/json)
+
+        {
+            "name": "Hip and Happening"
+        }
+        
++ Response 201 (application/json)
+        
+        {
+            "notice": "Playlist was successfully created"
+            "playlist": "hip-and-happening"
+        }
 
 # Group Tracks
 
@@ -207,6 +235,8 @@ Tracks store information based on the tack. The data stored is limited by ID3.  
     + artist (optional, string) ... Filter by an artist friendly_id
     + album (optional, string) ... Filter by an album
     + genre (optional, string) ... Filter by genre friendly_id
+    + playlist (optional, string) ... Filter by playlist friendly_id
+    + flexlist (optional, string) ... Filter by flexlist friendly_id
     + rating (optional, number) ... Filter by rating
     + year (optional, number) ... Filter by release year
     + format (optional, number) ... Filter by format
