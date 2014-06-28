@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :playlists
+
   mount JasmineRails::Engine => '/specs' if defined?(JasmineRails)
   root to: 'home#index'
   get 'import', to: 'import#index'
