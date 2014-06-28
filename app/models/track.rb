@@ -3,6 +3,9 @@ class Track < ActiveRecord::Base
   belongs_to :artist
   belongs_to :album
   has_and_belongs_to_many :genres
+  has_many :playlist_tracks
+
+  has_many :playlists, through: :tracks
 
   friendly_id :slug_candidates, use: [:slugged, :finders], sequence_separator: '_'
 
