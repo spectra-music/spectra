@@ -43,4 +43,6 @@ rand = Random.new
       track.save!
     end
   end
+
+  Playlist.create(name: 'Queue')
 end
