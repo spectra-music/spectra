@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140628003151) do
+ActiveRecord::Schema.define(version: 20140628025417) do
 
   create_table "albums", force: true do |t|
     t.string   "title"
@@ -48,6 +48,12 @@ ActiveRecord::Schema.define(version: 20140628003151) do
   add_index "artists", ["name"], name: "index_artists_on_name", unique: true
   add_index "artists", ["slug"], name: "index_artists_on_slug", unique: true
 
+  create_table "flexlists", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "genres", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -60,6 +66,15 @@ ActiveRecord::Schema.define(version: 20140628003151) do
   create_table "genres_tracks", id: false, force: true do |t|
     t.integer "genre_id", null: false
     t.integer "track_id", null: false
+  end
+
+  create_table "playlist_tracks", force: true do |t|
+    t.integer  "track_num"
+    t.integer  "track_id"
+    t.integer  "playable_id"
+    t.string   "playable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "playlists", force: true do |t|

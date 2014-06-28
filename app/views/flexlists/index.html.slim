@@ -1,0 +1,21 @@
+h1 Listing flexlists
+
+table
+  thead
+    tr
+      th Name
+      th
+      th
+      th
+
+  tbody
+    - @flexlists.each do |flexlist|
+      tr
+        td = flexlist.name
+        td = link_to 'Show', flexlist
+        td = link_to 'Edit', edit_flexlist_path(flexlist)
+        td = link_to 'Destroy', flexlist, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Flexlist', new_flexlist_path

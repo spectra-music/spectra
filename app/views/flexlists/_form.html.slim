@@ -1,0 +1,12 @@
+= form_for @flexlist do |f|
+  - if @flexlist.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@flexlist.errors.count, "error")} prohibited this flexlist from being saved:"
+      ul
+        - @flexlist.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .actions = f.submit 'Save'
