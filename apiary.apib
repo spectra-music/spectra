@@ -211,10 +211,12 @@ Playlists sotre information about a playlists. They have a name and a collection
         }]
 
 ### Create a new playlist [POST]
-+ Request  (application/json)
++ Request (application/json)
 
         {
-            "name": "Hip and Happening"
+            "playlist": {
+                "name": "Hip and Happening"
+            }
         }
         
 + Response 201 (application/json)
@@ -223,6 +225,41 @@ Playlists sotre information about a playlists. They have a name and a collection
             "notice": "Playlist was successfully created"
             "playlist": "hip-and-happening"
         }
+
+## playlists/:id [/playlists/{id}]
+
+### Get a playlist [GET]
++ Response 200 (application/json)
+
+        {
+            "name": "Hip and Happening",
+            "friendly_id": "hip-and-happening"
+        }
+
+### Upadate a playlist [PUT]
+
++ Request (application/json)
+
+        {
+            "friendly_id": "wrong-id",
+            "playlist": {
+                "name": "Hip and Happening"
+            },
+            "tracks": [ 
+                "let-it-go", 
+                "colors-of-the-wind"
+            ]
+        }
+
++ Response 200 (application/json)
+
+        {   
+            "notice": "Playlist was successfully updated",
+            "playlist": "hip-and-happening"
+        }
+
+### Delete a playlist [DELETE]
++ Response 204 (application/json)
 
 # Group Tracks
 
