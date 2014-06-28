@@ -4,10 +4,10 @@
   form.pure-form.pure-form-aligned
     .fieldset
       .pure-control-group
-        = label_tag(:path, "Import path:")
-        = text_field_tag(:path)
+        label for='path' Import Path
+        input type='text' id='path'
       .pure-controls
-        = submit_tag("Import", class: "pure-button pure-button-primary")
+        button.pure-button.pure-button-primary type='submit' Import
 
 javascript:
   $('form').submit(function(event) {
