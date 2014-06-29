@@ -6,6 +6,8 @@ class Playlist < ActiveRecord::Base
 
   has_many :queue_tracks, class_name: 'PlaylistTrack', foreign_key: :queue_id
 
+  validate :must_be_queue_to_have_queue_tracks
+
   # Adds an Track or any model that contains tracks to a playlist
   def add(item)
     case item
@@ -14,6 +16,10 @@ class Playlist < ActiveRecord::Base
     else
       tracks.concat(item.tracks)
     end
+  end
+
+  def must_be_queue_to_have_queue_tracks
+    errors.add(:playlist, 'must be the queue to have queue tracks' ) if id != 1 and not queue_tracks.empty?
   end
 
 end

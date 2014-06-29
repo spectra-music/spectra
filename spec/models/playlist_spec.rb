@@ -7,6 +7,19 @@ describe Playlist, type: :model do
   it { should validate_presence_of(:name) }
   it { should validate_uniqueness_of(:name).case_insensitive }
 
+  it 'should validate queue tracks existence' do
+    good = create(:playlist)
+    bad = create(:playlist)
+    bad.id = 2
+
+    track = create(:playlist_track)
+
+    good.queue_tracks << track
+    bad.queue_tracks << track
+
+    expect(good).to be_valid
+    expect(bad).to_not be_valid
+  end
   context 'when adding tracks' do
     subject(:playlist) { create(:playlist) }
     it 'should allow adding a single track' do
