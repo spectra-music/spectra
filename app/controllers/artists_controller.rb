@@ -17,12 +17,11 @@ class ArtistsController < ApplicationController
   # PATCH/PUT /artists/chipzel.json
   def update
     @artist.slug = nil
-    respond_to do |format|
-      if @artist.update(artist_params)
-        format.json { render json: {artist: @artist.friendly_id, notice: 'Artist was successfully updated.'}, status: :ok, location: @artist }
-      else
-        format.json { render json: { errors: @artist.errors.full_messages }, status: :unprocessable_entity }
-      end
+
+    if @artist.update(artist_params)
+      render json: {artist: @artist.friendly_id, notice: 'Artist was successfully updated.'}, status: :ok, location: @artist
+    else
+      render json: { errors: @artist.errors.full_messages }, status: :unprocessable_entity
     end
   end
 

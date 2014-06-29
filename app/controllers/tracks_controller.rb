@@ -42,12 +42,10 @@ class TracksController < ApplicationController
       album.rating = 0
     end
 
-    respond_to do |format|
-      if @track.save
-        format.json { render json: {track: @track.slug, album: @track.album.slug, artist: @track.artist.slug, notice: 'Track was successfully created.'}, status: :created, location: @track }
-      else
-        format.json { render json: { errors: @track.errors.full_messages }, status: :unprocessable_entity }
-      end
+    if @track.save
+      render json: {track: @track.slug, album: @track.album.slug, artist: @track.artist.slug, notice: 'Track was successfully created.'}, status: :created, location: @track
+    else
+      render json: { errors: @track.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
@@ -69,12 +67,10 @@ class TracksController < ApplicationController
       params[:genres].each { |genre| @track.genres << Genre.find_or_create_by(name: genre) }
     end
     @track.slug = nil
-    respond_to do |format|
-      if @track.update(track_params)
-        format.json { render json: {track: @track.slug, album: @track.album.slug, artist: @track.artist.slug, notice: 'Track was successfully updated.'}, status: :ok, location: @track }
-      else
-        format.json { render json: { errors: @track.errors.full_messages }, status: :unprocessable_entity }
-      end
+    if @track.update(track_params)
+      render json: {track: @track.slug, album: @track.album.slug, artist: @track.artist.slug, notice: 'Track was successfully updated.'}, status: :ok, location: @track
+    else
+      render json: { errors: @track.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
@@ -82,9 +78,7 @@ class TracksController < ApplicationController
   # DELETE /tracks/1.json
   def destroy
     @track.destroy
-    respond_to do |format|
-      format.json { head :no_content }
-    end
+    head :no_content
   end
 
   def data

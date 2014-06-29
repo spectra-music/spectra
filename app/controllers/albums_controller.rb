@@ -24,7 +24,6 @@ class AlbumsController < ApplicationController
   # PATCH/PUT /albums/1
   # PATCH/PUT /albums/1.json
   def update
-    @album = Album.find(params[:id])
     @album.artist = Artist.find_or_initialize_by(name: params[:artist]) do
       rating = 0
     end
@@ -33,13 +32,12 @@ class AlbumsController < ApplicationController
       params[:genres].each { |genre| @album.genres << Genre.find_or_initialize_by(name: genre) }
     end
     @album.slug = nil
-    respond_to do |format|
-      if @album.update(album_params)
-        format.json { render json: {album: @album.slug, artist: @album.artist.slug, notice: 'Album was successfully updated.'} , status: :ok, location: @album }
-      else
-        format.json { render json: { errors: @album.errors.full_messages }, status: :unprocessable_entity }
-      end
+    if @album.update(album_params)
+      render json: {album: @album.slug, artist: @album.artist.slug, notice: 'Album was successfully updated.'} , status: :ok, location: @album
+    else
+      render json: { errors: @album.errors.full_messages }, status: :unprocessable_entity
     end
+
   end
 
   private
