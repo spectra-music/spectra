@@ -24,25 +24,33 @@ class PlaylistsController < ApplicationController
     @playlist = Playlist.new(playlist_params)
 
     if @playlist.save
-      redirect_to @playlist, notice: 'Playlist was successfully created.'
+      render json: { playlist: @playlist.slug, notice: 'Playlist was successfully created.' }, status: :created, location: @playlist
     else
-      render :new
+      render json: { errors: @playlist.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /playlists/1
   def update
+    @playlist.tracks = []
+
+    params[:tracks].each_with_index do |track, i|
+      pt = PlaylisTrack.new(track_num: i+1)
+      pt.track = Track.find(track)
+      pt.playlist = @playlist
+    end unless params[:tracks].nil?
+
     if @playlist.update(playlist_params)
-      redirect_to @playlist, notice: 'Playlist was successfully updated.'
+      render json: {playlist: @playlist.slug, notice: 'Playist was successfully updated.'}, status: :ok, location: @playlist
     else
-      render :edit
+      render json: { errors: @playlist.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
   # DELETE /playlists/1
   def destroy
     @playlist.destroy
-    redirect_to playlists_url, notice: 'Playlist was successfully destroyed.'
+    head :no_content
   end
 
   private

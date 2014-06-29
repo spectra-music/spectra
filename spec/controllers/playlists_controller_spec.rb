@@ -81,7 +81,7 @@ describe PlaylistsController, type: :controller do
 
       it "redirects to the created playlist" do
         post :create, {:playlist => valid_attributes}, valid_session
-        expect(response).to redirect_to(Playlist.last)
+        expect(response).to have_http_status(:created)
       end
     end
 
@@ -93,7 +93,7 @@ describe PlaylistsController, type: :controller do
 
       it "re-renders the 'new' template" do
         post :create, {:playlist => invalid_attributes}, valid_session
-        expect(response).to render_template("new")
+        expect(response).to be_unprocessable
       end
     end
   end
@@ -120,7 +120,7 @@ describe PlaylistsController, type: :controller do
       it "redirects to the playlist" do
         playlist = Playlist.create! valid_attributes
         put :update, {:id => playlist.to_param, :playlist => valid_attributes}, valid_session
-        expect(response).to redirect_to(playlist)
+        expect(response).to be_ok
       end
     end
 
@@ -134,7 +134,7 @@ describe PlaylistsController, type: :controller do
       it "re-renders the 'edit' template" do
         playlist = Playlist.create! valid_attributes
         put :update, {:id => playlist.to_param, :playlist => invalid_attributes}, valid_session
-        expect(response).to render_template("edit")
+        expect(response).to be_unprocessable
       end
     end
   end
@@ -150,7 +150,7 @@ describe PlaylistsController, type: :controller do
     it "redirects to the playlists list" do
       playlist = Playlist.create! valid_attributes
       delete :destroy, {:id => playlist.to_param}, valid_session
-      expect(response).to redirect_to(playlists_url)
+      expect(response).to have_http_status(:no_content)
     end
   end
 

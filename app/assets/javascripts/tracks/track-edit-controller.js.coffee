@@ -20,6 +20,7 @@ angular.module('tracks').controller('TrackEditController',
     $scope.save = ->
       $scope.errors = []
       $scope.params = {
+        id: $scope.track.friendly_id,
         track: $scope.track,
         album: $scope.track.album,
         artist: $scope.track.artist,
