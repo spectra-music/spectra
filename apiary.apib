@@ -87,7 +87,7 @@ An album stores all the information related to an album. They are created when t
 + Request (application/json)
 
         {
-            "friendly_id": "wrong-id",
+            "id": "wrong-id",
             "album":{
                 "title": "Spectra",
                 "rating": 4,
@@ -149,7 +149,7 @@ An artist stores all the information related to an artists. They can be created 
 + Request (application/json)
 
         { 
-            "friendly_id": "daf-punk",
+            "id": "daf-punk",
             "artist": {
                 "name": "Daft Punk",
                 "rating": 5
@@ -241,7 +241,7 @@ Playlists sotre information about a playlists. They have a name and a collection
 + Request (application/json)
 
         {
-            "friendly_id": "wrong-id",
+            "id": "wrong-id",
             "playlist": {
                 "name": "Hip and Happening"
             },
@@ -401,7 +401,7 @@ Tracks store information based on the tack. The data stored is limited by ID3.  
 + Request (application/json)
 
         {
-            "friendly_id": "wrong-id",
+            "id": "wrong-id",
             "track": {
                 "title": "Let It Go",
                 "date": "2013-11-25",
