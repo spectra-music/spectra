@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140628204310) do
+ActiveRecord::Schema.define(version: 20140629011530) do
 
   create_table "albums", force: true do |t|
     t.string   "title"
@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 20140628204310) do
   add_index "playlists", ["slug"], name: "index_playlists_on_slug", unique: true
 
   create_table "rules", force: true do |t|
-    t.string   "field"
+    t.integer  "field",       limit: 255
     t.integer  "type"
     t.string   "value_start"
     t.string   "value_end"
