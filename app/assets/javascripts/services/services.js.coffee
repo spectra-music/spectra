@@ -1,2 +1,1 @@
-angular.module('services', ['ngResource', 'restangular']).config((RestangularProvider) ->
-)
+angular.module('services', ['ngResource', 'restangular'])
