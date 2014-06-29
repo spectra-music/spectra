@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140629011530) do
+ActiveRecord::Schema.define(version: 20140629203426) do
 
   create_table "albums", force: true do |t|
     t.string   "title"
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 20140629011530) do
     t.string   "playable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "queue_id"
   end
 
   create_table "playlists", force: true do |t|

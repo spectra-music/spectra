@@ -4,6 +4,8 @@ class Playlist < ActiveRecord::Base
 
   friendly_id :name,  use: [:slugged, :finders]
 
+  has_many :queue_tracks, class_name: 'PlaylistTrack', foreign_key: :queue_id
+
   # Adds an Track or any model that contains tracks to a playlist
   def add(item)
     case item
