@@ -14,8 +14,8 @@ describe Playlist, type: :model do
 
     track = create(:playlist_track)
 
-    good.queue_tracks << track
-    bad.queue_tracks << track
+    good.collection_tracks << track
+    bad.collection_tracks << track
 
     expect(good).to be_valid
     expect(bad).to_not be_valid
