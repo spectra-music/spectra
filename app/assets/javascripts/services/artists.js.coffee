@@ -1,4 +1,4 @@
-angular.module('services').factory('ArtistFactory', ['Restangular', (Restangular) ->
+angular.module('services').factory('Artist', ['Restangular', (Restangular) ->
   {
     all: (success, error) -> Restangular.all('artists').getList().then(success, error),
     some: (params, success, error) -> Restangular.all('artists').getList(params).then(success, error),

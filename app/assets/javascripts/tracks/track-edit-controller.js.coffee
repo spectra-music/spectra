@@ -1,14 +1,14 @@
 angular.module('tracks').controller('TrackEditController',
-  ['$scope', '$stateParams', '$state', 'flash', 'AlbumFactory', 'TrackFactory', 'ArtistFactory', 'GenreFactory'
-  ($scope, $stateParams, $state, flash, AlbumFactory, TrackFactory, ArtistFactory, GenreFactory) ->
+  ['$scope', '$stateParams', '$state', 'flash', 'Album', 'Track', 'Artist', 'Genre'
+  ($scope, $stateParams, $state, flash, Album, Track, Artist, Genre) ->
     $scope.pageType = 'Edit'
-    AlbumFactory.all (data) ->
+    Album.all (data) ->
       $scope.albums = _.pluck(data, 'title')
-    ArtistFactory.all (data) ->
+    Artist.all (data) ->
       $scope.artists = _.pluck(data, 'name')
-    GenreFactory.all (data) ->
+    Genre.all (data) ->
       $scope.genres = _.pluck(data, 'name')
-    TrackFactory.one $stateParams.track, (data) ->
+    Track.one $stateParams.track, (data) ->
       $scope.track = data
       $scope.track.date_formatted =  moment($scope.track.date).format('MM/DD/YYYY')
       $scope.track.artist = $scope.track.artist.name
@@ -33,7 +33,7 @@ angular.module('tracks').controller('TrackEditController',
       error = (response) ->
         $scope.errors = response.data.errors
 
-      TrackFactory.update($stateParams.track, $scope.params, success, error)
+      Track.update($stateParams.track, $scope.params, success, error)
 
     $scope.back = ->
       $state.go('^.show', $stateParams)

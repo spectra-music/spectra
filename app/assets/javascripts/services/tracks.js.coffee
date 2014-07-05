@@ -1,4 +1,4 @@
-angular.module('services').service('TrackFactory', ['Restangular', (Restangular) ->
+angular.module('services').service('Track', ['Restangular', (Restangular) ->
   {
     all: (success, error) -> Restangular.all('tracks').getList().then(success, error),
     some: (params, success, error) -> Restangular.all('tracks').getList(params).then(success, error),

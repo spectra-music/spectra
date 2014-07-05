@@ -1,13 +1,13 @@
 angular.module('tracks').controller('TrackNewController',
-  ['$scope', '$state', 'flash', 'AlbumFactory', 'ArtistFactory', 'GenreFactory', 'TrackFactory',
-  ($scope, $state, flash, AlbumFactory, ArtistFactory, GenreFactory, TrackFactory) ->
+  ['$scope', '$state', 'flash', 'Album', 'Artist', 'Genre', 'Track',
+  ($scope, $state, flash, Album, Artist, Genre, Track) ->
     $scope.pageType = 'New'
     $scope.setDefaultDate = 'false'
-    AlbumFactory.all (data) ->
+    Album.all (data) ->
       $scope.albums = _.pluck(data, 'title')
-    ArtistFactory.all (data) ->
+    Artist.all (data) ->
       $scope.artists = _.pluck(data, 'name')
-    GenreFactory.all (data) ->
+    Genre.all (data) ->
       $scope.genres = _.pluck(data, 'name')
 
     $scope.track = {}
@@ -31,5 +31,5 @@ angular.module('tracks').controller('TrackNewController',
         $state.go('^.index')
       error = (response) ->
         $scope.errors = response.data.errors
-      TrackFactory.create($scope.params, success, error)
+      Track.create($scope.params, success, error)
   ])

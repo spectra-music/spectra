@@ -1,7 +1,7 @@
 angular.module('artists').controller('ArtistEditController',
-  ['$scope', '$http', '$stateParams', '$state', 'flash', 'ArtistFactory',
-  ($scope, $http, $stateParams, $state, flash, ArtistFactory) ->
-    ArtistFactory.one $stateParams.artist, (data) ->
+  ['$scope', '$http', '$stateParams', '$state', 'flash', 'Artist',
+  ($scope, $http, $stateParams, $state, flash, Artist) ->
+    Artist.one $stateParams.artist, (data) ->
       $scope.artist = data
 
     $scope.update = () ->
@@ -19,7 +19,7 @@ angular.module('artists').controller('ArtistEditController',
       error = (errResponse) ->
         $scope.errors = errResponse.data.errors
 
-      ArtistFactory.update($stateParams.artist, $scope.params, success, error)
+      Artist.update($stateParams.artist, $scope.params, success, error)
     $scope.back = () ->
       $state.go("^.show", $stateParams)
   ])

@@ -1,4 +1,4 @@
-angular.module('services').service('FlexlistFactory', ['Restangular', (Restangular) ->
+angular.module('services').service('Flexlist', ['Restangular', (Restangular) ->
   {
     all: (success, error) -> Restangular.all('flexlists').getList().then(success, error),
     one: (id, success, error) -> Restangular.one('flexlists', id).get().then(success, error),

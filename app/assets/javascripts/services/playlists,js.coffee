@@ -1,4 +1,4 @@
-angular.module('services').service('PlaylistFactory', ['Restangular', (Restangular) ->
+angular.module('services').service('Playlist', ['Restangular', (Restangular) ->
   {
     all: (success, error) -> Restangular.all('playlists').getList().then(success, error),
     one: (id, success, error) -> Restangular.one('playlists', id).get().then(success, error),

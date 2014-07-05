@@ -1,6 +1,6 @@
 angular.module('artists').controller('ArtistShowAlbumsController',
-  ['$scope', 'AlbumFactory', '$stateParams',
-  ($scope, AlbumFactory, $stateParams) ->
-    AlbumFactory.some {artist: $stateParams.artist}, (data) ->
+  ['$scope', 'Album', '$stateParams',
+  ($scope, Album, $stateParams) ->
+    Album.some {artist: $stateParams.artist}, (data) ->
       $scope.albums = data
 ])
