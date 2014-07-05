@@ -1,0 +1,42 @@
+angular.module('playlists', ['ui.router', 'selectize' ])
+.config(['$stateProvider', ($stateProvider) ->
+  $stateProvider
+  .state('playlists'
+    url: '/playlists'
+    abstract: true
+    template: '<div ui-view />'
+  )
+  .state('playlists.index'
+    url: ''
+    templateUrl: '<%= asset_path("playlists/index.html") %>'
+    controller: 'PlaylistIndexController'
+  )
+  .state('playlists.new'
+    url: '/new?type'
+    templateProvider: ($http, $stateParams) ->
+      if $stateParams.type is 'flexlist'
+        $http.get('<%= asset_path("playlists/form-flexlist.html") %>').then(response) ->
+          response.data
+      else
+        $http.get('<%= asset_path("playlists/form-playlist.html") %>').then (response) ->
+          response.data
+    controller: 'PlaylistNewController'
+  )
+  .state('playlists.show'
+    url: '/:playlist?type'
+    templateUrl: '<%= asset_path("playlists/show.html") %>'
+    controller: 'PlaylistShowController'
+  )
+  .state('playlists.edit'
+    url: '/:playlist/edit?type'
+    templateProvider: ($http, $stateParams) ->
+      if $stateParams.type is 'flexlist'
+        $http.get('<%= asset_path("playlists/form-flexlist.html") %>').then(response) ->
+          response.data
+      else
+        $http.get('<%= asset_path("playlists/form-playlist.html") %>').then(response) ->
+          response.data
+    controller: 'PlaylistEditController'
+  )
+
+])

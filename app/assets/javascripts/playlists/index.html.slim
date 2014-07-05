@@ -1,0 +1,20 @@
+.header
+  h1 All Playlists
+.content ng-hide='loading || !playlists'
+  form.pure-form
+    .pure-control-group
+      input.pure-input-1 ng-model="searchText" placeholder="Search"
+  br
+  table.pure-table.pure-table-bordered style='width: 100%;'
+    thead
+      tr
+        th Name
+        th colspan='2'
+    tbody
+      tr ng-repeat="playlist in playlists | filter:searchText"
+        td
+           a ui-sref='playlists.show({ playlist: playlist.friendly_id, type: playlist.type })'Show
+        td
+          a ui-sref='playlists.edit({ playlist: playlist.friendly_id, type: playlist.type })' Edit
+        td
+          a href='' ng-click='deletePlaylist(playlist)' Delete
