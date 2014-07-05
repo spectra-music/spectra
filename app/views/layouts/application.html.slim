@@ -17,15 +17,17 @@ html ngapp= 'spectra'
               img src= image_path('SpectraIcon.png')
             ul
               li ng-class="{ 'menu-item-divided pure-menu-selected' : isActive('/albums') }"
-                a href='#!/albums'  Albums
+                a ui-sref='albums.index' Albums
               li ng-class="{ 'menu-item-divided pure-menu-selected' : isActive('/artists') }"
-                a href='#!/artists'  Artists
+                a ui-sref='artists.index' Artists
               li ng-class="{ 'menu-item-divided pure-menu-selected' : isActive('/genres') }"
-                a href='#!/genres'   Genres
+                a ui-sref='genres.index' Genres
               li ng-class="{ 'menu-item-divided pure-menu-selected' : isActive('/tracks') }"
-                a href='#!/tracks'  Tracks
+                a ui-sref='tracks.index' Tracks
+              li ng-class="{ 'menu-item-divided pure-menu-selected' : isActive('/playlists') }"
+                a ui-sref='playlists.index' Playlists
               li ng-class="{ 'menu-item-divided pure-menu-selected' : isActive('/import') }"
-                a href='#!/import'  Import
+                a ui-sref='import' Import
     .offset
       flash-messages
     div ui-view=''

@@ -1,4 +1,4 @@
-angular.module('tracks').controller('TrackEditController',
+angular.module('tracks').controller('TrackEditController'
   ['$scope', '$stateParams', '$state', 'flash', 'Album', 'Track', 'Artist', 'Genre'
   ($scope, $stateParams, $state, flash, Album, Track, Artist, Genre) ->
     $scope.pageType = 'Edit'
@@ -19,22 +19,21 @@ angular.module('tracks').controller('TrackEditController',
 
     $scope.save = ->
       $scope.errors = []
-      $scope.params = {
-        id: $scope.track.friendly_id,
-        track: $scope.track,
-        album: $scope.track.album,
-        artist: $scope.track.artist,
+      $scope.params =
+        id: $scope.track.friendly_id
+        track: $scope.track
+        album: $scope.track.album
+        artist: $scope.track.artist
         genres: $scope.track.genres
-      }
       $scope.params.track.date = moment($scope.date.getDate()).format('YYYY-MM-DD')
       success = (data) ->
-        flash.success.setMessage(data.notice)
-        $state.go("^.index")
+        flash.success.setMessage data.notice
+        $state.go "^.index"
       error = (response) ->
         $scope.errors = response.data.errors
 
-      Track.update($stateParams.track, $scope.params, success, error)
+      Track.update $stateParams.track, $scope.params, success, error
 
     $scope.back = ->
-      $state.go('^.show', $stateParams)
+      $state.go '^.show', $stateParams
   ])

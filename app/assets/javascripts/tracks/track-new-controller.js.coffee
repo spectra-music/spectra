@@ -1,5 +1,5 @@
-angular.module('tracks').controller('TrackNewController',
-  ['$scope', '$state', 'flash', 'Album', 'Artist', 'Genre', 'Track',
+angular.module('tracks').controller('TrackNewController'
+  ['$scope', '$state', 'flash', 'Album', 'Artist', 'Genre', 'Track'
   ($scope, $state, flash, Album, Artist, Genre, Track) ->
     $scope.pageType = 'New'
     $scope.setDefaultDate = 'false'
@@ -18,12 +18,11 @@ angular.module('tracks').controller('TrackNewController',
 
     $scope.save = () ->
       $scope.errors = []
-      $scope.params = {
-        track: $scope.track,
-        album: $scope.track.album,
-        artist: $scope.track.artist,
+      $scope.params =
+        track: $scope.track
+        album: $scope.track.album
+        artist: $scope.track.artist
         genres: $scope.track.genres
-      }
       $scope.params.track.date = moment($scope.date.getDate()).format('YYYY-MM-DD')
 
       success = (data) ->

@@ -1,39 +1,35 @@
 angular.module('genres', ['ui.router'])
-.config(['$stateProvider', ($stateProvider) ->
+.config ['$stateProvider', ($stateProvider) ->
   $stateProvider
-  .state('genres', {
-    url: '/genres',
-    abstract: true,
+  .state('genres'
+    url: '/genres'
+    abstract: true
     template: '<div ui-view />'
-  })
-  .state('genres.index', {
-    url: '',
-    templateUrl: '<%= asset_path("genres/index.html") %>',
+  )
+  .state('genres.index'
+    url: ''
+    templateUrl: '<%= asset_path("genres/index.html") %>'
     controller: 'GenreIndexController'
-  })
-  .state('genres.show', {
-    url: '/:genre?albums',
-    views: {
-      '': {
-        templateUrl: '<%= asset_path("genres/show.html") %>',
+  )
+  .state('genres.show'
+    url: '/:genre?albums'
+    views:
+      '':
+        templateUrl: '<%= asset_path("genres/show.html") %>'
         controller: 'GenreShowController'
-      },
-      'tracks@genres.show': {
+      'tracks@genres.show':
         templateProvider: ($http, $stateParams) ->
           if $stateParams.albums is 'true'
-            $http.get('<%= asset_path("albums/index.html") %>').then(
-              (response) -> response.data
-            )
+            $http.get('<%= asset_path("albums/index.html") %>').then (response) ->
+              response.data
           else
-            $http.get('<%= asset_path("tracks/index.html") %>').then(
-              (response) -> response.data
-            )
+            $http.get('<%= asset_path("tracks/index.html") %>').then (response) ->
+              response.data
+
         controllerProvider: ($stateParams) ->
           if $stateParams.albums is 'true'
             'GenreShowAlbumsController'
           else
             'GenreShowTracksController'
-      }
-    }
-  })
-])
+  )
+]

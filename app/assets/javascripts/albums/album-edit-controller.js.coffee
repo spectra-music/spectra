@@ -1,6 +1,6 @@
 angular.module 'albums'
   .controller 'AlbumEditController',
-    ['$scope', '$stateParams', '$q', '$location', 'flash', 'Album', 'Artist', 'Genre',
+    ['$scope', '$stateParams', '$q', '$location', 'flash', 'Album', 'Artist', 'Genre'
     ($scope, $stateParams, $q, $location, flash, Album, Artist, Genre) ->
       Album.one $stateParams.album, (data)->
         $scope.album = data
@@ -16,18 +16,17 @@ angular.module 'albums'
 
       $scope.update = ->
         $scope.errors = []
-        $scope.params = {
+        $scope.params =
           id: $scope.album.friendly_id,
-          album: {
-            title: $scope.album.title,
-            rating: $scope.album.rating,
-            cover: $scope.album.cover,
+          album:
+            title: $scope.album.title
+            rating: $scope.album.rating
+            cover: $scope.album.cover
             release_date: moment($scope.releaseDate.getDate()).format('YYYY-MM-DD')
             is_compilation: $scope.album.is_compilation
-          },
-          artist: $scope.album.artist,
+          artist: $scope.album.artist
           genres: $scope.album.genres
-        }
+
         error = (errResponse) ->
           $scope.errors = errResponse.data.errors
         success = (data) ->
