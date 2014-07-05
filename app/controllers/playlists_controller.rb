@@ -32,14 +32,6 @@ class PlaylistsController < ApplicationController
 
   # PATCH/PUT /playlists/1
   def update
-    @playlist.tracks = []
-
-    params[:tracks].each_with_index do |track, i|
-      pt = PlaylisTrack.new(track_num: i+1)
-      pt.track = Track.find(track)
-      pt.playlist = @playlist
-    end unless params[:tracks].nil?
-
     if @playlist.update(playlist_params)
       render json: {playlist: @playlist.slug, notice: 'Playist was successfully updated.'}, status: :ok, location: @playlist
     else

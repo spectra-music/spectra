@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :playlist_track do
-    track_num 1
+    position 1
     track
     playable { association(:playlist) }
   end

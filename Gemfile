@@ -47,6 +47,8 @@ gem 'rails-settings-cached', '~> 0.4.1'
 
 gem 'has_scope'
 
+gem 'acts_as_list'
+
 
 
 # In production

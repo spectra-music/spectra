@@ -9,13 +9,15 @@
 require 'faker'
 require 'yaml'
 
+Playlist.create(name: 'Queue')
+
 genres = YAML.load_file(Rails.root.join('db', 'genre.yml'))
 genres.each do |g|
   Genre.create(g)
 end
 
 rand = Random.new
-5.times do |y|
+5.times do
   artist = Artist.create!( name: Faker::Name.name, rating: rand.rand(0..5))
   5.times do
     genre = Genre.all.sample(2)
@@ -43,6 +45,10 @@ rand = Random.new
       track.save!
     end
   end
+end
 
-  Playlist.create(name: 'Queue')
+5.times do
+  playlist = Playlist.new(name: "#{Faker::Hacker.adjective} #{Faker::Hacker.noun}")
+  playlist.tracks.concat(Track.all.sample(15))
+  playlist.save
 end
