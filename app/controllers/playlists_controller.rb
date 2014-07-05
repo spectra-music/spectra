@@ -10,15 +10,6 @@ class PlaylistsController < ApplicationController
   def show
   end
 
-  # GET /playlists/new
-  def new
-    @playlist = Playlist.new
-  end
-
-  # GET /playlists/1/edit
-  def edit
-  end
-
   # POST /playlists
   def create
     @playlist = Playlist.new(playlist_params)
@@ -33,7 +24,7 @@ class PlaylistsController < ApplicationController
   # PATCH/PUT /playlists/1
   def update
     if @playlist.update(playlist_params)
-      render json: {playlist: @playlist.slug, notice: 'Playist was successfully updated.'}, status: :ok, location: @playlist
+      render json: {playlist: @playlist.slug, notice: 'Playlist was successfully updated.'}, status: :ok, location: @playlist
     else
       render json: { errors: @playlist.errors.full_messages }, status: :unprocessable_entity
     end

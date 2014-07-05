@@ -20,7 +20,11 @@ angular.module('playlists', ['ui.router', 'selectize' ])
       else
         $http.get('<%= asset_path("playlists/form-playlist.html") %>').then (response) ->
           response.data
-    controller: 'PlaylistNewController'
+    controllerProvider: ($stateParams) ->
+      if $stateParams.type is 'flexlist'
+        'FlexlistNewController'
+      else
+        'PlaylistNewController'
   )
   .state('playlists.show'
     url: '/:playlist?type'
@@ -36,7 +40,11 @@ angular.module('playlists', ['ui.router', 'selectize' ])
       else
         $http.get('<%= asset_path("playlists/form-playlist.html") %>').then(response) ->
           response.data
-    controller: 'PlaylistEditController'
+    controllerProvider: ($stateParams) ->
+      if $stateParams.type is 'flexlist'
+        'FlexlistEditController'
+      else
+        'PlaylistEditController'
   )
 
 ])

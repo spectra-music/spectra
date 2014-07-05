@@ -31,4 +31,7 @@ angular.module('tracks').controller('TrackNewController'
       error = (response) ->
         $scope.errors = response.data.errors
       Track.create($scope.params, success, error)
+
+    $scope.back = ->
+      $state.go '^.index'
   ])

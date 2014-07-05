@@ -35,5 +35,5 @@ angular.module('tracks').controller('TrackEditController'
       Track.update $stateParams.track, $scope.params, success, error
 
     $scope.back = ->
-      $state.go '^.show', $stateParams
+      $state.go '^.index'
   ])

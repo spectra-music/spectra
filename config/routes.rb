@@ -13,13 +13,13 @@ Rails.application.routes.draw do
 
   resources :albums, only: [:index, :show, :update]
 
-  resources :tracks do
+  resources :tracks, except: [:edit, :new] do
     member do
       get :data
     end
   end
 
-  resources :flexlists
+  resources :flexlists, except: [:edit, :new]
 
-  resources :playlists
+  resources :playlists, except: [:edit, :new]
 end

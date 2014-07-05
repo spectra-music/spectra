@@ -50,21 +50,6 @@ describe FlexlistsController, type: :controller do
     end
   end
 
-  describe "GET new" do
-    it "assigns a new flexlist as @flexlist" do
-      get :new, {}, valid_session
-      expect(assigns(:flexlist)).to be_a_new(Flexlist)
-    end
-  end
-
-  describe "GET edit" do
-    it "assigns the requested flexlist as @flexlist" do
-      flexlist = Flexlist.create! valid_attributes
-      get :edit, {:id => flexlist.to_param}, valid_session
-      expect(assigns(:flexlist)).to eq(flexlist)
-    end
-  end
-
   describe "POST create" do
     describe "with valid params" do
       it "creates a new Flexlist" do
@@ -79,9 +64,9 @@ describe FlexlistsController, type: :controller do
         expect(assigns(:flexlist)).to be_persisted
       end
 
-      it "redirects to the created flexlist" do
+      it "has status created" do
         post :create, {:flexlist => valid_attributes}, valid_session
-        expect(response).to redirect_to(Flexlist.last)
+        expect(response).to have_http_status(:created)
       end
     end
 
@@ -91,9 +76,9 @@ describe FlexlistsController, type: :controller do
         expect(assigns(:flexlist)).to be_a_new(Flexlist)
       end
 
-      it "re-renders the 'new' template" do
+      it "is unprocessable" do
         post :create, {:flexlist => invalid_attributes}, valid_session
-        expect(response).to render_template("new")
+        expect(response).to be_unprocessable
       end
     end
   end
@@ -117,10 +102,10 @@ describe FlexlistsController, type: :controller do
         expect(assigns(:flexlist)).to eq(flexlist)
       end
 
-      it "redirects to the flexlist" do
+      it "has response ok" do
         flexlist = Flexlist.create! valid_attributes
         put :update, {:id => flexlist.to_param, :flexlist => valid_attributes}, valid_session
-        expect(response).to redirect_to(flexlist)
+        expect(response).to be_ok
       end
     end
 
@@ -131,10 +116,10 @@ describe FlexlistsController, type: :controller do
         expect(assigns(:flexlist)).to eq(flexlist)
       end
 
-      it "re-renders the 'edit' template" do
+      it "is unprocessable" do
         flexlist = Flexlist.create! valid_attributes
         put :update, {:id => flexlist.to_param, :flexlist => invalid_attributes}, valid_session
-        expect(response).to render_template("edit")
+        expect(response).to be_unprocessable
       end
     end
   end
@@ -147,10 +132,10 @@ describe FlexlistsController, type: :controller do
       }.to change(Flexlist, :count).by(-1)
     end
 
-    it "redirects to the flexlists list" do
+    it "has http status no content" do
       flexlist = Flexlist.create! valid_attributes
       delete :destroy, {:id => flexlist.to_param}, valid_session
-      expect(response).to redirect_to(flexlists_url)
+      expect(response).to have_http_status(:no_content)
     end
   end
 

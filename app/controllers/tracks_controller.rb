@@ -18,15 +18,6 @@ class TracksController < ApplicationController
   def show
   end
 
-  # GET /tracks/new
-  def new
-    @track = Track.new
-  end
-
-  # GET /tracks/1/edit
-  def edit
-  end
-
   # POST /tracks
   # POST /tracks.json
   def create

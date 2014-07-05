@@ -1,0 +1,18 @@
+.header
+  h1
+    | {{ pageType }} Playlist
+.content
+  form.pure-form.pure-form-aligned multipart='true'
+    fieldset
+      #error-explanation
+        .pure-alert.pure-alert-error ng-show='errors.length > 0'
+          | The form contained {{ errors.length }} errors
+        ul
+          li ng-repeat='error in errors'
+            | * {{ error }}
+      .pure-control-group
+        label for='name' Name
+        input#name type='text' ng-model='playlist.name' name='name' placeholder='Name' required='true'
+      .pure-controls
+        button.pure-button.pure-button-primary ng-click='save()' style='margin-right: 10px;' Save
+        button.pure-button ng-click='back()' Back

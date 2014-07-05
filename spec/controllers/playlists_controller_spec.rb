@@ -50,21 +50,6 @@ describe PlaylistsController, type: :controller do
     end
   end
 
-  describe "GET new" do
-    it "assigns a new playlist as @playlist" do
-      get :new, {}, valid_session
-      expect(assigns(:playlist)).to be_a_new(Playlist)
-    end
-  end
-
-  describe "GET edit" do
-    it "assigns the requested playlist as @playlist" do
-      playlist = Playlist.create! valid_attributes
-      get :edit, {:id => playlist.to_param}, valid_session
-      expect(assigns(:playlist)).to eq(playlist)
-    end
-  end
-
   describe "POST create" do
     describe "with valid params" do
       it "creates a new Playlist" do
@@ -79,7 +64,7 @@ describe PlaylistsController, type: :controller do
         expect(assigns(:playlist)).to be_persisted
       end
 
-      it "redirects to the created playlist" do
+      it "has status created" do
         post :create, {:playlist => valid_attributes}, valid_session
         expect(response).to have_http_status(:created)
       end
@@ -91,7 +76,7 @@ describe PlaylistsController, type: :controller do
         expect(assigns(:playlist)).to be_a_new(Playlist)
       end
 
-      it "re-renders the 'new' template" do
+      it "is unprocessable" do
         post :create, {:playlist => invalid_attributes}, valid_session
         expect(response).to be_unprocessable
       end
@@ -117,7 +102,7 @@ describe PlaylistsController, type: :controller do
         expect(assigns(:playlist)).to eq(playlist)
       end
 
-      it "redirects to the playlist" do
+      it "has response ok" do
         playlist = Playlist.create! valid_attributes
         put :update, {:id => playlist.to_param, :playlist => valid_attributes}, valid_session
         expect(response).to be_ok
@@ -147,7 +132,7 @@ describe PlaylistsController, type: :controller do
       }.to change(Playlist, :count).by(-1)
     end
 
-    it "redirects to the playlists list" do
+    it "has http status no content" do
       playlist = Playlist.create! valid_attributes
       delete :destroy, {:id => playlist.to_param}, valid_session
       expect(response).to have_http_status(:no_content)

@@ -10,39 +10,30 @@ class FlexlistsController < ApplicationController
   def show
   end
 
-  # GET /flexlists/new
-  def new
-    @flexlist = Flexlist.new
-  end
-
-  # GET /flexlists/1/edit
-  def edit
-  end
-
   # POST /flexlists
   def create
     @flexlist = Flexlist.new(flexlist_params)
 
     if @flexlist.save
-      redirect_to @flexlist, notice: 'Flexlist was successfully created.'
+      render json: { flexlist: @flexlist, notice: 'Flexlist was successfully created.' }, status: :created, location: @flexlist
     else
-      render :new
+      render json: { errors: @flexlist.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /flexlists/1
   def update
     if @flexlist.update(flexlist_params)
-      redirect_to @flexlist, notice: 'Flexlist was successfully updated.'
+      render json: {flexlist: @flexlist.slug, notice: 'Flexlist was successfully updated.'}, status: :ok, location: @flexlist
     else
-      render :edit
+      render json: { errors: @flexlist.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
   # DELETE /flexlists/1
   def destroy
     @flexlist.destroy
-    redirect_to flexlists_url, notice: 'Flexlist was successfully destroyed.'
+    head :no_content
   end
 
   private

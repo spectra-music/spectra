@@ -2,34 +2,12 @@ require "spec_helper"
 
 describe PlaylistsController, type: :routing do
   describe "routing" do
-
-    it "routes to #index" do
-      expect(:get => "/playlists").to route_to("playlists#index")
-    end
-
-    it "routes to #new" do
-      expect(:get => "/playlists/new").to route_to("playlists#new")
-    end
-
-    it "routes to #show" do
-      expect(:get => "/playlists/1").to route_to("playlists#show", :id => "1")
-    end
-
-    it "routes to #edit" do
-      expect(:get => "/playlists/1/edit").to route_to("playlists#edit", :id => "1")
-    end
-
-    it "routes to #create" do
-      expect(:post => "/playlists").to route_to("playlists#create")
-    end
-
-    it "routes to #update" do
-      expect(:put => "/playlists/1").to route_to("playlists#update", :id => "1")
-    end
-
-    it "routes to #destroy" do
-      expect(:delete => "/playlists/1").to route_to("playlists#destroy", :id => "1")
-    end
-
+    it { should route(:get, '/playlists').to('playlists#index') }
+    it { should route(:get, '/playlists/hip').to('playlists#show', id: 'hip') }
+    it { should route(:post, '/playlists').to('playlists#create') }
+    it { should route(:put, '/playlists/hip').to('playlists#update', id: 'hip') }
+    it { should route(:delete, '/playlists/hip').to('playlists#destroy', id: 'hip') }
+    it { should_not route(:get, '/playlists/hip/edit').to('playlists#edit', id: 'hip') }
+    it { should_not route(:get, '/playlists/new').to('playlists#new') }
   end
 end

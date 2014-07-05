@@ -18,3 +18,8 @@
           a ui-sref='playlists.edit({ playlist: playlist.friendly_id, type: playlist.type })' Edit
         td
           a href='' ng-click='deletePlaylist(playlist)' Delete
+  br
+  a.pure-button.pure-button-primary ui-sref='playlists.new({type: "playlist"})' style='margin-right: 10px;'
+    | New Playlist
+  a.pure-button.pure-button-primary ui-sref='playlists.new({type: "flexlist"})'
+    | New Flexlist
