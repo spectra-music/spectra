@@ -16,17 +16,17 @@ html ngapp= 'spectra'
             a.pure-menu-heading href="/"
               img src= image_path('SpectraIcon.png')
             ul
-              li ng-class="{ 'menu-item-divided pure-menu-selected' : isActive('/albums') }"
+              li ng-class="{ 'menu-item-divided pure-menu-selected' : isActive('albums') }"
                 a ui-sref='albums.index' Albums
-              li ng-class="{ 'menu-item-divided pure-menu-selected' : isActive('/artists') }"
+              li ng-class="{ 'menu-item-divided pure-menu-selected' : isActive('artists') }"
                 a ui-sref='artists.index' Artists
-              li ng-class="{ 'menu-item-divided pure-menu-selected' : isActive('/genres') }"
+              li ng-class="{ 'menu-item-divided pure-menu-selected' : isActive('genres') }"
                 a ui-sref='genres.index' Genres
-              li ng-class="{ 'menu-item-divided pure-menu-selected' : isActive('/tracks') }"
+              li ng-class="{ 'menu-item-divided pure-menu-selected' : isActive('tracks') }"
                 a ui-sref='tracks.index' Tracks
-              li ng-class="{ 'menu-item-divided pure-menu-selected' : isActive('/playlists') }"
+              li ng-class="{ 'menu-item-divided pure-menu-selected' : isActive('playlists') }"
                 a ui-sref='playlists.index' Playlists
-              li ng-class="{ 'menu-item-divided pure-menu-selected' : isActive('/import') }"
+              li ng-class="{ 'menu-item-divided pure-menu-selected' : isActive('import') }"
                 a ui-sref='import' Import
     .offset
       flash-messages

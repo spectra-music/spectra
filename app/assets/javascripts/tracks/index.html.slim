@@ -21,36 +21,36 @@
         th Format
         th colspan='2'
     tbody
-        tr ng-repeat='track in tracks | filter:searchText'
-          td
-            | {{ track.title }}
-          td
-            | {{ track.rating }}
-          td
-            a ui-sref='artists.show({artist: track.artist.friendly_id})'
-              | {{ track.artist.name }}
-          td
-            a ui-sref='albums.show({album: track.album.friendly_id})'
-              | {{ track.album.title }}
-          td
-            | {{ track.date }}
-          td
-            | {{ track.location }}
-          td
-            | {{ track.bitrate }}
-          td
-            | {{ track.lyrics }}
-          td
-            | {{ track.track_id }}
-          td
-            | {{ track.disc_id }}
-          td
-            | {{ track.format }}
-          td
-            a ui-sref='tracks.edit({track: track.friendly_id})'
-              | Edit
-          td
-            a href='' ng-click='deleteTrack(track)' Delete
+      tr ng-repeat='track in tracks | filter:searchText'
+        td
+          | {{ track.title }}
+        td
+          | {{ track.rating }}
+        td
+          a ui-sref='artists.show({artist: track.artist.friendly_id})'
+            | {{ track.artist.name }}
+        td
+          a ui-sref='albums.show({album: track.album.friendly_id})'
+            | {{ track.album.title }}
+        td
+          | {{ track.date }}
+        td
+          | {{ track.location }}
+        td
+          | {{ track.bitrate }}
+        td
+          | {{ track.lyrics }}
+        td
+          | {{ track.track_id }}
+        td
+          | {{ track.disc_id }}
+        td
+          | {{ track.format }}
+        td
+          a ui-sref='tracks.edit({track: track.friendly_id})'
+            | Edit
+        td
+          a href='' ng-click='deleteTrack(track)' Delete
   br
   a.pure-button.pure-button-primary ui-sref='tracks.new()'
     | New Track

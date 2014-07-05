@@ -1,0 +1,3 @@
+object @flexlist
+
+attributes :name

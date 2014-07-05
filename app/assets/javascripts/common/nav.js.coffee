@@ -1,4 +1,3 @@
-angular.module('spectra').controller('NavController', ($scope, $location) ->
-  $scope.isActive  = (loc) ->
-    loc == $location.path()
+angular.module('spectra').controller('NavController', ($scope, $location, $state) ->
+  $scope.isActive  = (loc) -> loc is $state.current.name.split('.')[0]
 )

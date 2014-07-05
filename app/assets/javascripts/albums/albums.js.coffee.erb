@@ -12,7 +12,7 @@ angular.module('albums', ['ui.router', 'selectize', 'angularPikaday'])
     controller: 'AlbumIndexController'
   )
   .state('albums.show'
-    url: '/:album',
+    url: '/:album'
     templateUrl: '<%= asset_path("albums/show.html") %>'
     controller: 'AlbumShowController'
   )
