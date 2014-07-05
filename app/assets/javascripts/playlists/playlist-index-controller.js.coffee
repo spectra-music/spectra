@@ -1,8 +1,12 @@
 angular.module('playlists').controller('PlaylistIndexController'
   [ '$scope', '$q', 'Playlist', 'Flexlist', ($scope, $q, Playlist, Flexlist) ->
-    Playlist.all (data) -> $scope.playlists = data
+    Playlist.all (data) ->
+      $scope.playlists = data
+      playlist.type = 'playlist' for playlist in $scope.playlists
 
-    Flexlist.all (data) -> $scope.flexlists = data
+    Flexlist.all (data) ->
+      $scope.flexlists = data
+      flexlist.type = 'flexlist' for flexlist in $scope.flexlists
 
     $scope.deletePlaylist = (playlist) ->
       deletePlaylist = $window.confirm('Are you sure?')

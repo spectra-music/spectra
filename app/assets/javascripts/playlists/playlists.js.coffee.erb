@@ -38,7 +38,7 @@ angular.module('playlists', ['ui.router', 'selectize' ])
         $http.get('<%= asset_path("playlists/form-flexlist.html") %>').then(response) ->
           response.data
       else
-        $http.get('<%= asset_path("playlists/form-playlist.html") %>').then(response) ->
+        $http.get('<%= asset_path("playlists/form-playlist.html") %>').then (response) ->
           response.data
     controllerProvider: ($stateParams) ->
       if $stateParams.type is 'flexlist'
