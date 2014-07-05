@@ -1,3 +1,3 @@
 object @playlist
 
-attributes :name
+attributes :name, :friendly_id

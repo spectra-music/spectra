@@ -3,6 +3,8 @@ class TracksController < ApplicationController
   has_scope :artist
   has_scope :genre
   has_scope :album
+  has_scope :playlist
+  has_scope :flexlist
   has_scope :rating
   has_scope :format
   has_scope :year

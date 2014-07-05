@@ -1,3 +1,3 @@
 object @flexlist
 
-attributes :name
+attributes :name, :friendly_id

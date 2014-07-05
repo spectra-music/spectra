@@ -19,7 +19,7 @@
     strong
       ' Release date:
     | {{ album.release_date }}
-  a ng-href='#!/albums/{{ album.friendly_id }}/edit' Edit
+  a ui-sref='albums.edit({album: album.friendly_id})' Edit
   table.pure-table.pure-table-bordered
     thead
       tr

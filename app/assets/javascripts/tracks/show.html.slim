@@ -1,0 +1,49 @@
+.content
+  p
+    strong
+      ' Title:
+    | {{ track.title }}
+  p
+    strong
+      ' Rating:
+    | {{ track.rating }}
+  p
+    strong
+      ' Artist:
+    a ng-href='#!/artists/{{ track.artist.friendly_id }}'
+      | {{ track.artist.name }}
+  p
+    strong
+      ' Album:
+    a ui-sref=
+      | {{ track.album.title }}
+  p
+    strong
+      ' Date:
+    | {{ track.date }}
+  p
+    strong
+      ' Location:
+    | {{ track.location }}
+  p
+    strong
+      ' Bitrate:
+    | {{ track.bitrate }}
+  p
+    strong
+      ' Lyrics:
+    | {{ track.lyrics }}
+  p
+    strong
+      ' Track:
+    | {{ track.track_id }}
+  p
+    strong
+      ' Disc:
+    | {{ track.disc_id }}
+  p
+    strong
+      ' Format:
+    | {{ track.format }}
+  a ui-sref='track.edit({track: track.friendly_id})'
+    | Edit
