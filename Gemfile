@@ -72,9 +72,6 @@ group :development do
   # Pry offers a better rails console
   gem 'pry-rails'
   gem 'faker'
-
-  # A readline library for pry to use
-  gem 'pry-coolline'
 end
 
 group :development, :test do
