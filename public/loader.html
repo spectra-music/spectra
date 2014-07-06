@@ -1,0 +1,116 @@
+<!doctype HTML>
+<html>
+    <head>
+        <style>
+        .container {
+        }    
+            
+        .spectra-logo {
+            height: 100%;
+            width: 100%;
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            height: 140px;
+            width: 140px;
+        }
+            
+        .spectra-logo .rect1,
+        .spectra-logo .rect2,
+        .spectra-logo .rect3,
+        .spectra-logo .rect4,
+        .spectra-logo .rect5,
+        .spectra-logo .rect6 {
+            position: absolute;
+            bottom: 0px;
+            width: 16.7%;
+            display: inline-block;
+            -webkit-animation-direction: alternate;
+            -webkit-animation-duration: 3.6s;
+            -webkit-animation-name: height-full-change;
+            -webkit-animation-iteration-count: infinite;
+            -webkit-animation-timing-function: cubic-bezier(0.8, 0.2, 0.6, 0.9);
+            animation-direction: alternate;
+            animation-duration: 3.6s;
+            animation-name: height-full-change;
+            animation-iteration-count: infinite;
+            animation-timing-function: cubic-bezier(0.8, 0.2, 0.6, 0.9);
+        }
+            
+        .spectra-logo .rect1 {
+            background-color: #e2534a;
+            left: 0%;
+            -webkit-animation-delay: 0s;
+            animation-delay: 0s;
+        }
+        .spectra-logo .rect2 {
+            background-color: #f77f00;
+            left: 16.666%;
+            -webkit-animation-delay: -1.2s;
+            animation-delay: -1.2s;
+        }
+        .spectra-logo .rect3 {
+            background-color: #fad508;
+            left: 33.333%;
+            -webkit-animation-delay: -0.5s;
+            animation-delay: -0.5s;
+        }
+        .spectra-logo .rect4 {
+            background-color: #50bb58;
+            left: 50%;
+            -webkit-animation-delay: -2.9s;
+            animation-delay: -2.9s;
+        }
+        .spectra-logo .rect5 {
+            background-color: #008dd5;
+            left: 66.666%;
+            -webkit-animation-delay: -3.32s;
+            animation-delay: -3.32s;
+        }   
+        .spectra-logo .rect6 {
+            background-color: #8455a7;
+            left: 83.333%;
+            -webkit-animation-delay: -0.25s;
+            animation-delay: -0.25s;
+        }
+            
+        @-webkit-keyframes height-full-change {
+            0% { top: 90%; }
+            10% { top: 40%; }
+            20% { top: 80%; }
+            30% { top: 10%; }
+            40% { top: 70%; }
+            50% { top: 30%; }
+            60% { top: 80%; }
+            80% { top: 40%; }
+            90% { top: 90%; }
+            100% { top: 50%; }
+        }
+        @keyframes height-full-change {
+            0% { top: 90%; }
+            10% { top: 40%; }
+            20% { top: 80%; }
+            30% { top: 10%; }
+            40% { top: 70%; }
+            50% { top: 30%; }
+            60% { top: 80%; }
+            80% { top: 40%; }
+            90% { top: 90%; }
+            100% { top: 50%; }
+        }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="spectra-logo">
+                <div class="rect1"></div>
+                <div class="rect2"></div>
+                <div class="rect3"></div>
+                <div class="rect4"></div>
+                <div class="rect5"></div>
+                <div class="rect6"></div>
+            </div>
+        </div>
+    </body>
+</html>
