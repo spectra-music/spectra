@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140705175605) do
+ActiveRecord::Schema.define(version: 20140706234637) do
 
   create_table "albums", force: true do |t|
     t.string   "title"
@@ -128,6 +128,11 @@ ActiveRecord::Schema.define(version: 20140705175605) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "slug"
+    t.integer  "bpm"
+    t.integer  "length"
+    t.string   "composer"
+    t.integer  "play_count"
+    t.integer  "file_size"
   end
 
   add_index "tracks", ["slug"], name: "index_tracks_on_slug", unique: true
