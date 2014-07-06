@@ -74,7 +74,7 @@ group :development do
   gem 'faker'
 
   # A readline library for pry to use
-  gem 'pry-coolline'
+  gem 'rb-readline'
 end
 
 group :development, :test do
