@@ -57,8 +57,9 @@
       animation-fill-mode: forwards;
       -webkit-animation: to-full-opacity ease-in 1s;
       -webkit-animation-fill-mode: forwards;
-      height: 240px;
-      width: 33%;
+      height: 100%;
+      width: 100%;
+      position: absolute;
   }
 }
 
