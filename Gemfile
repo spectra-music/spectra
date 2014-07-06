@@ -49,6 +49,9 @@ gem 'has_scope'
 
 gem 'acts_as_list'
 
+gem 'elasticsearch-rails'
+gem 'elasticsearch-model'
+
 
 
 # In production

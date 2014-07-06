@@ -55,6 +55,19 @@ GEM
     debug_inspector (0.0.2)
     diff-lcs (1.2.5)
     docile (1.1.5)
+    elasticsearch (1.0.4)
+      elasticsearch-api (= 1.0.4)
+      elasticsearch-transport (= 1.0.4)
+    elasticsearch-api (1.0.4)
+      multi_json
+    elasticsearch-model (0.1.4)
+      activesupport (> 3)
+      elasticsearch (> 0.4)
+      hashie
+    elasticsearch-rails (0.1.4)
+    elasticsearch-transport (1.0.4)
+      faraday
+      multi_json
     erubis (2.7.0)
     execjs (2.2.1)
     factory_girl (4.4.0)
@@ -64,11 +77,14 @@ GEM
       railties (>= 3.0.0)
     faker (1.4.1)
       i18n (~> 0.5)
+    faraday (0.9.0)
+      multipart-post (>= 1.2, < 3)
     flash_render (1.2.0)
       rails (>= 2.3.8)
     friendly_id (5.0.4)
       activerecord (>= 4.0.0)
     has_scope (0.5.1)
+    hashie (3.1.0)
     hike (1.2.3)
     i18n (0.6.9)
     jasmine-core (2.0.0)
@@ -91,6 +107,7 @@ GEM
     momentjs-rails (2.7.0)
       railties (>= 3.1)
     multi_json (1.10.1)
+    multipart-post (2.0.0)
     oj (2.9.8)
     oj_mimic_json (1.0.1)
     paperclip (4.1.1)
@@ -226,6 +243,8 @@ DEPENDENCIES
   codeclimate-test-reporter
   coffee-rails (~> 4.0.0)
   database_cleaner
+  elasticsearch-model
+  elasticsearch-rails
   factory_girl_rails
   faker
   flash_render

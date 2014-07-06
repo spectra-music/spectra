@@ -1,5 +1,8 @@
 class Track < ActiveRecord::Base
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
   extend FriendlyId
+
   belongs_to :artist
   belongs_to :album
   has_and_belongs_to_many :genres

@@ -1,5 +1,8 @@
 class Album < ActiveRecord::Base
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
   extend FriendlyId
+
   # An album is composed of 1 or more tracks
   has_many :tracks
 
