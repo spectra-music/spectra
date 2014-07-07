@@ -28,8 +28,8 @@
 .splash {
   // absolute center .splash within .splash-container
   width: 80%;
-  height: 75%;
-  margin: auto;
+  height: 100%;
+  margin: 20px auto;
   position: absolute;
   top: 0px;
   left: 0;
@@ -37,6 +37,9 @@
   right: 0;
   text-align: center;
   text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
 
   .a.pure-button-primary {
     padding: 0.5em 2em;
@@ -44,6 +47,7 @@
     background: #1f8dd6;
     border-radius: 5px;
     font-size: 120%;
+    flex: 0 0 auto;
   }
   
   .pure-button {
@@ -62,9 +66,10 @@
       animation-fill-mode: forwards;
       -webkit-animation: to-full-opacity ease-in 1s;
       -webkit-animation-fill-mode: forwards;
-      height: 100%;
       width: 100%;
-      position: absolute;
+      margin-top: 20px;
+      margin-bottom: 0px;
+      flex: 1 1 auto;
   }
 }
 
@@ -74,10 +79,11 @@
   font-weight: bold;
   background: transparent;
   //border: 3px solid #1f8dd6;
-  padding: 1em 1.6em;
+  //padding: 1em 1.6em;
   font-weight: 100;
   border-radius: 5px;
   line-height: 1em;
+  flex: 0 1 auto;
   
   opacity: 0;
   animation: to-full-opacity ease-in 1s;
@@ -92,6 +98,7 @@
 .splash-subhead {
   background: transparent;
   letter-spacing: 0.05em;
+  flex: 0 1 auto;
   
   opacity: 0;
   animation: to-eighty-opacity ease-in 1s;
