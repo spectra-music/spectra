@@ -139,6 +139,7 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.3.2)
+    rb-readline (0.5.1)
     rdoc (4.1.1)
       json (~> 1.4)
     ref (1.0.5)
@@ -244,6 +245,7 @@ DEPENDENCIES
   rails-settings-cached (~> 0.4.1)
   rails_12factor
   rake
+  rb-readline
   rspec-rails (~> 3.0.0)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)

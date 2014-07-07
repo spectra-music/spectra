@@ -36,61 +36,67 @@
 .spectra-logo .rect1 {
     background-color: #e2534a;
     left: 0%;
-    -webkit-animation-delay: 0s;
-    animation-delay: 0s;
+    -webkit-animation-delay: -3.6s;
+    animation-delay: -3.6s;
 }
 .spectra-logo .rect2 {
     background-color: #f77f00;
     left: 16.666%;
-    -webkit-animation-delay: -1.2s;
-    animation-delay: -1.2s;
+    -webkit-animation-delay: -3s;
+    animation-delay: -3s;
 }
 .spectra-logo .rect3 {
     background-color: #fad508;
     left: 33.333%;
-    -webkit-animation-delay: -0.5s;
-    animation-delay: -0.5s;
+    -webkit-animation-delay: -2.4s;
+    animation-delay: -2.4s;
 }
 .spectra-logo .rect4 {
     background-color: #50bb58;
     left: 50%;
-    -webkit-animation-delay: -2.9s;
-    animation-delay: -2.9s;
+    -webkit-animation-delay: -1.8s;
+    animation-delay: -1.8s;
 }
 .spectra-logo .rect5 {
     background-color: #008dd5;
     left: 66.666%;
-    -webkit-animation-delay: -3.32s;
-    animation-delay: -3.32s;
+    -webkit-animation-delay: -1.2s;
+    animation-delay: -1.2s;
 }   
 .spectra-logo .rect6 {
     background-color: #8455a7;
     left: 83.333%;
-    -webkit-animation-delay: -0.25s;
-    animation-delay: -0.25s;
+    -webkit-animation-delay: -0.6s;
+    animation-delay: -0.6s;
 }
     
 @-webkit-keyframes height-full-change {
-    0% { top: 90%; }
-    10% { top: 40%; }
-    20% { top: 80%; }
-    30% { top: 10%; }
-    40% { top: 70%; }
-    50% { top: 30%; }
-    60% { top: 80%; }
-    80% { top: 40%; }
-    90% { top: 90%; }
-    100% { top: 50%; }
+    0% { top: 10%; }
+    8% { top: 70%; }
+    16.6% { top: 40%; }
+    22% { top: 90%; }
+    33.3% { top: 20%; }
+    45% { top: 80%; }
+    50% { top: 0%; }
+    58% { top: 60%; }
+    66.6% { top: 30%; }
+    75% { top: 95%; }
+    83.3% { top: 60%; }
+    92% { top: 80%; }
+    100% { top: 35%; }
 }
 @keyframes height-full-change {
-    0% { top: 90%; }
-    10% { top: 40%; }
-    20% { top: 80%; }
-    30% { top: 10%; }
-    40% { top: 70%; }
-    50% { top: 30%; }
-    60% { top: 80%; }
-    80% { top: 40%; }
-    90% { top: 90%; }
-    100% { top: 50%; }
+    0% { top: 10%; }
+    8% { top: 70%; }
+    16.6% { top: 40%; }
+    22% { top: 90%; }
+    33.3% { top: 20%; }
+    45% { top: 80%; }
+    50% { top: 0%; }
+    58% { top: 60%; }
+    66.6% { top: 30%; }
+    75% { top: 95%; }
+    83.3% { top: 60%; }
+    92% { top: 80%; }
+    100% { top: 35%; }
 }
