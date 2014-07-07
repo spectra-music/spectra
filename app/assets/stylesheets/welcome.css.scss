@@ -20,6 +20,11 @@
   padding-left: 75px;
 }
 
+.paused {
+    animation-play-state: paused;
+    -webkit-animation-play-state: paused;
+}
+
 .splash {
   // absolute center .splash within .splash-container
   width: 80%;
