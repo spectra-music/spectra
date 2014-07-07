@@ -23,20 +23,20 @@
   table.pure-table.pure-table-bordered
     thead
       tr
-        th Title
-        th Rating
-        th Artist
-        th Album
-        th Date
-        th Location
-        th Bitrate
-        th Lyrics
-        th Track
-        th Disc
-        th Format
+        th sort-header='' title='Title' field='title'
+        th sort-header='' title='Rating' field='rating'
+        th sort-header='' title='Artist' field='artist.name'
+        th sort-header='' title='Album' field='album.title'
+        th sort-header='' title='Date' field='date'
+        th sort-header='' title='Location' field='location'
+        th sort-header='' title='Bitrate' field='bitrate'
+        th sort-header='' title='Lyrics' field='lyrics'
+        th sort-header='' title='Track' field='track_id'
+        th sort-header='' title='Disc' field='disc_id'
+        th sort-header='' title='Format' field='format'
         th colspan='2'
     tbody
-      tr ng-repeat='track in tracks | filter:searchText'
+      tr ng-repeat='track in tracks | filter:searchText | orderBy:sortInfo.current:sortInfo.reversed'
         td
           | {{ track.title }}
         td
