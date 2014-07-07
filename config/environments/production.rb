@@ -1,3 +1,4 @@
+require 'elasticsearch/rails/lograge'
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -83,4 +84,7 @@ Rails.application.configure do
 
   config.preload_frameworks = true
   config.allow_concurrency = true
+
+  # Enable sane logging
+  config.lograge.enabled = true
 end

@@ -1,6 +1,6 @@
 class Album < ActiveRecord::Base
-  include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
+  #include Elasticsearch::Model
+  #include Elasticsearch::Model::Callbacks
   extend FriendlyId
 
   # An album is composed of 1 or more tracks
@@ -59,7 +59,7 @@ class Album < ActiveRecord::Base
   scope :genre, -> genre { includes(:genres).where('genres.slug = ? ', genre).references(:genres) }
   scope :rating, -> rating { where(rating: rating) }
   scope :is_compilation, -> { where(is_compilation: true) }
-  scope :year, -> year { where("release_date >= ? and release_date <= ?", "#{year}-01-01", "#{year}-12-31")}
+  scope :year, -> year { where('release_date >= ? and release_date <= ?', "#{year}-01-01", "#{year}-12-31")}
 
   def slug_candidates
     [

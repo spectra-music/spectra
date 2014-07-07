@@ -1,6 +1,6 @@
 class Artist < ActiveRecord::Base
-  include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
+  #include Elasticsearch::Model
+  #include Elasticsearch::Model::Callbacks
   extend FriendlyId
 
   has_many :tracks
