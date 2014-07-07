@@ -1,6 +1,6 @@
 class Track < ActiveRecord::Base
-  include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
+  #include Elasticsearch::Model
+  #include Elasticsearch::Model::Callbacks
   extend FriendlyId
 
   belongs_to :artist

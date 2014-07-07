@@ -52,9 +52,12 @@ gem 'acts_as_list'
 gem 'elasticsearch-rails'
 gem 'elasticsearch-model'
 
+gem 'elasticsearch-extensions'
+gem 'chewy'
+gem 'patron'
+gem 'active_data'
+
 gem "font-awesome-rails"
-
-
 
 # In production
 group :production do
@@ -68,6 +71,7 @@ group :production do
   gem 'oj_mimic_json'
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'therubyracer',  platforms: :ruby
+  gem 'lograge'
 end
 
 group :development do
