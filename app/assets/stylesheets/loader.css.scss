@@ -1,0 +1,97 @@
+.spectra-logo {
+  margin: auto;
+  width: 140px;
+  height: 140px;
+  text-align: center;
+  font-size: 10px;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.spectra-logo .rect1,
+.spectra-logo .rect2,
+.spectra-logo .rect3,
+.spectra-logo .rect4,
+.spectra-logo .rect5,
+.spectra-logo .rect6 {
+    background-color: #333;
+    display: block;
+    flex: 1 0 auto;
+    
+    
+    -webkit-animation-direction: alternate;
+    -webkit-animation-duration: 3.6s;
+    -webkit-animation-name: height-full-change;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: cubic-bezier(0.8, 0.2, 0.6, 0.9);
+    animation-direction: alternate;
+    animation-duration: 3.6s;
+    animation-name: height-full-change;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(0.8, 0.2, 0.6, 0.9);
+    z-index: -100;
+}
+    
+.spectra-logo .rect1 {
+    background-color: #e2534a;
+    -webkit-animation-delay: -3.6s;
+    animation-delay: -3.6s;
+}
+.spectra-logo .rect2 {
+    background-color: #f77f00;
+    -webkit-animation-delay: -3s;
+    animation-delay: -3s;
+}
+.spectra-logo .rect3 {
+    background-color: #fad508;
+    -webkit-animation-delay: -2.4s;
+    animation-delay: -2.4s;
+}
+.spectra-logo .rect4 {
+    background-color: #50bb58;
+    -webkit-animation-delay: -1.8s;
+    animation-delay: -1.8s;
+}
+.spectra-logo .rect5 {
+    background-color: #008dd5;
+    -webkit-animation-delay: -1.2s;
+    animation-delay: -1.2s;
+}   
+.spectra-logo .rect6 {
+    background-color: #8455a7;
+    -webkit-animation-delay: -0.6s;
+    animation-delay: -0.6s;
+}
+    
+@-webkit-keyframes height-full-change {
+    0% { height: 90%; }
+    8% { height: 30%; }
+    16.6% { height: 60%; }
+    22% { height: 10%; }
+    33.3% { height: 80%; }
+    45% { height: 20%; }
+    50% { height: 100%; }
+    58% { height: 40%; }
+    66.6% { height: 70%; }
+    75% { height: 5%; }
+    83.3% { height: 40%; }
+    92% { height: 20%; }
+    100% { height: 65%; }
+}
+@keyframes height-full-change {
+    0% { height: 90%; }
+    8% { height: 30%; }
+    16.6% { height: 60%; }
+    22% { height: 10%; }
+    33.3% { height: 80%; }
+    45% { height: 20%; }
+    50% { height: 100%; }
+    58% { height: 40%; }
+    66.6% { height: 70%; }
+    75% { height: 5%; }
+    83.3% { height: 40%; }
+    92% { height: 20%; }
+    100% { height: 65%; }
+}

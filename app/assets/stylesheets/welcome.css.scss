@@ -20,11 +20,16 @@
   padding-left: 75px;
 }
 
+.paused {
+    animation-play-state: paused;
+    -webkit-animation-play-state: paused;
+}
+
 .splash {
   // absolute center .splash within .splash-container
   width: 80%;
-  height: 75%;
-  margin: auto;
+  height: 100%;
+  margin: 20px auto;
   position: absolute;
   top: 0px;
   left: 0;
@@ -32,6 +37,9 @@
   right: 0;
   text-align: center;
   text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
 
   .a.pure-button-primary {
     padding: 0.5em 2em;
@@ -39,6 +47,29 @@
     background: #1f8dd6;
     border-radius: 5px;
     font-size: 120%;
+    flex: 0 0 auto;
+  }
+  
+  .pure-button {
+      opacity: 0;
+      animation: to-full-opacity ease-in 1s;
+      animation-fill-mode: forwards;
+      animation-delay: 1.5s;
+      -webkit-animation: to-full-opacity ease-in 1s;
+      -webkit-animation-fill-mode: forwards;
+      -webkit-animation-delay: 1.5s;
+  }
+  
+  .spectra-logo {
+      opacity: 0;
+      animation: to-full-opacity ease-in 1s;
+      animation-fill-mode: forwards;
+      -webkit-animation: to-full-opacity ease-in 1s;
+      -webkit-animation-fill-mode: forwards;
+      width: 100%;
+      margin-top: 20px;
+      margin-bottom: 0px;
+      flex: 1 1 auto;
   }
 }
 
@@ -46,17 +77,52 @@
 .splash-head {
   font-size: 20px;
   font-weight: bold;
-  background: white;
+  background: transparent;
   //border: 3px solid #1f8dd6;
-  padding: 1em 1.6em;
+  //padding: 1em 1.6em;
   font-weight: 100;
   border-radius: 5px;
   line-height: 1em;
+  flex: 0 1 auto;
+  
+  opacity: 0;
+  animation: to-full-opacity ease-in 1s;
+  animation-fill-mode: forwards;
+  animation-delay: 0.5s;
+  -webkit-animation: to-full-opacity ease-in 1s;
+  -webkit-animation-fill-mode: forwards;
+  -webkit-animation-delay: 0.5s;
 }
 
 // This is the subheading that appears on the blue section
 .splash-subhead {
-  background: white;
+  background: transparent;
   letter-spacing: 0.05em;
-  opacity: 0.8;
+  flex: 0 1 auto;
+  
+  opacity: 0;
+  animation: to-eighty-opacity ease-in 1s;
+  animation-fill-mode: forwards;
+  animation-delay: 1s;
+  -webkit-animation: to-eighty-opacity ease-in 1s;
+  -webkit-animation-fill-mode: forwards;
+  -webkit-animation-delay: 1s;
 }
+
+@keyframes to-full-opacity {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes to-eighty-opacity {
+    from { opacity: 0; }
+    to { opacity: 0.8; }
+}
+@-webkit-keyframes to-full-opacity {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@-webkit-keyframes to-eighty-opacity {
+    from { opacity: 0; }
+    to { opacity: 0.8; }
+}
+
