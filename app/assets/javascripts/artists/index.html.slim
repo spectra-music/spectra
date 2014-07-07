@@ -8,11 +8,11 @@
   table.pure-table.pure-table-bordered style='width: 100%;'
     thead
       tr
-        th Name
-        th Rating
+        th sort-header='' title='Name' field='name'
+        th sort-header='' title='Rating' field='rating'
         th
     tbody
-      tr ng-repeat="artist in artists | filter:searchText"
+      tr ng-repeat="artist in artists | filter:searchText | orderBy:sortInfo.current:sortInfo.reversed"
         td
           a ui-sref='artists.show({artist: artist.friendly_id})' {{artist.name}}
         td

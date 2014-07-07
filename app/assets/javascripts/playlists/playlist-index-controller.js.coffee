@@ -1,5 +1,5 @@
 angular.module('playlists').controller('PlaylistIndexController'
-  [ '$scope', '$q', 'Playlist', 'Flexlist', ($scope, $q, Playlist, Flexlist) ->
+  [ '$scope', '$q', 'Playlist', 'Flexlist', 'Sortable', ($scope, $q, Playlist, Flexlist, Sortable) ->
     Playlist.all (data) ->
       $scope.playlists = data
       playlist.type = 'playlist' for playlist in $scope.playlists
@@ -15,4 +15,9 @@ angular.module('playlists').controller('PlaylistIndexController'
           flash.success.setMessage('Playlist was successfully deleted.')
           $scope.playlists.splice($scope.playlists.indexOf(playlist), 1)
           $rootScope.$emit('event:angularFlash')
+    $scope.sortInfo =
+      current: 'name'
+      reversed: false
+      setField: (field) ->
+        Sortable.setField($scope, field)
   ])

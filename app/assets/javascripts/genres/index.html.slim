@@ -8,8 +8,8 @@
   table.pure-table.pure-table-bordered style='width: 100%'
     thead
       tr
-        th Name
+        th sort-header='' title='Name' field='name'
     tbody
-      tr ng-repeat="genre in genres | filter:searchText"
+      tr ng-repeat="genre in genres | filter:searchText | orderBy:sortInfo.current:sortInfo.reversed"
         td
           a ui-sref='genres.show({genre: genre.friendly_id})' {{genre.name}}

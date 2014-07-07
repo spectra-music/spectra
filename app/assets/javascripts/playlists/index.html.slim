@@ -8,12 +8,15 @@
   table.pure-table.pure-table-bordered style='width: 100%;'
     thead
       tr
-        th Name
+        th sort-header='' title='Name' field='name'
+        th sort-header='' title='Type' field='type'
         th colspan='2'
     tbody
-      tr ng-repeat="playlist in playlists.concat() | filter:searchText"
+      tr ng-repeat="playlist in playlists.concat() | filter:searchText | orderBy:sortInfo.current:sortInfo.reversed"
         td
            a ui-sref='playlists.show({ playlist: playlist.friendly_id, type: playlist.type })' {{playlist.name}}
+        td
+          | {{playlist.type}}
         td
           a ui-sref='playlists.edit({ playlist: playlist.friendly_id, type: playlist.type })' Edit
         td

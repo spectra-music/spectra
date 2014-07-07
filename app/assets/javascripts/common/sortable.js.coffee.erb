@@ -1,0 +1,18 @@
+angular.module('sortable', []).factory('Sortable', ->
+  setField: (scope, field) ->
+    if scope.sortInfo.current is field
+      scope.sortInfo.reversed = !scope.sortInfo.reversed
+    else
+      scope.sortInfo.reversed = false
+    scope.sortInfo.current = field
+
+).directive('sortHeader', ->
+  restrict: 'A'
+  transclude: true
+  scope:
+    field: '@'
+    title: '@'
+  templateUrl: '<%= asset_path("common/sortable.html") %>'
+  link: (scope, element, attrs) ->
+    scope.sortInfo = scope.$parent.sortInfo
+)

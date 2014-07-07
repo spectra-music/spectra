@@ -1,6 +1,6 @@
 angular.module('tracks').controller('TrackIndexController'
-  ['$scope', '$http', '$window', 'Track', 'flash', '$rootScope'
-  ($scope, $http, $window, Track, flash, $rootScope) ->
+  ['$scope', '$http', '$window', 'Track', 'flash', '$rootScope', 'Sortable'
+  ($scope, $http, $window, Track, flash, $rootScope, Sortable) ->
     Track.all (data) ->
       $scope.tracks = data
 
@@ -14,4 +14,9 @@ angular.module('tracks').controller('TrackIndexController'
           flash.success.setMessage 'Track was successfully deleted.'
           $scope.tracks.splice $scope.tracks.indexOf(track), 1
           $rootScope.$emit 'event:angularFlash'
+    $scope.sortInfo =
+      current: 'title'
+      reversed: false
+      setField: (field) ->
+        Sortable.setField($scope, field)
   ])

@@ -9,13 +9,13 @@
     thead
       tr
         th Cover
-        th Title
-        th Rating
-        th Artist
-        th Release Date
+        th sort-header='' title='Title' field='title'
+        th sort-header='' title='Rating' field='rating'
+        th sort-header='' title='Artist' field='artist.name'
+        th sort-header='' title='Release Date' field='date'
         th
     tbody
-      tr ng-repeat="album in albums | filter:searchText"
+      tr ng-repeat="album in albums | filter:searchText | orderBy:sortInfo.current:sortInfo.reversed"
         td
           img ng-src='{{ album.cover }}'
         td

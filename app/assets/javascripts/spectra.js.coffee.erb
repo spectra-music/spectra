@@ -7,15 +7,16 @@
 # HomeCtrl specifically. This is basically how we tell
 # Angular about the existence of our application.
 spectra = angular.module('spectra', [
-  'ui.router',
-  'services',
-  'angularFlash',
-  'import',
-  'albums',
-  'artists',
-  'genres',
-  'playlists',
-  'tracks',
+  'ui.router'
+  'services'
+  'angularFlash'
+  'sortable'
+  'import'
+  'albums'
+  'artists'
+  'genres'
+  'playlists'
+  'tracks'
   'spinner'
   ])
 
@@ -25,19 +26,19 @@ spectra = angular.module('spectra', [
 # sense as we add more routes to our application.
 spectra.config(['$stateProvider', '$locationProvider', '$urlRouterProvider', ($stateProvider, $locationProvider, $urlRouterProvider) ->
   $stateProvider
-  .state('home', {
-    url: '/',
+  .state('home'
+    url: '/'
     templateUrl: '<%= asset_path("home/index.html") %>'
-  })
-  $locationProvider.hashPrefix('!')
-  $urlRouterProvider.otherwise('/')
+  )
+  $locationProvider.hashPrefix '!'
+  $urlRouterProvider.otherwise '/'
 ])
 
 spectra.config(['$httpProvider', ($httpProvider) ->
   authToken = $("meta[name=\"csrf-token\"]").attr("content")
   $httpProvider.defaults.headers.common["X-CSRF-TOKEN"] = authToken
-  $httpProvider.defaults.headers.patch = {
-      'Content-Type': 'application/json;charset=utf-8'
-  }
-  $httpProvider.interceptors.push( 'loadingSpinnerInterceptor' );
+  $httpProvider.defaults.headers.patch =
+    'Content-Type': 'application/json;charset=utf-8'
+
+  $httpProvider.interceptors.push( 'loadingSpinnerInterceptor' )
 ])

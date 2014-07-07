@@ -1,0 +1,5 @@
+a href='' ng-click='sortInfo.setField(field)'
+  | {{title}}
+  span ng-show='sortInfo.current === field'
+    span.fa.fa-angle-up ng-show='!sortInfo.reversed'
+    span.fa.fa-angle-down ng-show='sortInfo.reversed'

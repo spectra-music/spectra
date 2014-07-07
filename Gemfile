@@ -52,6 +52,8 @@ gem 'acts_as_list'
 gem 'elasticsearch-rails'
 gem 'elasticsearch-model'
 
+gem "font-awesome-rails"
+
 
 
 # In production
