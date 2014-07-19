@@ -57,7 +57,7 @@ gem 'chewy'
 gem 'patron'
 gem 'active_data'
 
-gem "font-awesome-rails"
+gem 'font-awesome-rails'
 
 # In production
 group :production do
