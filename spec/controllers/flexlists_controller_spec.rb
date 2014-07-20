@@ -24,7 +24,7 @@ describe FlexlistsController, type: :controller do
   # Flexlist. As you add validations to Flexlist, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
-    { name: "Hip and Happening"}
+    { name: "Hip and Happening", match: 'all_rules' }
   end
 
   let(:invalid_attributes) { {name: ''} }
@@ -86,7 +86,7 @@ describe FlexlistsController, type: :controller do
   describe "PUT update" do
     describe "with valid params" do
       let(:new_attributes) {
-        { name: "Super Current" }
+        { name: "Super Current", match: 'any_rules' }
       }
 
       it "updates the requested flexlist" do

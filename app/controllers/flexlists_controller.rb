@@ -44,6 +44,6 @@ class FlexlistsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def flexlist_params
-      params.require(:flexlist).permit(:name)
+      params.require(:flexlist).permit(:name, :match)
     end
 end
