@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140706234637) do
+ActiveRecord::Schema.define(version: 20140720204510) do
 
   create_table "albums", force: true do |t|
     t.string   "title"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20140706234637) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "slug"
+    t.integer  "match"
   end
 
   add_index "flexlists", ["slug"], name: "index_flexlists_on_slug", unique: true

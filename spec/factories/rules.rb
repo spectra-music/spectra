@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :rule do
-    field "MyString"
+    field 1
     type 1
     value_start "MyString"
     value_end "MyString"

@@ -6,4 +6,5 @@ class Flexlist < ActiveRecord::Base
 
   friendly_id :name,  use: [:slugged, :finders]
 
+  enum match: [:any_rules, :all_rules]
 end
