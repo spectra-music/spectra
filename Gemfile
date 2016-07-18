@@ -4,11 +4,11 @@ source 'https://rubygems.org'
 gem 'rails', '4.1.8'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.1.0'
+gem 'coffee-rails', '~> 4.2.0'
 
 # Angular for the frontend
 gem 'angularjs-rails'
@@ -37,7 +37,7 @@ gem 'taglib-ruby'
 # gem 'capistrano-rails', group: :development
 
 # Friendly stubs for a verbose api
-gem 'friendly_id', '~> 5.0.0'
+gem 'friendly_id', '~> 5.1.0'
 # Paperclip manages our album covers
 gem 'paperclip', '~> 4.1'
 # RABL helps us build better APIs
@@ -80,7 +80,7 @@ group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
   # RSpec instead of MiniTest::Unit because BDD is best
-  gem 'rspec-rails', '~> 3.0.0'
+  gem 'rspec-rails', '~> 3.5.0'
   # Factory girl populates our database
   gem 'factory_girl_rails'
   #Testing angular
@@ -89,7 +89,7 @@ end
 
 group :test do
   gem 'rake'
-  gem 'shoulda-matchers'
+  gem 'shoulda-matchers', '~> 2.7'
   gem 'database_cleaner'
   gem 'codeclimate-test-reporter', require: nil
 end
