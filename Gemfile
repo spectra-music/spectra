@@ -39,7 +39,7 @@ gem 'taglib-ruby'
 # Friendly stubs for a verbose api
 gem 'friendly_id', github: 'norman/friendly_id' #'~> 5.1.0'
 # Paperclip manages our album covers
-gem 'paperclip', '~> 4.1'
+gem 'paperclip', '~> 5.0'
 # RABL helps us build better APIs
 gem 'rabl'
 # Persistent user preferences
