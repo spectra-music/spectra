@@ -105,7 +105,10 @@ describe TracksController, type: :controller do
         # specifies that the Track created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        expect_any_instance_of(Track).to receive(:update).with({ 'title' => 'Only Human', 'track_id' => '5' })
+        expect_any_instance_of(Track).to receive(:update).with(
+            ActionController::Parameters.new({ 'title' => 'Only Human', 'track_id' => '5' }).permit(:title, :track_id)
+        )
+
         put :update, params: {
             id: @track.to_param,
             track: { 'title' => 'Only Human', 'track_id' => '5' },
