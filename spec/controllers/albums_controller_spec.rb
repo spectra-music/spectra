@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 
 describe AlbumsController, type: :controller do
@@ -14,14 +14,16 @@ describe AlbumsController, type: :controller do
 
   describe 'GET index' do
     it "assigns artist's albums as @albums" do
-      get :index, {artist_id: @album.artist.to_param}, valid_session
+      get :index, params: { artist_id: @album.artist.to_param },
+          session: valid_session
       expect(assigns(:albums)).to eq([@album])
     end
   end
 
   describe 'GET show' do
     it 'assigns the requested album as @album' do
-      get :show, {id: @album.to_param, artist_id: @album.artist.to_param}, valid_session
+      get :show, params: { id: @album.to_param, artist_id: @album.artist.to_param },
+          session: valid_session
       expect(assigns(:album)).to eq(@album)
     end
   end
@@ -29,25 +31,33 @@ describe AlbumsController, type: :controller do
   describe 'PUT update' do
     describe 'with valid params' do
       it 'updates the requested album' do
-        # Assuming there are no other albums in the database, this
-        # specifies that the Album created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
-        expect_any_instance_of(Album).to receive(:update).with({ 'title' => 'Super Hexagon'})
-        put :update, {id: @album.to_param,
-                      format: :json,
-                      artist: @album.artist.name,
-                      album: {'title' => 'Super Hexagon'},
-                      genres: []}, valid_session
+        expect_any_instance_of(Album).to receive(:update).with(
+            ActionController::Parameters.new({ 'title' => 'Super Hexagon'}).permit(:title)
+        )
+
+        put :update, params: { id: @album.to_param,
+                               format: :json,
+                               artist: @album.artist.name,
+                               album: { 'title' => 'Super Hexagon' },
+                               genres: [] },
+            session: valid_session
       end
 
       it 'assigns the requested album as @album' do
-        put :update, {id: @album.to_param, album: attributes_for(:album), artist: @album.artist.name, format: :json}, valid_session
+        put :update, params: { id: @album.to_param,
+                               album: attributes_for(:album),
+                               artist: @album.artist.name,
+                               format: :json },
+            session: valid_session
         expect(assigns(:album)).to eq(@album)
       end
 
       it 'redirects to the album' do
-        put :update, {id: @album.to_param, album: attributes_for(:album), artist: @album.artist.name, format: :json}, valid_session
+        put :update, params: { id: @album.to_param,
+                               album: attributes_for(:album),
+                               artist: @album.artist.name,
+                               format: :json },
+            session: valid_session
         expect(response).to be_ok
       end
     end
@@ -56,14 +66,24 @@ describe AlbumsController, type: :controller do
       it 'assigns the album as @album' do
         # Trigger the behavior that occurs when invalid params are submitted
         allow_any_instance_of(Album).to receive(:update).and_return(false)
-        put :update, {id: @album.to_param, artist_id: @album.artist.to_param, album: {'title' => ''}, artist: @album.artist.name, format: :json}, valid_session
+        put :update, params: { id: @album.to_param,
+                               artist_id: @album.artist.to_param,
+                               album: { 'title' => '' },
+                               artist: @album.artist.name,
+                               format: :json },
+            session: valid_session
         expect(assigns(:album)).to eq(@album)
       end
 
       it "re-renders the 'edit' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         allow_any_instance_of(Album).to receive(:update).and_return(false)
-        put :update, {id: @album.to_param, artist_id: @album.artist.to_param, album: {'title' => ''}, artist: @album.artist.name, format: :json}, valid_session
+        put :update, params: { id: @album.to_param,
+                               artist_id: @album.artist.to_param,
+                               album: { 'title' => '' },
+                               artist: @album.artist.name,
+                               format: :json },
+            session: valid_session
         expect(response).to be_unprocessable
       end
     end
