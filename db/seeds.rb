@@ -25,7 +25,7 @@ rand = Random.new
                           num_discs: 1,
                           is_compilation: [true, false].sample,
                           release_date: rand.rand(Date.new(1900, 1, 1)..Date.today),
-                          cover: "http://robohash.org/#{Faker::Lorem.words.join}.png"
+                          cover: "https://robohash.org/#{Faker::Lorem.words.join}.png"
                           )
     album.genres = genre
     album.save!
