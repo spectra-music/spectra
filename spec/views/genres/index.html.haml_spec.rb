@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "genres/index", :type => :view do
   before(:each) do

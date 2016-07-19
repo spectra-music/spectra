@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Album, type: :model do
   it { should have_many(:tracks) }
@@ -8,7 +8,7 @@ describe Album, type: :model do
   it { should validate_presence_of(:title) }
   it { should validate_presence_of(:artist) }
 
-  it { should validate_uniqueness_of(:title).case_insensitive}
+  it { should validate_uniqueness_of(:title).case_insensitive }
 
   # This shoulda_matcher validation doesn't exist yet
   #it { should validate_associated(:artist)}

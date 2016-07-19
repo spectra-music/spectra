@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Artist, type: :model do
   it { should validate_presence_of(:name) }

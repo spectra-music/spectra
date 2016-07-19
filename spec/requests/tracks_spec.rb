@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "Tracks", :type => :request do
   describe "GET /tracks" do

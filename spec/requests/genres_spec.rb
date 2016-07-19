@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'Genres', type: :request do
   describe 'GET /genres' do

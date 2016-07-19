@@ -35,7 +35,11 @@ class AlbumsController < ApplicationController
     @album.slug = nil
     respond_to do |format|
       if @album.update(album_params)
-        format.json { render json: {album: @album.slug, artist: @album.artist.slug, notice: 'Album was successfully updated.'} , status: :ok, location: @album }
+        format.json { render json: {
+            album: @album.slug,
+            artist: @album.artist.slug,
+            notice: 'Album was successfully updated.'
+        }, status: :ok, location: @album }
       else
         format.json { render json: { errors: @album.errors.full_messages }, status: :unprocessable_entity }
       end

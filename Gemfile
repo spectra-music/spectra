@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.8'
+gem 'rails', '5.0.0'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -37,13 +37,13 @@ gem 'taglib-ruby'
 # gem 'capistrano-rails', group: :development
 
 # Friendly stubs for a verbose api
-gem 'friendly_id', '~> 5.1.0'
+gem 'friendly_id', github: 'norman/friendly_id' #'~> 5.1.0'
 # Paperclip manages our album covers
 gem 'paperclip', '~> 4.1'
 # RABL helps us build better APIs
 gem 'rabl'
 # Persistent user preferences
-gem 'rails-settings-cached', '~> 0.4.1'
+gem 'rails-settings-cached', '~> 0.6.0'
 
 gem 'has_scope'
 
@@ -89,9 +89,10 @@ end
 
 group :test do
   gem 'rake'
-  gem 'shoulda-matchers', '~> 2.7'
+  gem 'shoulda-matchers' #, '~> 2.7'
   gem 'database_cleaner'
   gem 'codeclimate-test-reporter', require: nil
+  gem 'rails-controller-testing'
 end
 
 group :doc do

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe "artists/edit", :type => :view do
   before(:each) do
